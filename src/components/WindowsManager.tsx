@@ -18,7 +18,7 @@ const WindowManager = ({
   children,
   title = 'Mi Portafolio',
   initialWidth = 500,
-  initialHeight = 400,
+  initialHeight = 500,
 }: WindowManagerProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);

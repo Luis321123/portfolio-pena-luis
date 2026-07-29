@@ -45,7 +45,7 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
   };
 
   return (
-    <div className="relative flex items-center z-[999999]">
+    <div className="sticky top-2 items-center z-[999999] pr-6">
       
       <button
         onClick={handleToggleMenu}

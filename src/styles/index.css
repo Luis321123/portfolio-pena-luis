@@ -4,7 +4,7 @@
 @tailwind base;
 @layer base {
   body {
-    @apply font-inter text-third bg-[#f4f1de] scroll-smooth;
+    @apply font-xp text-third bg-[#f4f1de] scroll-smooth;
   }
 
   html {

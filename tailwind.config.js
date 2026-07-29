@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: "'Inter', sans-serif",
-        passion: "'Passion One', cursive"
+        xp: ['"Trebuchet MS"', 'Tahoma', 'Segoe UI', 'MS Sans Serif', 'sans-serif'],
+        passion: ['Segoe UI', 'sans-serif'],
       },
       backgroundColor: {
         primary: "#0b3142",

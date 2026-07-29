@@ -6,16 +6,16 @@ import ArrowScroll from "@/assets/icons/arrow-scroll.svg";
 const HomePage = () => {
   return (
     <main id="#" className="sm:flex overflow-hidden">
-      <section className="h-[80vh] w-full flex flex-col justify-center bg-primary p-16 sm:w-[67%] sm:h-[60vh] lg:h-screen">
+      <section className="h-[80vh] w-full flex flex-col justify-center bg-[#ececec] p-16 sm:w-[67%] sm:h-[60vh] lg:h-screen">
         <article className="sm:pt-8 w-full ">
           <AnimatedWords
             line1="Hi, i'm"
-            line2="Backend 💻"
-            line3="Developer"
-            classText="text-secundary text-5xl font-bold font-inter tracking-widest my-4 lg:text-8xl"
+            line2="Luis Peña"
+            line3="Software Developer"
+            classText="text-[#0f7b9c] text-5xl font-bold font-xp tracking-widest my-4 lg:text-8xl"
           />
           <motion.p
-            className="my-4 text-lg sm:text-sm text-white font-light lg:text-2xl"
+            className="text-[#0f7b9c] my-4 text-lg sm:text-sm text-white font-light lg:text-2xl"
             initial={{ opacity: 0 }}
             viewport={{ once: true, amount: 0.8 }}
             animate={{ opacity: 1 }}
@@ -33,9 +33,9 @@ const HomePage = () => {
           />
         </Link>
       </section>
-      <section className="h-[40vh] w-full flex flex-col items-center justify-center bg-secundary sm:w-[33%] sm:h-[60vh] lg:h-screen sm:items-start">
-        <ImageLanding />
-      </section>
+      <section className="h-[40vh] w-full flex flex-col items-center justify-center bg-[#0f85e6] sm:w-[33%] sm:h-[60vh] lg:h-screen sm:items-start">
+  <ImageLanding />
+</section>
     </main>
   );
 };

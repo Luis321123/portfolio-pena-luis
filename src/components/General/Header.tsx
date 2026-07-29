@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import hamburguerIcon from "@/assets/icons/hamburguer.svg";
+import quitIcon from "@/assets/icons/quit.svg";
 import Navbar from "../PrimitiveElements/Navbar";
 import MenuHamburguer from "../PrimitiveElements/MenuHamburguer";
 
@@ -16,9 +18,7 @@ const Header = () => {
       <a href="#" className="hover:scale-110 transition text-5xl text-white font-bold">
         L
       </a>
-      
       <MenuHamburguer isChecked={isChecked} setIsChecked={setIsChecked} />
-      
       {isChecked && <Navbar isOpen={isChecked} setIsOpen={setIsChecked} />}
     </motion.header>
   );

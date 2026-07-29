@@ -12,9 +12,9 @@ const ImageLanding = () => {
 
   return (
     <motion.img
-      src="landing-image.svg"
-      alt="laptop with flowers ilustration"
-      className="lg:w-[900px] px-20 object-cover "
+      src="windowsPc.png"
+      alt="laptop with disc xp"
+      className="w-[700px] max-w-full h-auto object-contain mx-auto"
       initial={{ height: "100px", opacity: 0 }}
       animate={{
         height: imageLoading ? "100px" : "auto",

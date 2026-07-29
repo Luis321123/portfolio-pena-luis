@@ -29,7 +29,7 @@ const AnimatedTextWord = ({ line1, line2, line3, classText }: PropsType) => {
 
   return (
     <motion.h1
-      className={`${classText} font-bold font-inter tracking-widest`}
+      className={`${classText} font-bold font-xp tracking-widest`}
       variants={sentence}
       initial="hidden"
       viewport={{once: true, amount: 0.8}}
