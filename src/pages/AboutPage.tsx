@@ -14,7 +14,7 @@ const AboutPage = () => {
       <aside className="mx-auto bg-third flex justify-center items-center gap-2 pt-6 sm:py-14">
         <a
           target="_blank"
-          href="https://www.linkedin.com/in/jesus-chacon-b54b4a223/"
+          href="https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/"
         >
           <img
             src={LinkedinIcon}

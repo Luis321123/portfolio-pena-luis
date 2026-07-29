@@ -16,12 +16,13 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-scroll": "^1.8.9",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "xp.css": "^0.2.6"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.34",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "@types/react-scroll": "^1.8.7",
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^3.1.0",

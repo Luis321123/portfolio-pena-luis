@@ -7,7 +7,7 @@ const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
   return (
     <>
       <iframe
-        src="Jesus-Chacon.pdf"
+        src="Luis-Peña.pdf"
         className=" w-full h-full fixed left-0 bottom-0 z-[99]"
       />
       <button
