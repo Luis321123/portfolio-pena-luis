@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "./elements.css";
+
+@tailwind base;
+@layer base {
+  body {
+    @apply font-inter text-third bg-[#f4f1de] scroll-smooth;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,10 @@
+export { default as AnimatedWords } from "./Animates/AnimatedWords";
+export { default as Button } from "./PrimitiveElements/Button";
+export { default as CardExperience } from "./General/CardExperience";
+export { default as CardProject } from "./General/CardProject";
+export { default as Contact } from "./General/Contact";
+export { default as Header } from "./General/Header";
+export { default as ImageLanding } from "./General/ImageLanding";
+export { default as Navbar } from "./PrimitiveElements/Navbar";
+export { default as ViewPdf } from "./PrimitiveElements/ViewPdf";
+export * from "./index";

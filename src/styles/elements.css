@@ -1,0 +1,69 @@
+.hamburguer-label {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+  cursor: pointer;
+}
+
+.hamburguer-label span {
+  background: #fff;
+  border-radius: 10px;
+  height: 7px;
+  margin: 7px 0;
+  transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.hamburguer-label span:nth-of-type(1) {
+  width: 50%;
+  height: 4px;
+  background: #000;
+}
+
+.hamburguer-label span:nth-of-type(2) {
+  width: 80%;
+  height: 4px;
+  background: #000;
+}
+
+.hamburguer-label span:nth-of-type(3) {
+  width: 20%;
+  z-index: 9999;
+  height: 4px;
+  background: #000;
+}
+
+.hamburguer-label input[type="checkbox"] {
+  display: none;
+}
+
+.hamburguer-label input[type="checkbox"]:checked ~ span:nth-of-type(1) {
+  transform-origin: bottom;
+  transform: rotatez(45deg) translate(8px, 3px);
+  z-index: 9999;
+  width: 40%;
+}
+
+.hamburguer-label input[type="checkbox"]:checked ~ span:nth-of-type(2) {
+  transform-origin: top;
+  transform: rotatez(-45deg);
+  z-index: 9999;
+  width: 70%;
+}
+
+.hamburguer-label input[type="checkbox"]:checked ~ span:nth-of-type(3) {
+  transform-origin: bottom;
+  transform: translate(20px, -13px) rotatez(45deg);
+  z-index: 9999;
+  width: 40%;
+}
+
+/* zoom */
+.medium-zoom-image--opened {
+  border-radius: 0px !important;
+}
+
+/* image -> ant design */
+.ant-image.css-dev-only-do-not-override-j9bb5n {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
