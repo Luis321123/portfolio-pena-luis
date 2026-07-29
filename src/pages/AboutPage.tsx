@@ -189,10 +189,10 @@ const AboutPage = () => {
             >
                          
             <br />            
-                                    
+                    <br/>                
 
             </motion.h2>
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col gap-60 w-full">
               {experienceIndices.map((index) => (
                 <CardExperience 
                   key={index} 
@@ -234,11 +234,14 @@ const AboutPage = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-xl font-bold py-2 lg:text-2xl text-center -mt-4"
+              className="text-xl font-bold py-1 text-center lg:text-2x1  -mt-9"
             >
-              Experience
+              
+                        Experience
+              <br/>
+             <br/>
             </motion.h2>
-            <div className="flex flex-col gap-20 w-full">
+            <div className="flex flex-col gap-14 w-full">
               {experienceIndices.map((index) => (
                 <CardConsole 
                   key={index} 

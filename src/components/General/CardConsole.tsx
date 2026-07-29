@@ -128,12 +128,25 @@ const CardConsole = ({ index }: CardConsoleProps) => {
               padding: '6px 10px', 
               minHeight: '38px',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              justifyContent: 'space-between' 
             }}
           >
-            <div className="title-bar-text" style={{ fontSize: '14px', fontWeight: 'bold' }}>
-              Command Prompt
+            <div 
+              className="title-bar-text" 
+              style={{ 
+                fontSize: '14px', 
+                fontWeight: 'bold',
+                maxWidth: 'calc(100% - 150px)', 
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis' 
+              }}
+              title={experience.title} 
+            >
+              {experience.title}
             </div>
+            
             <div className="title-bar-controls" style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
               {isComplete && (
                 <button

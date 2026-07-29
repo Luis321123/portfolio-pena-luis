@@ -5,7 +5,7 @@ import { Experience } from "@/interfaces/Experience";
 export const experiences: Experience[] = [
   {
     id: uuid(),
-    title: "AI Platform Developer",
+    title: "Software Developer",
     date: "2025 Sept - 2026 May",
     description: `Cross-functional team developing AI-powered platform
 │ 

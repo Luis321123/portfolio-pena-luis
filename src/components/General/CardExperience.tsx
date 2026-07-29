@@ -1,6 +1,10 @@
 import { detail } from "@/services/Details"; 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import TechBadge from "@/components/techBadge";
+import TechIcon from "@/assets/icons/System.ico";
+import AchievementsIcon from "@/assets/icons/trophy.png";
+import DetailsIcon from "@/assets/icons/info.svg";
 
 interface CardExperienceProps {
   index: number;
@@ -9,33 +13,54 @@ interface CardExperienceProps {
 const CardExperience = ({ index }: CardExperienceProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  
+  const [isExpanded, setIsExpanded] = useState(false);
+  // Estado para las pestañas internas
   const [activeTab, setActiveTab] = useState<'tech' | 'achievements' | 'details'>('tech');
 
-  const getExperienceIndex = (cardIndex: number, offset: number) => {
+  const getSafeExperience = (idx: number) => {
     const total = detail.length;
-    return (cardIndex + offset) % total;
+    if (total === 0) return null;
+    const safeIndex = ((idx % total) + total) % total;
+    return detail[safeIndex];
   };
 
-  const techIndex = getExperienceIndex(index, 1); 
-  const achievementsIndex = getExperienceIndex(index, 2); 
-  const detailsIndex = getExperienceIndex(index, 0);      
-
-  const techExperience = detail[techIndex];
-  const achievementsExperience = detail[achievementsIndex];
-  const detailsExperience = detail[detailsIndex];
+  const currentExperience = getSafeExperience(index);
 
   const extractTechStack = (description: string) => {
-    const techs = description.match(/[•]\s*([^•\n]+)/g) || [];
-    return techs.map(t => t.replace('•', '').trim());
+    if (!description) return [];
+    
+    const knownTechs = [
+      'Python', 'FastAPI', 'Django', 'Flask', 'SQLAlchemy', 'PyMongo',
+      'PHP', 'Laravel', 'Node.js', 'Express', 'TypeScript', 'NestJS',
+      'React', 'Vue', 'AWS', 'GCP', 'Docker', 'PostgreSQL', 'MySQL',
+      'MongoDB', 'Git', 'Testing', 'n8n', 'Firebase', 'Nginx', 'VPS',
+      'OpenAI', 'Gemini', 'GitHub', 'RAG', 'API Gateway', 'Cognito',
+      'S3', 'CloudWatch', 'EC2', 'ECS', 'ECR', 'Lambda'
+    ];
+    
+    const foundTechs: string[] = [];
+    const descriptionLower = description.toLowerCase();
+    
+    knownTechs.forEach(tech => {
+      if (descriptionLower.includes(tech.toLowerCase())) {
+        foundTechs.push(tech);
+      }
+    });
+    
+    return foundTechs;
   };
 
-  const extractAchievements = (description: string) => {
-    const achievements = description.match(/[•]\s*([^•\n]+)/g) || [];
-    return achievements.slice(0, 3).map(t => t.replace('•', '').trim());
-  };
+  const techStack = extractTechStack(currentExperience?.description || '');
+  const achievements = currentExperience?.achievements || [];
 
-  const techStack = extractTechStack(techExperience?.description || '');
-  const achievements = extractAchievements(achievementsExperience?.description || '');
+  if (!currentExperience) {
+    return (
+      <div className="w-full mb-4 p-4 bg-[#ece9d8] border border-[#d4d0c8] rounded text-center text-gray-500">
+        No experience available
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -49,115 +74,155 @@ const CardExperience = ({ index }: CardExperienceProps) => {
       }}
       className="w-full mb-4 font-mono"
     >
-      <div className="w-full">
-        <menu role="tablist" aria-label="Experience Tabs" className="flex border-b border-[#d4d0c8]">
-          <button 
-            role="tab" 
-            aria-selected={activeTab === 'tech'}
-            aria-controls="tab-tech"
-            onClick={() => setActiveTab('tech')}
-            className={`px-4 py-1.5 text-sm font-medium ${
-              activeTab === 'tech' 
-                ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
-                : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
-            }`}
-          >
-            Tech
-          </button>
-          <button 
-            role="tab" 
-            aria-selected={activeTab === 'achievements'}
-            aria-controls="tab-achievements"
-            onClick={() => setActiveTab('achievements')}
-            className={`px-4 py-1.5 text-sm font-medium ${
-              activeTab === 'achievements' 
-                ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
-                : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
-            }`}
-          >
-            Achiev.
-          </button>
-          <button 
-            role="tab" 
-            aria-selected={activeTab === 'details'}
-            aria-controls="tab-details"
-            onClick={() => setActiveTab('details')}
-            className={`px-4 py-1.5 text-sm font-medium ${
-              activeTab === 'details' 
-                ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
-                : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
-            }`}
-          >
-            Details
-          </button>
-        </menu>
-
-        {/* Tab panels */}
-        <article 
-          role="tabpanel" 
-          id="tab-tech"
-          hidden={activeTab !== 'tech'}
-          className="p-4 min-h-[260px] bg-[#ece9d8] border-x border-b border-[#d4d0c8] rounded-b overflow-y-auto"
+      {/* Contenedor principal con borde */}
+      <div className="w-full border border-[#d4d0c8] rounded overflow-hidden bg-[#ece9d8]">
+        
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full flex items-center justify-between px-4 py-3 bg-[#ece9d8] hover:bg-[#e0ddd4] transition-colors text-left"
         >
-          <div className="space-y-2">
-            <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1">
-              🔧 Tech Stack - {techExperience?.title || 'N/A'}
+          <div className="flex flex-col gap-0.5">
+            <h3 className="text-sm font-bold text-[#1a1a1a]">
+              {currentExperience.title}
+            </h3>
+            <span className="text-[10px] text-gray-500 font-medium tracking-wide">
+              {currentExperience.date}
+            </span>
+          </div>
+
+          {/* FLECHA (Gira 180° al expandirse) */}
+          <div className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-[#d4d0c8] transition-colors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-4 h-4 text-[#1a1a1a] transition-transform duration-300 ${
+                isExpanded ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </button>
+
+        <div
+          className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            isExpanded ? 'max-h-[800px] opacity-100 border-t border-[#d4d0c8]' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <menu role="tablist" aria-label="Experience Tabs" className="flex border-b border-[#d4d0c8] bg-[#ece9d8]">
+            <button 
+              role="tab" 
+              aria-selected={activeTab === 'tech'}
+              aria-controls="tab-tech"
+              onClick={() => setActiveTab('tech')}
+              className={`px-4 py-1.5 text-sm font-medium flex items-center gap-2 ${
+                activeTab === 'tech' 
+                  ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
+                  : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
+              }`}
+            >
+              <img src={TechIcon} alt="Tech" className="w-4 h-4" />
+              Tech
+            </button>
+            <button 
+              role="tab" 
+              aria-selected={activeTab === 'achievements'}
+              aria-controls="tab-achievements"
+              onClick={() => setActiveTab('achievements')}
+              className={`px-4 py-1.5 text-sm font-medium flex items-center gap-2 ${
+                activeTab === 'achievements' 
+                  ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
+                  : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
+              }`}
+            >
+              <img src={AchievementsIcon} alt="Achievements" className="w-4 h-4" />
+              Achiev.
+            </button>
+            <button 
+              role="tab" 
+              aria-selected={activeTab === 'details'}
+              aria-controls="tab-details"
+              onClick={() => setActiveTab('details')}
+              className={`px-4 py-1.5 text-sm font-medium flex items-center gap-2 ${
+                activeTab === 'details' 
+                  ? 'bg-[#ece9d8] border-l border-t border-r border-[#d4d0c8] rounded-t' 
+                  : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
+              }`}
+            >
+              <img src={DetailsIcon} alt="Details" className="w-4 h-4" />
+              Details
+            </button>
+          </menu>
+
+          <article 
+            role="tabpanel" 
+            id="tab-tech"
+            hidden={activeTab !== 'tech'}
+            className="p-4 min-h-[260px] bg-[#ece9d8] rounded-b overflow-y-auto"
+          >
+            <div className="space-y-3">
+              <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
+                <img src={TechIcon} alt="Tech" className="w-4 h-4" />
+                Tech Stack - {currentExperience.title}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {techStack.length > 0 ? (
+                  techStack.map((tech) => (
+                    <TechBadge key={tech} tech={tech} />
+                  ))
+                ) : (
+                  <div className="text-sm text-gray-500">No tech stack listed</div>
+                )}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {techStack.length > 0 ? (
-                techStack.map((tech, i) => (
-                  <span 
-                    key={i} 
-                    className="bg-[#d4d0c8] px-2.5 py-1.5 rounded text-xs text-[#1a1a1a] border border-[#d4d0c8]"
-                  >
-                    {tech}
-                  </span>
-                ))
+          </article>
+
+          <article 
+            role="tabpanel" 
+            id="tab-achievements"
+            hidden={activeTab !== 'achievements'}
+            className="p-4 min-h-[260px] bg-[#ece9d8] rounded-b overflow-y-auto"
+          >
+            <div className="space-y-2">
+              <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
+                <img src={AchievementsIcon} alt="Achievements" className="w-4 h-4" />
+                Achievements - {currentExperience.title}
+              </div>
+              {achievements.length > 0 ? (
+                <ul className="space-y-2">
+                  {achievements.map((achievement, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-[#1a1a1a]">
+                      <span className="text-yellow-600 mt-0.5">🏆</span>
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
               ) : (
-                <div className="text-sm text-gray-500">No tech stack listed</div>
+                <div className="text-sm text-gray-500">No achievements listed</div>
               )}
             </div>
-          </div>
-        </article>
+          </article>
 
-        <article 
-          role="tabpanel" 
-          id="tab-achievements"
-          hidden={activeTab !== 'achievements'}
-          className="p-4 min-h-[260px] bg-[#ece9d8] border-x border-b border-[#d4d0c8] rounded-b overflow-y-auto"
-        >
-          <div className="space-y-2">
-            <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1">
-              🏆 Achievements - {achievementsExperience?.title || 'N/A'}
+          <article 
+            role="tabpanel" 
+            id="tab-details"
+            hidden={activeTab !== 'details'}
+            className="p-3 min-h-[260px] bg-[#ece9d8] rounded-b overflow-y-auto"
+          >
+            <div className="space-y-2 text-xs leading-relaxed text-[#1a1a1a]">
+              <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
+                <img src={DetailsIcon} alt="Details" className="w-4 h-4" />
+                Description - {currentExperience.title}
+              </div>
+              <p className="text-xs leading-relaxed whitespace-pre-wrap">
+                {currentExperience.description}
+              </p>
             </div>
-            {achievements.length > 0 ? (
-              achievements.map((achievement, i) => (
-                <div key={i} className="flex items-start gap-2 text-sm text-[#1a1a1a]">
-                  <span className="text-yellow-600">*</span>
-                  <span>{achievement}</span>
-                </div>
-              ))
-            ) : (
-              <div className="text-sm text-gray-500">No achievements listed</div>
-            )}
-          </div>
-        </article>
-
-        <article 
-          role="tabpanel" 
-          id="tab-details"
-          hidden={activeTab !== 'details'}
-          className="p-3 min-h-[260px] bg-[#ece9d8] border-x border-b border-[#d4d0c8] rounded-b overflow-y-auto"
-        >
-          <div className="space-y-2 text-xs leading-relaxed text-[#1a1a1a]">
-            <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1">
-              📋 Description - {detailsExperience?.title || 'N/A'}
-            </div>
-            <p className="text-xs leading-relaxed whitespace-pre-wrap">
-              {detailsExperience?.description || 'No description available'}
-            </p>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </motion.div>
   );
