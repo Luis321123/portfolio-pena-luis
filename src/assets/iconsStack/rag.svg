@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Estilos globales para trazos -->
+  <style>
+    .circuit-line {
+      stroke: #2200CC;
+      stroke-width: 8;
+      stroke-linecap: round;
+    }
+    .circuit-node {
+      fill: #FFF;
+      stroke: #2200CC;
+      stroke-width: 8;
+    }
+    .main-circle {
+      fill: none;
+      stroke: #2200CC;
+      stroke-width: 10;
+    }
+    .center-banner {
+      fill: #2200CC;
+    }
+    .rag-text {
+      fill: #FFF;
+      font-family: 'Arial Black', 'Impact', sans-serif;
+      font-weight: 900;
+      font-size: 42px;
+      letter-spacing: 1px;
+    }
+  </style>
+
+  <!-- Contenedor centrado -->
+  <g transform="translate(250, 250)">
+    
+    <!-- ARRIBA: Conexiones de circuitos -->
+    <line x1="-40" y1="-70" x2="-40" y2="-130" class="circuit-line" />
+    <circle cx="-40" cy="-135" r="11" class="circuit-node" />
+    
+    <line x1="0" y1="-70" x2="0" y2="-100" class="circuit-line" />
+    <circle cx="0" cy="-105" r="11" class="circuit-node" />
+    
+    <line x1="42" y1="-70" x2="42" y2="-130" class="circuit-line" />
+    <circle cx="42" cy="-135" r="11" class="circuit-node" />
+
+    <!-- ABAJO: Conexiones de circuitos -->
+    <line x1="-40" y1="70" x2="-40" y2="130" class="circuit-line" />
+    <circle cx="-40" cy="135" r="11" class="circuit-node" />
+    
+    <line x1="0" y1="70" x2="0" y2="100" class="circuit-line" />
+    <circle cx="0" cy="105" r="11" class="circuit-node" />
+    
+    <line x1="42" y1="70" x2="42" y2="130" class="circuit-line" />
+    <circle cx="42" cy="135" r="11" class="circuit-node" />
+
+    <!-- IZQUIERDA: Conexiones de circuitos -->
+    <line x1="-70" y1="-40" x2="-130" y2="-40" class="circuit-line" />
+    <circle cx="-135" cy="-40" r="11" class="circuit-node" />
+    
+    <line x1="-70" y1="0" x2="-105" y2="0" class="circuit-line" />
+    <circle cx="-110" cy="0" r="11" class="circuit-node" />
+    
+    <line x1="-70" y1="40" x2="-130" y2="40" class="circuit-line" />
+    <circle cx="-135" cy="40" r="11" class="circuit-node" />
+
+    <!-- DERECHA: Conexiones de circuitos -->
+    <line x1="70" y1="-40" x2="130" y2="-40" class="circuit-line" />
+    <circle cx="135" cy="-40" r="11" class="circuit-node" />
+    
+    <line x1="70" y1="0" x2="105" y2="0" class="circuit-line" />
+    <circle cx="110" cy="0" r="11" class="circuit-node" />
+    
+    <line x1="70" y1="40" x2="130" y2="40" class="circuit-line" />
+    <circle cx="135" cy="40" r="11" class="circuit-node" />
+
+    <!-- CÍRCULO PRINCIPAL -->
+    <circle cx="0" cy="0" r="75" class="main-circle" />
+
+    <!-- BANNER CENTRAL CON EL TEXTO "RAG" -->
+    <rect x="-72" y="-30" width="144" height="60" class="center-banner" />
+    <text x="0" y="14" text-anchor="middle" class="rag-text">RAG</text>
+
+  </g>
+</svg>

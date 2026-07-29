@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Fondo Circular -->
+  <circle cx="250" cy="250" r="240" fill="#FAD12C" />
+  <circle cx="250" cy="250" r="215" fill="#FCE793" />
+
+  <!-- HOJA DE MONGODB -->
+  <g transform="translate(10, 0)">
+    <!-- Mitad Izquierda (Verde Claro con Degradado) -->
+    <linearGradient id="left-leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3FA74B" />
+      <stop offset="100%" stop-color="#237833" />
+    </linearGradient>
+    <path d="M150,90 C110,140 70,240 150,370 L150,90 Z" fill="url(#left-leaf)" />
+
+    <!-- Mitad Derecha (Verde Oscuro) -->
+    <linearGradient id="right-leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#116122" />
+      <stop offset="100%" stop-color="#0B4016" />
+    </linearGradient>
+    <path d="M150,90 C190,140 230,240 150,370 L150,90 Z" fill="url(#right-leaf)" />
+
+    <!-- Tallo -->
+    <path d="M150,365 C147,380 145,400 147,415 C150,418 152,418 154,415 C155,400 153,380 150,365 Z" fill="#A4A399" />
+  </g>
+
+  <!-- LOGO DE PYTHON -->
+  <g transform="translate(215, 120) scale(0.95)">
+    <!-- Serpiente Azul (Arriba) -->
+    <path d="M143,0 C100,0 93,18 93,37 L93,73 L144,73 L144,81 L74,81 C33,81 0,105 0,147 C0,190 29,214 70,214 L113,214 L113,193 C113,169 130,148 155,148 L225,148 C261,148 281,126 281,92 L281,54 C281,18 251,0 209,0 L143,0 Z" fill="#306998" />
+    <!-- Ojo Serpiente Azul -->
+    <circle cx="120" cy="27" r="11" fill="#FFF" />
+
+    <!-- Serpiente Amarilla (Abajo) -->
+    <path d="M138,296 C181,296 188,278 188,259 L188,223 L137,223 L137,215 L207,215 C248,215 281,191 281,149 C281,106 252,82 211,82 L168,82 L168,103 C168,127 151,148 126,148 L56,148 C20,148 0,170 0,204 L0,242 C0,278 30,296 72,296 L138,296 Z" fill="#FFE873" />
+    <!-- Ojo Serpiente Amarilla -->
+    <circle cx="161" cy="269" r="11" fill="#FCE793" />
+  </g>
+</svg>
