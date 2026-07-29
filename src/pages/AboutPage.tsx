@@ -1,6 +1,6 @@
 import { experiences } from "@/services";
 import { CardExperience, ViewPdf } from "@/components";
-import LinkedinIcon from "@/assets/icons/linkedin.svg";
+import LinkedinIconPixel from "@/assets/icons/linkedinPixel.svg";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ const AboutPage = () => {
           href="https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/"
         >
           <img
-            src={LinkedinIcon}
+            src={LinkedinIconPixel}
             alt="linkedin icon heroicon"
             className="w-6 h-6 md:h-10 md:w-10 hover:scale-105 transition"
           />

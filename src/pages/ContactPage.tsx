@@ -1,5 +1,5 @@
-import linkedinIcon from "@/assets/icons/linkedin.svg";
-import githubIcon from "@/assets/icons/github.svg";
+import LinkedinIconPixel from "@/assets/icons/linkedinPixel.svg";
+import githubPixel from "@/assets/icons/githubpixel.svg";
 
 const ContactPage = () => {
   return (
@@ -16,7 +16,7 @@ const ContactPage = () => {
             >
               Github
               <img
-                src={githubIcon}
+                src={githubPixel}
                 alt="github icon logotype"
                 className="w-6 h-6"
               />
@@ -29,7 +29,7 @@ const ContactPage = () => {
             >
               Linkedin
               <img
-                src={linkedinIcon}
+                src={LinkedinIconPixel}
                 alt="linkedin icon logotype"
                 className="w-6 h-6"
               />

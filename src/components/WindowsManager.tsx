@@ -44,14 +44,13 @@ const WindowManager = ({
       setPreviousSize(size);
       setPreviousPosition(position);
       
-      const padding = 7;
       setSize({
-        width: window.innerWidth - padding * 2,
-        height: window.innerHeight - padding * 2
+        width: window.innerWidth,
+        height: window.innerHeight
       });
       setPosition({
-        x: padding,
-        y: padding
+        x: 0,
+        y: 0
       });
       setIsMaximized(true);
     }
@@ -80,11 +79,11 @@ const WindowManager = ({
 
   const windowStyles: React.CSSProperties = {
     position: 'fixed',
-    left: isMaximized ? 7 : position.x,
-    top: isMaximized ? 7 : position.y,
-    width: isMaximized ? window.innerWidth - 14 : size.width,
-    height: isMaximized ? window.innerHeight - 14 : size.height,
-    zIndex: 9999,
+    top: isMaximized ? 0 : position.y,
+    left: isMaximized ? 0 : position.x,
+    width: isMaximized ? '100vw' : size.width,
+    height: isMaximized ? '100vh' : size.height,
+    zIndex: isMaximized ? 9999999 : 9999, 
     cursor: isDragging ? 'grabbing' : 'default',
     display: isMinimized ? 'none' : 'block',
     borderRadius: isMaximized ? 0 : '0px',
@@ -110,13 +109,19 @@ const WindowManager = ({
       style={windowStyles}
     >
       <div
-        className="title-bar"
-        onMouseDown={handleMouseDown}
-        style={{ 
-          cursor: isDragging ? 'grabbing' : 'grab',
-          flexShrink: 0,
-        }}
-      >
+  className="title-bar"
+    onMouseDown={(e) => {
+      if (isMaximized) {
+              handleMaximize(); 
+            }
+            
+            handleMouseDown(e);
+          }}
+          style={{ 
+            cursor: isDragging ? 'grabbing' : 'grab',
+            flexShrink: 0,
+          }}
+        >
         <div className="title-bar-text">{title}</div>
         <div className="title-bar-controls">
           <button aria-label="Minimize" onClick={handleMinimize}>
