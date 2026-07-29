@@ -2,6 +2,7 @@ import { AnimatedWords, ImageLanding } from "@/components";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import ArrowScroll from "@/assets/icons/arrow-scroll.svg";
+import GifMask from '@/assets/fishoptimizedpro.gif';
 
 const HomePage = () => {
   return (
@@ -33,9 +34,19 @@ const HomePage = () => {
           />
         </Link>
       </section>
-      <section className="h-[40vh] w-full flex flex-col items-center justify-center bg-[#0f85e6] sm:w-[33%] sm:h-[60vh] lg:h-screen sm:items-start">
-  <ImageLanding />
-</section>
+
+      <section className="h-[40vh] w-full flex flex-col items-center justify-center bg-[#0f85e6] sm:w-[33%] sm:h-[60vh] lg:h-screen sm:items-start relative overflow-hidden">
+        
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-10">
+          <img 
+            src={GifMask} 
+            alt="animated mask" 
+            className="w-full h-full object-cover object-[80%_center] opacity-100 mix-blend-overlay"
+          />
+        </div>
+
+        <ImageLanding />
+      </section>
     </main>
   );
 };

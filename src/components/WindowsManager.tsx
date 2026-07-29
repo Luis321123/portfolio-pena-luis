@@ -1,27 +1,31 @@
-// src/components/WindowManager.tsx
 import { useState, useEffect } from 'react';
 import { useDragWindow } from '../hooks/useDragWindows';
 import { useResizeWindow } from '../hooks/useResizeWindows';
 
-type WindowManagerProps = {
+type WindowsManagerProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
   initialWidth?: number;
   initialHeight?: number;
+  isMaximized: boolean; 
+  onMaximizeChange: (value: boolean) => void; 
+  scrollContainerId?: string;
 };
 
-const WindowManager = ({
+const WindowsManager = ({
   isOpen,
   onClose,
   children,
   title = 'Mi Portafolio',
   initialWidth = 500,
   initialHeight = 500,
-}: WindowManagerProps) => {
+  isMaximized,
+  scrollContainerId,
+  onMaximizeChange,
+}: WindowsManagerProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
-  const [isMaximized, setIsMaximized] = useState(false);
   const [previousSize, setPreviousSize] = useState({ width: initialWidth, height: initialHeight });
   const [previousPosition, setPreviousPosition] = useState({ x: 0, y: 0 });
 
@@ -39,7 +43,7 @@ const WindowManager = ({
     if (isMaximized) {
       setSize(previousSize);
       setPosition(previousPosition);
-      setIsMaximized(false);
+      onMaximizeChange(false);
     } else {
       setPreviousSize(size);
       setPreviousPosition(position);
@@ -52,7 +56,7 @@ const WindowManager = ({
         x: 0,
         y: 0
       });
-      setIsMaximized(true);
+      onMaximizeChange(true);
     }
   };
 
@@ -94,7 +98,7 @@ const WindowManager = ({
     height: isMaximized ? 'calc(100% - 28px)' : 'auto',
     overflow: 'auto',
     maxHeight: isMaximized ? 'calc(100vh - 50px)' : 'auto',
-    padding: isMaximized ? '12px 10px' : '12px 10px',
+    padding: '0px',
   };
 
   return (
@@ -110,35 +114,40 @@ const WindowManager = ({
     >
       <div
   className="title-bar"
-    onMouseDown={(e) => {
-      if (isMaximized) {
-              handleMaximize(); 
-            }
-            
-            handleMouseDown(e);
-          }}
-          style={{ 
-            cursor: isDragging ? 'grabbing' : 'grab',
-            flexShrink: 0,
-          }}
-        >
-        <div className="title-bar-text">{title}</div>
-        <div className="title-bar-controls">
-          <button aria-label="Minimize" onClick={handleMinimize}>
-            <span className="sr-only">Minimizar</span>
-          </button>
-          <button aria-label="Maximize" onClick={handleMaximize}>
-            <span className="sr-only">{isMaximized ? 'Restaurar' : 'Maximizar'}</span>
-          </button>
-          <button aria-label="Close" onClick={onClose}>
-            <span className="sr-only">Cerrar</span>
-          </button>
-        </div>
-      </div>
+  onMouseDown={(e) => {
+    if (isMaximized) {
+      handleMaximize(); 
+    }
+    handleMouseDown(e);
+  }}
+  style={{ 
+    cursor: isDragging ? 'grabbing' : 'grab',
+    flexShrink: 0,
+    backgroundColor: 'transparent', // <--- Hacemos transparente el fondo
+    borderBottom: 'none',           // <--- Quitamos la línea divisoria
+  }}
+>
+  <div className="title-bar-text">{title}</div>
+  <div className="title-bar-controls">
+    <button aria-label="Minimize" onClick={handleMinimize}>
+      <span className="sr-only">Minimizar</span>
+    </button>
+    <button aria-label="Maximize" onClick={handleMaximize}>
+      <span className="sr-only">{isMaximized ? 'Restaurar' : 'Maximizar'}</span>
+    </button>
+    <button aria-label="Close" onClick={onClose}>
+      <span className="sr-only">Cerrar</span>
+    </button>
+  </div>
+</div>
 
-      <div className="window-body" style={bodyStyles}>
-        {children}
-      </div>
+      <div 
+  className="window-body" 
+  id={scrollContainerId}
+  style={bodyStyles}
+>
+  {children}
+</div>
 
       {!isMaximized && (
         <>
@@ -192,4 +201,4 @@ const WindowManager = ({
   );
 };
 
-export default WindowManager;
+export default WindowsManager;

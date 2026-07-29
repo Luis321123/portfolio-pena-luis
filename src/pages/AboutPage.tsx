@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 const AboutPage = () => {
   const [isViewPdf, setIsViewPdf] = useState<boolean>(false);
+
   return (
     <>
       {isViewPdf && (
@@ -32,7 +33,7 @@ const AboutPage = () => {
       </aside>
       <section
         id="about"
-        className=" w-full bg-third flex flex-col items-center p-10 text-primary py-14 px-10 sm:px-20 sm:py-4 sm:flex-row sm:items-start  mb-6 overflow-hidden gap-10 md:gap-0"
+        className="w-full bg-third flex flex-col items-center p-10 text-primary py-14 px-10 sm:px-20 sm:py-4 sm:flex-row sm:items-start mb-6 overflow-hidden gap-10 md:gap-0"
       >
         <motion.div
           className="flex w-full relative mb-4 shrink-0 justify-center sm:w-[33%] sm:flex-col sm:justify-start md:pr-10"
@@ -40,37 +41,114 @@ const AboutPage = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <article>
-            <h3 className="font-bold text-lg pb-2 border border-transparent border-b-slate-300 inline-block md:text-2xl">
+          <article className="w-full">
+            <h3 className="font-bold text-lg pb-2 border border-transparent border-b-slate-300 inline-block md:text-2xl mb-3">
               Technologies:
             </h3>
-            <ul className="whitespace-pre flex flex-wrap flex-col gap-2 pt-2 text-third font-light text-sm list-disc list-inside md:text-lg">
-              <li>Python</li>
-              <li>PHP</li>
-              <li>Nodejs</li>
-              <li>Typescript</li>
-              <li>FastApi</li>
-              <li>Django</li>
-              <li>Sanctrum</li>
-              <li>Laravel</li>
-              <li>Sockets</li>
-              <li>React</li>
-              <li>Vue</li>
-              <li>AWS</li>
-              <li>GCP</li>
-              <li>SQL</li>
-              <li>NoSQL</li>
-              <li>Docker</li>
-              <li>Patterns Arquitectures</li>
-            </ul>
-          </article>
-          <article className="ml-4 sm:ml-0 sm:mt-4">
-            <h3 className="font-bold text-lg pb-2 border border-transparent border-b-slate-300 inline-block md:text-2xl">
-              Tools and others:
-            </h3>
-            <ul className="flex flex-wrap flex-col gap-2 pt-2 text-third font-light text-sm list-disc list-inside md:text-lg">
-              <li>Testing</li>
-              <li>Git</li>
+            <ul 
+              className="tree-view bg-[#c0c0c0] p-4 rounded border-2 border-[#fdfdfd] border-t-[#808080] border-l-[#808080] text-xs md:text-sm"
+              style={{ 
+                fontFamily: '"W95FA", "Segoe UI", sans-serif',
+                boxShadow: 'inset -1px -1px 0 #0a0a0a',
+                listStyle: 'none',
+                paddingLeft: '1.5rem'
+              }}
+            >
+              <li className="font-semibold text-sm md:text-base mb-1">🚀 Tech Stack</li>
+              
+              <li>
+                <details open>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    🐍 Python
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">FastAPI</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Django</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Flask</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">SQLAlchemy</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">PyMongo</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    🐘 PHP
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Laravel</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Sanctrum</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    🟢 Node.js
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Express</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">TypeScript</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">WebSockets</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    ⚛️ Frontend
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">React</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Vue</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    ☁️ Cloud & DevOps
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">AWS</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">GCP</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Docker</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">VPS</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    🗄️ Databases
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">PostgreSQL</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">MySQL</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">MongoDB</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">NoSQL</li>
+                  </ul>
+                </details>
+              </li>
+
+              <li>
+                <details>
+                  <summary className="cursor-pointer hover:bg-gray-100/20 px-1 rounded py-0.5 font-medium">
+                    🔧 Tools & Others
+                  </summary>
+                  <ul className="pl-4 border-l-2 border-third/30 ml-1">
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Git</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Testing</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">n8n</li>
+                    <li className="hover:bg-gray-100/10 px-1 rounded">Patterns Arquitectures</li>
+                  </ul>
+                </details>
+              </li>
             </ul>
           </article>
         </motion.div>
@@ -87,8 +165,8 @@ const AboutPage = () => {
               <b className="text-[#00008B]"> Python</b> and{" "}
               <b className="text-[#7A86B8]">PHP</b> Developer
             </h3>
-            <p className="text-sm font-light text-third md:text-lg lg:text-2xl sm:border sm:border-transparent sm:border-b-gray-300 sm:pb-10">
-              Hi! 👋 I’m Luis Mario Peña, a backend developer with over 2 years of experience building robust and scalable solutions for industries such as travel, solar energy, business management, CRM integrations, and AI-powered product processing. I’ve worked in environments ranging from monolithic architectures (Python/FastAPI, PHP/Laravel) to microservices with Docker, including hexagonal architectures and cloud deployments (AWS, VPS). I’m proficient in Python/FastAPI, Node.js/TypeScript/Express, PHP/Laravel, PostgreSQL, and SQLAlchemy, and I have experience integrating social authentication (Apple/Google/Firebase), external APIs (YouTube, GoHighLevel), automations with n8n, and AI models (OpenAI, Gemini, DeepSeek R8) using strategies such as RAG and batch processing. I adapt quickly, am a lifelong learner, and actively collaborate on agile teams with continuous integration. I’m passionate about clean design, maintainable code, and tackling new technological challenges.
+            <p className="text-sm font-light text-third md:text-lg lg:text-1xl sm:border sm:border-transparent sm:border-b-gray-300 sm:pb-10">
+              Hi! 👋 I'm Luis Mario Peña, a backend developer with over 2 years of experience building robust and scalable solutions for industries such as travel, solar energy, business management, CRM integrations, and AI-powered product processing. I've worked in environments ranging from monolithic architectures (Python/FastAPI, PHP/Laravel) to microservices with Docker, including hexagonal architectures and cloud deployments (AWS, VPS). I'm proficient in Python/FastAPI, Node.js/TypeScript/Express, PHP/Laravel, PostgreSQL, and SQLAlchemy, and I have experience integrating social authentication (Apple/Google/Firebase), external APIs (YouTube, GoHighLevel), automations with n8n, and AI models (OpenAI, Gemini, DeepSeek R8) using strategies such as RAG and batch processing. I adapt quickly, am a lifelong learner, and actively collaborate on agile teams with continuous integration. I'm passionate about clean design, maintainable code, and tackling new technological challenges.
             </p>
           </motion.div>
           <article>

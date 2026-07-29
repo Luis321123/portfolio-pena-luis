@@ -13,3 +13,55 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+.xp-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #245edb 0%, #1941a5 50%, #1941a5 100%);
+  border-top: 1px solid #0a3fa0;
+  z-index: 9999;
+  padding: 0 4px;
+}
+
+.xp-start-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 12px;
+  background: linear-gradient(to bottom, #3fae4c 0%, #2d8b39 50%, #237a2f 100%);
+  border: 1px solid #1a5c22;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.xp-taskbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 6px;
+}
+
+.xp-taskbar-item {
+  height: 24px;
+  padding: 0 10px;
+  background: linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%);
+  border: 1px solid #14367f;
+  border-radius: 3px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.xp-taskbar-item:hover {
+  background: linear-gradient(to bottom, #4f8ef0 0%, #3a6fd7 100%);
+}

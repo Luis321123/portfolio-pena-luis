@@ -23,10 +23,12 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
       title="📁 Mi Portafolio"
       initialWidth={500}
       initialHeight={530}
+      isMaximized={false}
+      onMaximizeChange={() => {}}
     >
       <div className="flex flex-col gap-4">
         
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-center pt-5">
           <img 
               src={ImageProfile}
               alt="Luis Foto"   
@@ -34,19 +36,43 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
             />
         </div>
 
-        <ul className="w-full flex flex-row flex-wrap justify-center gap-2 sm:gap-4 font-light text-base tracking-widest">
+        <ul className="w-full flex flex-row flex-wrap justify-center gap-2 sm:gap-4 font-light text-base tracking-widest font-xp">
           <li className="hover:bg-[#316ac5] hover:text-white px-2 py-2 rounded transition-colors cursor-pointer">
-            <Link to="/" spy={true} smooth={true} offset={-100} duration={300} onClick={handleClose}>
+            <Link 
+              to="/" 
+              spy={true} 
+              smooth={true} 
+              offset={-80} 
+              duration={300} 
+              containerId="window-scroll-container"
+              onClick={handleClose}
+            >
               🏠 Home
             </Link>
           </li>
           <li className="hover:bg-[#316ac5] hover:text-white px-2 py-2 rounded transition-colors cursor-pointer">
-            <Link to="about" spy={true} smooth={true} offset={-100} duration={300} onClick={handleClose}>
+            <Link 
+              to="about" 
+              spy={true} 
+              smooth={true} 
+              offset={-80} 
+              duration={300} 
+              containerId="window-scroll-container"
+              onClick={handleClose}
+            >
               ℹ️ About
             </Link>
           </li>
           <li className="hover:bg-[#316ac5] hover:text-white px-2 py-2 rounded transition-colors cursor-pointer">
-            <Link to="projects" spy={true} smooth={true} offset={-100} duration={300} onClick={handleClose}>
+            <Link 
+              to="projects" 
+              spy={true} 
+              smooth={true} 
+              offset={-80} 
+              duration={300} 
+              containerId="window-scroll-container"
+              onClick={handleClose}
+            >
               📂 Projects
             </Link>
           </li>
@@ -55,7 +81,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
         <hr className="my-2" style={{ borderColor: "#c0c0c0" }} />
 
         <div className="w-full">
-          <h4 className="text-sm font-semibold tracking-widest uppercase text-center mb-3 text-[#316ac5]">
+          <h4 className="text-sm font-semibold tracking-widest uppercase text-center mb-3 text-[#316ac5] font-xp">
             👤 Hello me
           </h4>
 
@@ -73,17 +99,17 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
 
               <div className="flex flex-col items-start pl-2 shrink-0">
                 <ul className="flex flex-col gap-1 text-sm tracking-widest items-start">
-                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap">
+                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap font-xp">
                     <span className="text-base">📧</span>
                     <span>luis123321@gmail.com</span>
                   </li>
-                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap">
+                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap font-xp">
                     <img src={GitHubIcon} alt="GitHub" className="w-5 h-5" />
                     <a href="https://github.com/Luis321123" target="_blank" rel="noopener noreferrer" className="hover:underline">
                       @Luis321123
                     </a>
                   </li>
-                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap">
+                  <li className="px-2 py-1 flex items-center gap-2 hover:bg-[#e5f3ff] rounded transition-colors whitespace-nowrap font-xp">
                     <img src={WSIcon} alt="Whatsapp" className="w-5 h-5" />
                     <a href="tel:+584127483611" target="_blank" rel="noopener noreferrer" className="hover:underline">
                       +58 4127483611
@@ -98,9 +124,9 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
         <div className="flex justify-end mt-2 pt-3 border-t border-[#c0c0c0]">
           <button
             onClick={handleClose}
-            className="px-4 py-1 bg-[#c0c0c0] border-2 border-[#f0f0f0] border-r-[#404040] border-b-[#404040] hover:bg-[#d5d5d5] active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] text-sm font-medium"
+            className="px-4 py-1 bg-[#c0c0c0] border-2 border-[#f0f0f0] border-r-[#404040] border-b-[#404040] hover:bg-[#d5d5d5] active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] text-sm font-medium font-xp"
           >
-            Aceptar
+            done
           </button>
         </div>
       </div>
