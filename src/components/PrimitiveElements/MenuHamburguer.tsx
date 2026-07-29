@@ -1,5 +1,7 @@
+// components/MenuHamburguer/MenuHamburguer.tsx
 import { Dispatch, SetStateAction, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getSoundSrc } from "@/constants/sounds";
 
 interface Props {
   isChecked: boolean;
@@ -10,6 +12,11 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
   const [showNotification, setShowNotification] = useState(false);
   
   const timersRef = useRef<NodeJS.Timeout[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  
+  const hasPlayedRef = useRef(false);
+
+  const soundSrc = getSoundSrc('xp-notification') || getSoundSrc('xp-notification');
 
   const scheduleNotification = () => {
     timersRef.current.forEach(clearTimeout);
@@ -30,23 +37,35 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (showNotification && audioRef.current && !hasPlayedRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch((error) => {
+        console.log("No se pudo reproducir el audio automático (Menu):", error);
+      });
+      
+      hasPlayedRef.current = true;
+    }
+  }, [showNotification]);
+
   const handleToggleMenu = () => {
     setIsChecked(!isChecked);
     
     if (showNotification) {
       setShowNotification(false);
-      setTimeout(() => {
-        
-        if (!isChecked) {
-          scheduleNotification();
-        }
-      }, 3000); 
     }
   };
 
   return (
     <div className="sticky top-2 items-center z-[999999] pr-12">
       
+      {/* 🔊 AUDIO OCULTO */}
+      <audio 
+        ref={audioRef} 
+        src={soundSrc} 
+        preload="auto"
+      />
+
       <button
         onClick={handleToggleMenu}
         className={`
