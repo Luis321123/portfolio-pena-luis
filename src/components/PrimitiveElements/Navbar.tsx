@@ -45,7 +45,6 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               offset={-80} 
               duration={300} 
               containerId="window-scroll-container"
-              onClick={handleClose}
             >
               🏠 Home
             </Link>
@@ -58,7 +57,6 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               offset={-80} 
               duration={300} 
               containerId="window-scroll-container"
-              onClick={handleClose}
             >
               ℹ️ About
             </Link>
@@ -71,7 +69,6 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               offset={-80} 
               duration={300} 
               containerId="window-scroll-container"
-              onClick={handleClose}
             >
               📂 Projects
             </Link>
