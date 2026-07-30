@@ -9,6 +9,7 @@ import XpWallpaper from "@/assets/xp-bliss.jpg";
 const App = () => {
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [isWoWOpen, setIsWoWOpen] = useState(false);
+  const [isMinesweeperOpen, setIsMinesweeperOpen] = useState(false);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
   const [isPortfolioMaximized, setIsPortfolioMaximized] = useState(true);
@@ -88,6 +89,7 @@ const App = () => {
         onClose={() => setIsStartMenuOpen(false)}
         onOpenWoW={() => setIsWoWOpen(true)}
         onOpenPortfolio={handlePortfolioOpen}
+        onOpenMinesweeper={() => setIsMinesweeperOpen(true)}
       />
 
       <Window
@@ -104,10 +106,26 @@ const App = () => {
         />
       </Window>
 
+      <Window
+        isOpen={isMinesweeperOpen}
+        onClose={() => setIsMinesweeperOpen(false)}
+        title="Minesweeper"
+        initialWidth={560}
+        initialHeight={440}
+      >
+        <iframe
+          src="/minesweeper/index.html"
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Minesweeper"
+        />
+      </Window>
+
       <Taskbar
         onStartMenuClick={handleStartMenuClick}
         isWoWOpen={isWoWOpen}
         onWowClick={() => setIsWoWOpen((prev) => !prev)}
+        isMinesweeperOpen={isMinesweeperOpen}
+        onMinesweeperClick={() => setIsMinesweeperOpen((prev) => !prev)}
         isPortfolioOpen={isPortfolioOpen}
         isPortfolioMinimized={isPortfolioMinimized}
         onPortfolioClick={handlePortfolioClick}

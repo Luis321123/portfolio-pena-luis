@@ -7,19 +7,21 @@ import MusicIcon from "@/assets/icons/music.png";
 import QuitIcon from "@/assets/icons/printer.png";
 import ToolsIcon from "@/assets/icons/control.png";
 import WoWIcon from "@/assets/icons/WoW.svg";
+import MinesweeperIcon from "@/assets/icons/minesweeper.png";
 
 interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenWoW?: () => void;
   onOpenPortfolio?: () => void;
+  onOpenMinesweeper?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper }: StartMenuProps) => {
   if (!isOpen) return null;
 
   const leftItems = [
@@ -27,6 +29,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio }: StartMenuPro
     { icon: NotepadIcon, label: "Notepad" },
     { icon: MusicIcon, label: "Music Player" },
     { icon: NotepadIcon, label: "My Portfolio", action: onOpenPortfolio },
+    { icon: MinesweeperIcon, label: "Minesweeper", action: onOpenMinesweeper },
   ];
 
   const rightItems = [

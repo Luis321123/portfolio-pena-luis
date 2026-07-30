@@ -4,13 +4,13 @@ import CalendarXP from "../components/calendar";
 
 import WindowsLogo from "../../public/Windows XP.ico";
 import FolderIcon from "@/assets/icons/documents.png";
-import ComputerIcon from "@/assets/icons/mypc.png";
 import Notepad from "@/assets/icons/notepad.png";
 import InternetIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
 import VolumeIcon from "@/assets/icons/volume.png";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
+import MinesweeperIcon from "@/assets/icons/minesweeper.png";
 
 const TASKBAR_HEIGHT = 40;
 
@@ -18,13 +18,14 @@ interface TaskbarProps {
   onStartMenuClick?: () => void;
   isWoWOpen?: boolean;
   onWowClick?: () => void;
+  isMinesweeperOpen?: boolean;
+  onMinesweeperClick?: () => void;
   isPortfolioOpen?: boolean;
   isPortfolioMinimized?: boolean;
   onPortfolioClick?: () => void;
 }
 
 const TASKBAR_ICONS = [
-  { id: 1, name: "Mi PC", icon: ComputerIcon, action: () => console.log("Mi PC") },
   { id: 2, name: "Documentos", icon: FolderIcon, action: () => console.log("Documentos") },
   { id: 3, name: "Explorer", icon: InternetIcon, action: () => console.log("Internet Explorer") },
   { id: 4, name: "Ares", icon: MusicIcon, action: () => console.log("Reproductor") },
@@ -39,6 +40,8 @@ export const Taskbar = ({
   onStartMenuClick,
   isWoWOpen,
   onWowClick,
+  isMinesweeperOpen,
+  onMinesweeperClick,
   isPortfolioOpen,
   isPortfolioMinimized,
   onPortfolioClick,
@@ -145,6 +148,37 @@ export const Taskbar = ({
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
               <span>World of Warcraft</span>
+            </button>
+          )}
+
+          {isMinesweeperOpen && (
+            <button
+              onClick={onMinesweeperClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)",
+                border: "1px solid #14367f",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img 
+                src={MinesweeperIcon} 
+                alt="Minesweeper" 
+                style={{ width: 20, height: 20, flexShrink: 0 }} 
+              />
+              <span>Minesweeper</span>
             </button>
           )}
 
