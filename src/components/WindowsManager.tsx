@@ -25,7 +25,6 @@ const WindowsManager = ({
   scrollContainerId,
   onMaximizeChange,
 }: WindowsManagerProps) => {
-  const [isMinimized, setIsMinimized] = useState(false);
   const [previousSize, setPreviousSize] = useState({ width: initialWidth, height: initialHeight });
   const [previousPosition, setPreviousPosition] = useState({ x: 0, y: 0 });
 
@@ -35,9 +34,6 @@ const WindowsManager = ({
     { width: 300, height: 200 }
   );
 
-  const handleMinimize = () => {
-    setIsMinimized(!isMinimized);
-  };
 
   const handleMaximize = () => {
     if (isMaximized) {
@@ -79,27 +75,27 @@ const WindowsManager = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [isMaximized, setSize, setPosition]);
 
-  if (!isOpen) return null;
-
   const windowStyles: React.CSSProperties = {
     position: 'fixed',
     top: isMaximized ? 0 : position.y,
     left: isMaximized ? 0 : position.x,
     width: isMaximized ? '100vw' : size.width,
-    height: isMaximized ? '100vh' : size.height,
+    height: isMaximized ? 'calc(100% - 28px)' : 'calc(100% - 28px)',
     zIndex: isMaximized ? 9999999 : 9999, 
+    display: isOpen ? 'block' : 'none',
     cursor: isDragging ? 'grabbing' : 'default',
-    display: isMinimized ? 'none' : 'block',
     borderRadius: isMaximized ? 0 : '0px',
     overflow: 'hidden',
   };
 
   const bodyStyles: React.CSSProperties = {
-    height: isMaximized ? 'calc(100% - 28px)' : 'auto',
-    overflow: 'auto',
-    maxHeight: isMaximized ? 'calc(100vh - 50px)' : 'auto',
-    padding: '0px',
-  };
+  height: isMaximized ? 'calc(100% - 28px)' : 'auto',
+  display: 'flex',      
+  flexDirection: 'column',
+  overflow: 'hidden',   
+  maxHeight: isMaximized ? 'calc(100vh - 50px)' : 'auto',
+  padding: '0px',
+};
 
   return (
     <div
@@ -123,13 +119,16 @@ const WindowsManager = ({
   style={{ 
     cursor: isDragging ? 'grabbing' : 'grab',
     flexShrink: 0,
-    backgroundColor: 'transparent', // <--- Hacemos transparente el fondo
-    borderBottom: 'none',           // <--- Quitamos la línea divisoria
+    backgroundColor: 'transparent',
+    borderBottom: 'none',
+    height: '28px',
+    minHeight: '28px', 
+    padding: '0 8px',
   }}
 >
   <div className="title-bar-text">{title}</div>
   <div className="title-bar-controls">
-    <button aria-label="Minimize" onClick={handleMinimize}>
+    <button aria-label="Minimize" onClick={onClose}>
       <span className="sr-only">Minimizar</span>
     </button>
     <button aria-label="Maximize" onClick={handleMaximize}>

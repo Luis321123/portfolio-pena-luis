@@ -5,7 +5,7 @@ export const detail: Details[] = [
   {
     id: uuid(),
     title: "Software Developer - Contractor",
-    date: "2025 Sept - Currently",
+    date: "2025 Sept - 2026 May",
     description: "I was part of a cross-functional team responsible for developing an AI-powered platform for intelligent product processing. The team worked under an agile model, with continuous integration and automated deployment. I helped integrate language models (OpenAI API, Gemini) into the product processing workflow, using OpenAI Batch for high-volume asynchronous tasks. The team defined the prompts and the validation logic for AI-generated results. I participated in the design and deployment of services on AWS Lambda, EC2, ECS, ECR, API Gateway, Cognito, S3, and CloudWatch. This enabled the team to automatically scale according to the demand of the product pipeline. Together with the data team, I implemented a workflow where raw products were transformed (Retrieval-Augmented Generation). Each stage of the pipeline validated that the AI correctly processed the information and generated results aligned with business requirements. I also participated in backend development using Python and FastAPI and actively collaborated with the frontend team using React and TypeScript/JavaScript to visualize the pipeline's results. I helped manage MongoDB to store pipeline states, facilitating audits and retries in the event of failures, and contributed to configuring GitHub Actions to automate tests, builds, and deployments, reducing manual errors and accelerating the team's deliveries.",
     achievements: [
       "Integrated OpenAI API and Gemini language models into product processing workflow",
