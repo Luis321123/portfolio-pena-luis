@@ -1,4 +1,3 @@
-// components/Taskbar.tsx
 import { useState } from "react";
 import { useClock } from "@/hooks/useClock";
 import CalendarXP from "../components/calendar";
@@ -67,7 +66,6 @@ export const Taskbar = ({
           userSelect: "none",
         }}
       >
-        {/* Botón Inicio */}
         <button
           onClick={onStartMenuClick}
           style={{
@@ -95,7 +93,6 @@ export const Taskbar = ({
           inicio
         </button>
 
-        {/* Separador */}
         <div style={{ 
           width: 2, 
           height: 30, 
@@ -104,7 +101,6 @@ export const Taskbar = ({
           margin: "0 6px" 
         }} />
 
-        {/* Botones de aplicaciones */}
         <div style={{ 
           flex: 1, 
           display: "flex", 
@@ -114,7 +110,6 @@ export const Taskbar = ({
           overflow: "hidden" 
         }}>
           
-          {/* My porfolio.exe */}
           <button
             onClick={onTaskbarClick}
             style={{
@@ -159,7 +154,6 @@ export const Taskbar = ({
             )}
           </button>
 
-          {/* Iconos adicionales */}
           {TASKBAR_ICONS.map((item) => (
             <button
               key={item.id}
@@ -197,7 +191,6 @@ export const Taskbar = ({
           ))}
         </div>
 
-        {/* Separador */}
         <div style={{ 
           width: 2, 
           height: 30, 
@@ -206,7 +199,6 @@ export const Taskbar = ({
           margin: "0 6px" 
         }} />
 
-        {/* Área de notificaciones */}
         <div style={{ display: "flex", alignItems: "center", gap: 4, height: "100%" }}>
           
           {NOTIFICATION_ICONS.map((item) => (
@@ -238,7 +230,6 @@ export const Taskbar = ({
             </div>
           ))}
 
-          {/* Separador */}
           <div style={{ 
             width: 2, 
             height: 26, 
@@ -247,7 +238,6 @@ export const Taskbar = ({
             margin: "0 4px" 
           }} />
 
-          {/* Reloj */}
           <div
             onClick={toggleCalendar}
             onMouseEnter={() => setShowClockTooltip(true)}
@@ -300,7 +290,6 @@ export const Taskbar = ({
         </div>
       </div>
 
-      {/* Calendario */}
       <CalendarXP 
         isOpen={showCalendar} 
         onClose={() => setShowCalendar(false)} 

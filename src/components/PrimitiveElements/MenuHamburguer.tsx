@@ -1,4 +1,3 @@
-// components/MenuHamburguer/MenuHamburguer.tsx
 import { Dispatch, SetStateAction, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSoundSrc } from "@/constants/sounds";
@@ -59,7 +58,6 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
   return (
     <div className="sticky top-2 items-center z-[999999] pr-12">
       
-      {/* 🔊 AUDIO OCULTO */}
       <audio 
         ref={audioRef} 
         src={soundSrc} 

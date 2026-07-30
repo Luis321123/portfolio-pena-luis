@@ -1,4 +1,3 @@
-// components/CalendarXP.tsx
 import { useState } from "react";
 
 interface CalendarXPProps {
@@ -71,9 +70,9 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
     <div
       style={{
         position: "fixed",
-        bottom: 44, // Justo encima de la taskbar
+        bottom: 44,
         right: 8,
-        width: 210, // Tamaño compacto
+        width: 210, 
         background: "#d4d0c8",
         border: "2px solid #0a2454",
         borderRadius: "4px 4px 0 0",
@@ -84,7 +83,6 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
         padding: "4px 6px",
       }}
     >
-      {/* Cabecera */}
       <div
         style={{
           display: "flex",
@@ -137,7 +135,6 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
         </button>
       </div>
 
-      {/* Días de la semana */}
       <div
         style={{
           display: "grid",
@@ -163,7 +160,6 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
         ))}
       </div>
 
-      {/* Días del mes */}
       <div
         style={{
           display: "grid",
@@ -215,7 +211,6 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
         ))}
       </div>
 
-      {/* Pie con fecha seleccionada y botón cerrar */}
       <div
         style={{
           marginTop: "4px",
