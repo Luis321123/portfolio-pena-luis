@@ -10,4 +10,4 @@ export { default as Header } from "./General/Header";
 export { default as ImageLanding } from "./General/ImageLanding";
 export { default as Navbar } from "./PrimitiveElements/Navbar";
 export { default as ViewPdf } from "./PrimitiveElements/ViewPdf";
-export * from "./index";
+export { default as DesktopIcons } from "./DesktopIcons";

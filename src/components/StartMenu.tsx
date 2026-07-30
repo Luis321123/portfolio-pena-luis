@@ -4,28 +4,29 @@ import DocumentsIcon from "@/assets/icons/documents.png";
 import NotepadIcon from "@/assets/icons/notepad.png";
 import ExplorerIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
-import QuitIcon from "@/assets/icons/quit.svg";
-import ToolsIcon from "@/assets/icons/tools.svg";
+import QuitIcon from "@/assets/icons/printer.png";
+import ToolsIcon from "@/assets/icons/control.png";
 import WoWIcon from "@/assets/icons/WoW.svg";
 
 interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenWoW?: () => void;
+  onOpenPortfolio?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio }: StartMenuProps) => {
   if (!isOpen) return null;
 
   const leftItems = [
     { icon: ExplorerIcon, label: "Internet" },
     { icon: NotepadIcon, label: "Notepad" },
     { icon: MusicIcon, label: "Music Player" },
-    { icon: NotepadIcon, label: "My Portfolio" },
+    { icon: NotepadIcon, label: "My Portfolio", action: onOpenPortfolio },
   ];
 
   const rightItems = [
@@ -49,7 +50,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW }: StartMenuProps) => {
           border: "2px solid #0a3fa0",
           borderBottom: "none",
           boxShadow: "2px -2px 6px rgba(0,0,0,0.3)",
-          zIndex: 99999998,
+          zIndex: 99999999998,
           display: "flex",
           flexDirection: "column",
           fontFamily: "Tahoma, Segoe UI, sans-serif",
@@ -105,7 +106,10 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW }: StartMenuProps) => {
             {leftItems.map((item, idx) => (
               <button
                 key={idx}
-                onClick={onClose}
+                onClick={() => {
+                  item.action?.();
+                  onClose();
+                }}
                 style={{
                   display: "flex",
                   alignItems: "center",

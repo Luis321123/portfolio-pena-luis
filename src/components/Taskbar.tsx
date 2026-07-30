@@ -8,25 +8,26 @@ import ComputerIcon from "@/assets/icons/mypc.png";
 import Notepad from "@/assets/icons/notepad.png";
 import InternetIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
-import VolumeIcon from "@/assets/icons/volume.svg";
+import VolumeIcon from "@/assets/icons/volume.png";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
 
 const TASKBAR_HEIGHT = 40;
 
 interface TaskbarProps {
-  isMinimized: boolean;
-  onTaskbarClick: () => void;
   onStartMenuClick?: () => void;
   isWoWOpen?: boolean;
   onWowClick?: () => void;
+  isPortfolioOpen?: boolean;
+  isPortfolioMinimized?: boolean;
+  onPortfolioClick?: () => void;
 }
 
 const TASKBAR_ICONS = [
   { id: 1, name: "Mi PC", icon: ComputerIcon, action: () => console.log("Mi PC") },
   { id: 2, name: "Documentos", icon: FolderIcon, action: () => console.log("Documentos") },
   { id: 3, name: "Explorer", icon: InternetIcon, action: () => console.log("Internet Explorer") },
-  { id: 4, name: "Música", icon: MusicIcon, action: () => console.log("Reproductor") },
+  { id: 4, name: "Ares", icon: MusicIcon, action: () => console.log("Reproductor") },
 ];
 
 const NOTIFICATION_ICONS = [
@@ -35,11 +36,12 @@ const NOTIFICATION_ICONS = [
 ];
 
 export const Taskbar = ({ 
-  isMinimized, 
-  onTaskbarClick,
   onStartMenuClick,
   isWoWOpen,
   onWowClick,
+  isPortfolioOpen,
+  isPortfolioMinimized,
+  onPortfolioClick,
 }: TaskbarProps) => {
   const [showClockTooltip, setShowClockTooltip] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -65,7 +67,7 @@ export const Taskbar = ({
           background: "linear-gradient(to bottom, #245edb 0%, #1941a5 50%, #1941a5 100%)",
           borderTop: "1px solid #0a3fa0",
           boxShadow: "0 -1px 0 rgba(255,255,255,0.2) inset",
-          zIndex: 99999999,
+          zIndex: 9999999999,
           padding: "0 3px",
           fontFamily: "Tahoma, Segoe UI, sans-serif",
           userSelect: "none",
@@ -114,50 +116,6 @@ export const Taskbar = ({
           height: "100%", 
           overflow: "hidden" 
         }}>
-          
-          <button
-            onClick={onTaskbarClick}
-            style={{
-              height: 28,
-              minWidth: 140,
-              maxWidth: 200,
-              padding: "0 10px",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              background: isMinimized
-                ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
-                : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
-              border: isMinimized ? "1px solid #14367f" : "1px solid #0a2454",
-              boxShadow: isMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
-              borderRadius: 3,
-              color: "white",
-              fontSize: 12,
-              cursor: "pointer",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-            <img 
-              src={Notepad} 
-              alt="portfolio" 
-              style={{ width: 20, height: 20, flexShrink: 0 }} 
-            />
-            <span>My porfolio.exe</span>
-            {isMinimized && (
-              <span style={{ 
-                fontSize: 10, 
-                opacity: 0.7, 
-                marginLeft: 4,
-                background: "rgba(255,255,255,0.15)",
-                padding: "0 6px",
-                borderRadius: 2
-              }}>
-                minimizado
-              </span>
-            )}
-          </button>
 
           {isWoWOpen && (
             <button
@@ -187,6 +145,52 @@ export const Taskbar = ({
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
               <span>World of Warcraft</span>
+            </button>
+          )}
+
+          {isPortfolioOpen && (
+            <button
+              onClick={onPortfolioClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isPortfolioMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isPortfolioMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isPortfolioMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img 
+                src={Notepad} 
+                alt="Portfolio" 
+                style={{ width: 20, height: 20, flexShrink: 0 }} 
+              />
+              <span>Notepad - My Portfolio</span>
+              {isPortfolioMinimized && (
+                <span style={{ 
+                  fontSize: 10, 
+                  opacity: 0.7, 
+                  marginLeft: 4,
+                  background: "rgba(255,255,255,0.15)",
+                  padding: "0 6px",
+                  borderRadius: 2
+                }}>
+                  minimizado
+                </span>
+              )}
             </button>
           )}
 

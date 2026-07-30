@@ -2,18 +2,38 @@ import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { Header, StartMenu, Window } from "./components";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
-import WindowManager from "./components/WindowsManager";
 import { Taskbar } from "./components/Taskbar";
+import DesktopIcons from "./components/DesktopIcons";
 import XpWallpaper from "@/assets/xp-bliss.jpg";
 
 const App = () => {
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [isMaximized, setIsMaximized] = useState(true);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [isWoWOpen, setIsWoWOpen] = useState(false);
+  const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
+  const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
+  const [isPortfolioMaximized, setIsPortfolioMaximized] = useState(true);
 
-  const handleTaskbarClick = () => setIsMinimized((prev) => !prev);
   const handleStartMenuClick = () => setIsStartMenuOpen((prev) => !prev);
+
+  const handlePortfolioClose = () => {
+    setIsPortfolioOpen(false);
+    setIsPortfolioMinimized(false);
+    setIsPortfolioMaximized(false);
+  };
+
+  const handlePortfolioOpen = () => {
+    setIsPortfolioOpen(true);
+    setIsPortfolioMinimized(false);
+    setIsPortfolioMaximized(true);
+  };
+
+  const handlePortfolioClick = () => {
+    if (!isPortfolioOpen) {
+      handlePortfolioOpen();
+      return;
+    }
+    setIsPortfolioMinimized((prev) => !prev);
+  };
 
   return (
     <>
@@ -30,45 +50,44 @@ const App = () => {
         }}
       />
 
-      <WindowManager
-  isOpen={!isMinimized}
-  onClose={() => setIsMinimized(true)}
-  title="My porfolio.exe"
-  initialWidth={900}
-  initialHeight={600}
-  isMaximized={isMaximized}
-  onMaximizeChange={setIsMaximized}
-  scrollContainerId="window-scroll-container"
->
+      <DesktopIcons onOpenNotepad={handlePortfolioOpen} />
+
+      <Window
+        isOpen={isPortfolioOpen}
+        onClose={handlePortfolioClose}
+        title="Notepad - My Portfolio"
+        initialWidth={900}
+        initialHeight={600}
+        scrollable
+        isMinimized={isPortfolioMinimized}
+        onMinimize={() => setIsPortfolioMinimized(true)}
+        isMaximized={isPortfolioMaximized}
+        onMaximizeChange={setIsPortfolioMaximized}
+      >
         <Toaster />
         <Header />
-        
-        <div id="window-scroll-container" className="window-body xp-scrollbar" style={{ margin: 0, padding: 0, flex: 1, overflow: "auto" }}>
-    
-    <section id="/" className="scroll-mt-20">
-      <HomePage />
-    </section>
-    
-    <section id="about" className="scroll-mt-20">
-      <AboutPage />
-    </section>
-    
-    <section id="projects" className="scroll-mt-20">
-      <ProjectPage />
-    </section>
-    
-    <section id="contact" className="scroll-mt-20">
-      <ContactPage />
-    </section>
-    
-  </div>
-        
-      </WindowManager>
+
+        <div id="window-scroll-container" className="xp-scrollbar" style={{ margin: 0, padding: 0, flex: 1, overflow: "auto" }}>
+          <section id="/" className="scroll-mt-20">
+            <HomePage />
+          </section>
+          <section id="about" className="scroll-mt-20">
+            <AboutPage />
+          </section>
+          <section id="projects" className="scroll-mt-20">
+            <ProjectPage />
+          </section>
+          <section id="contact" className="scroll-mt-20">
+            <ContactPage />
+          </section>
+        </div>
+      </Window>
 
       <StartMenu
         isOpen={isStartMenuOpen}
         onClose={() => setIsStartMenuOpen(false)}
         onOpenWoW={() => setIsWoWOpen(true)}
+        onOpenPortfolio={handlePortfolioOpen}
       />
 
       <Window
@@ -85,12 +104,14 @@ const App = () => {
         />
       </Window>
 
-      <Taskbar 
-      isMinimized={isMinimized} 
-       onTaskbarClick={handleTaskbarClick}
-       onStartMenuClick={handleStartMenuClick}
-       isWoWOpen={isWoWOpen}
-       onWowClick={() => setIsWoWOpen(prev => !prev)} />
+      <Taskbar
+        onStartMenuClick={handleStartMenuClick}
+        isWoWOpen={isWoWOpen}
+        onWowClick={() => setIsWoWOpen((prev) => !prev)}
+        isPortfolioOpen={isPortfolioOpen}
+        isPortfolioMinimized={isPortfolioMinimized}
+        onPortfolioClick={handlePortfolioClick}
+      />
     </>
   );
 };
