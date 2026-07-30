@@ -80,7 +80,7 @@ const WindowsManager = ({
     top: isMaximized ? 0 : position.y,
     left: isMaximized ? 0 : position.x,
     width: isMaximized ? '100vw' : size.width,
-    height: isMaximized ? 'calc(100% - 28px)' : 'calc(100% - 28px)',
+    height: isMaximized ? '100vh' : size.height,
     zIndex: isMaximized ? 9999999 : 9999, 
     display: isOpen ? 'block' : 'none',
     cursor: isDragging ? 'grabbing' : 'default',
@@ -90,6 +90,7 @@ const WindowsManager = ({
 
   const bodyStyles: React.CSSProperties = {
   height: isMaximized ? 'calc(100% - 28px)' : 'auto',
+  flex: 1,
   display: 'flex',      
   flexDirection: 'column',
   overflow: 'hidden',   

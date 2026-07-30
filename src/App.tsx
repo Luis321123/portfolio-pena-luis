@@ -62,7 +62,9 @@ const App = () => {
         
       </WindowManager>
 
-      <Taskbar isMinimized={isMinimized} onTaskbarClick={handleTaskbarClick} />
+      <Taskbar 
+      isMinimized={isMinimized} 
+       onTaskbarClick={handleTaskbarClick} />
     </>
   );
 };
