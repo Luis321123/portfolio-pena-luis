@@ -3,6 +3,8 @@ export { default as Button } from "./PrimitiveElements/Button";
 export { default as CardExperience } from "./General/CardExperience";
 export { default as CardConsole } from './General/CardConsole';
 export { default as CardProject } from "./General/CardProject";
+export { default as StartMenu } from "./StartMenu";
+export { default as Window } from "./Window";
 export { default as Contact } from "./General/Contact";
 export { default as Header } from "./General/Header";
 export { default as ImageLanding } from "./General/ImageLanding";

@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
-import { Header } from "./components";
+import { Header, StartMenu } from "./components";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import WindowManager from "./components/WindowsManager";
 import { Taskbar } from "./components/Taskbar";
@@ -9,8 +9,10 @@ import XpWallpaper from "@/assets/xp-bliss.jpg";
 const App = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(true);
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
 
   const handleTaskbarClick = () => setIsMinimized((prev) => !prev);
+  const handleStartMenuClick = () => setIsStartMenuOpen((prev) => !prev);
 
   return (
     <>
@@ -62,9 +64,15 @@ const App = () => {
         
       </WindowManager>
 
+      <StartMenu
+        isOpen={isStartMenuOpen}
+        onClose={() => setIsStartMenuOpen(false)}
+      />
+
       <Taskbar 
       isMinimized={isMinimized} 
-       onTaskbarClick={handleTaskbarClick} />
+       onTaskbarClick={handleTaskbarClick}
+       onStartMenuClick={handleStartMenuClick} />
     </>
   );
 };

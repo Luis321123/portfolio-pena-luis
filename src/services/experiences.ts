@@ -67,7 +67,7 @@ export const experiences: Experience[] = [
   },
   {
     id: uuid(),
-    title: "Backend Developer - Recipe Platform",
+    title: "Backend Developer - Recipe Platform         ",
     date: "2023 FEB - 2024 FEB",
     description: `Recipe web platform development
 │ 
