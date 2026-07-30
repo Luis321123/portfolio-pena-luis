@@ -10,6 +10,7 @@ import InternetIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
 import VolumeIcon from "@/assets/icons/volume.svg";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
+import WoWIcon from "@/assets/icons/WoW.svg";
 
 const TASKBAR_HEIGHT = 40;
 
@@ -17,6 +18,8 @@ interface TaskbarProps {
   isMinimized: boolean;
   onTaskbarClick: () => void;
   onStartMenuClick?: () => void;
+  isWoWOpen?: boolean;
+  onWowClick?: () => void;
 }
 
 const TASKBAR_ICONS = [
@@ -34,7 +37,9 @@ const NOTIFICATION_ICONS = [
 export const Taskbar = ({ 
   isMinimized, 
   onTaskbarClick,
-  onStartMenuClick 
+  onStartMenuClick,
+  isWoWOpen,
+  onWowClick,
 }: TaskbarProps) => {
   const [showClockTooltip, setShowClockTooltip] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -153,6 +158,37 @@ export const Taskbar = ({
               </span>
             )}
           </button>
+
+          {isWoWOpen && (
+            <button
+              onClick={onWowClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)",
+                border: "1px solid #14367f",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img 
+                src={WoWIcon} 
+                alt="WoW" 
+                style={{ width: 20, height: 20, flexShrink: 0 }} 
+              />
+              <span>World of Warcraft</span>
+            </button>
+          )}
 
           {TASKBAR_ICONS.map((item) => (
             <button

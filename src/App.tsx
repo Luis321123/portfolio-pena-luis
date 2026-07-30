@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
-import { Header, StartMenu } from "./components";
+import { Header, StartMenu, Window } from "./components";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import WindowManager from "./components/WindowsManager";
 import { Taskbar } from "./components/Taskbar";
@@ -10,6 +10,7 @@ const App = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(true);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+  const [isWoWOpen, setIsWoWOpen] = useState(false);
 
   const handleTaskbarClick = () => setIsMinimized((prev) => !prev);
   const handleStartMenuClick = () => setIsStartMenuOpen((prev) => !prev);
@@ -67,12 +68,29 @@ const App = () => {
       <StartMenu
         isOpen={isStartMenuOpen}
         onClose={() => setIsStartMenuOpen(false)}
+        onOpenWoW={() => setIsWoWOpen(true)}
       />
+
+      <Window
+        isOpen={isWoWOpen}
+        onClose={() => setIsWoWOpen(false)}
+        title="World of Warcraft"
+        initialWidth={800}
+        initialHeight={500}
+      >
+        <iframe
+          src="/wow/index.html"
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="World of Warcraft Login Screen"
+        />
+      </Window>
 
       <Taskbar 
       isMinimized={isMinimized} 
        onTaskbarClick={handleTaskbarClick}
-       onStartMenuClick={handleStartMenuClick} />
+       onStartMenuClick={handleStartMenuClick}
+       isWoWOpen={isWoWOpen}
+       onWowClick={() => setIsWoWOpen(prev => !prev)} />
     </>
   );
 };

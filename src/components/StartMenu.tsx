@@ -1,4 +1,3 @@
-import { useState } from "react";
 import WindowsLogo from "../../public/Windows XP.ico";
 import MyPcIcon from "@/assets/icons/mypc.png";
 import DocumentsIcon from "@/assets/icons/documents.png";
@@ -8,20 +7,18 @@ import MusicIcon from "@/assets/icons/music.png";
 import QuitIcon from "@/assets/icons/quit.svg";
 import ToolsIcon from "@/assets/icons/tools.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
-import Window from "./Window";
 
 interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenWoW?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
-  const [isWoWOpen, setIsWoWOpen] = useState(false);
-
+const StartMenu = ({ isOpen, onClose, onOpenWoW }: StartMenuProps) => {
   if (!isOpen) return null;
 
   const leftItems = [
@@ -32,7 +29,7 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
   ];
 
   const rightItems = [
-    { icon: WoWIcon, label: "World of Warcraft", action: () => setIsWoWOpen(true) },
+    { icon: WoWIcon, label: "World of Warcraft", action: onOpenWoW },
     { icon: DocumentsIcon, label: "My Documents" },
     { icon: MyPcIcon, label: "My Computer" },
     { icon: ToolsIcon, label: "Control Panel" },
@@ -248,20 +245,6 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
           </button>
         </div>
       </div>
-
-      <Window
-        isOpen={isWoWOpen}
-        onClose={() => setIsWoWOpen(false)}
-        title="World of Warcraft"
-        initialWidth={800}
-        initialHeight={500}
-      >
-        <iframe
-          src="https://xiexe.github.io/WoWLoginScreens/"
-          style={{ width: "100%", height: "100%", border: "none" }}
-          title="World of Warcraft Login Screen"
-        />
-      </Window>
     </>
   );
 };
