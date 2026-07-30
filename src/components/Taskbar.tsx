@@ -8,7 +8,7 @@ import ComputerIcon from "@/assets/icons/mypc.png";
 import Notepad from "@/assets/icons/notepad.png";
 import InternetIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
-import VolumeIcon from "@/assets/icons/volume.ico";
+import VolumeIcon from "@/assets/icons/volume.svg";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 
 const TASKBAR_HEIGHT = 40;
@@ -90,7 +90,7 @@ export const Taskbar = ({
             alt="Windows" 
             style={{ width: 18, height: 18, flexShrink: 0 }} 
           />
-          inicio
+          Start
         </button>
 
         <div style={{ 

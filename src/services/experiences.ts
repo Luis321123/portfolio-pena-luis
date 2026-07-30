@@ -5,7 +5,7 @@ import { Experience } from "@/interfaces/Experience";
 export const experiences: Experience[] = [
   {
     id: uuid(),
-    title: "Software Developer",
+    title: "Software Developer         ",
     date: "2025 Sept - 2026 May",
     description: `Cross-functional team developing AI-powered platform
 │ 
@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
   },
   {
     id: uuid(),
-    title: "Backend Developer - Leadgrowth",
+    title: "Backend Developer - Leadgrowth         ",
     date: "2025 Mar - 2025 Sept",
     description: `Development and integration of services
 │ 
@@ -37,7 +37,7 @@ export const experiences: Experience[] = [
   },
   {
     id: uuid(),
-    title: "Backend Developer - Nextstation",
+    title: "Backend Developer - Nextstation         ",
     date: "2024 Ago - 2024 DEC",
     description: `Microservices development
 │ 
@@ -52,7 +52,7 @@ export const experiences: Experience[] = [
   },
   {
     id: uuid(),
-    title: "Backend Developer - Travel Company",
+    title: "Backend Developer - Travel Company         ",
     date: "2024 Mar - 2024 AGO",
     description: `Monolith project development
 │ 

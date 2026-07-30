@@ -121,6 +121,13 @@ const CardConsole = ({ index }: CardConsoleProps) => {
         }}
         className="w-full mb-4 font-mono"
       >
+        {!isComplete && (
+          <div className="flex items-center gap-2 mb-1 px-2 py-1 bg-[#ece9d8] justify-center border border-[#d4d0c8] rounded-sm">
+            <progress className="w-[100px]"></progress>
+            <span style={{ fontSize: '11px', color: '#333' }}>Loading...</span>
+          </div>
+        )}
+
         <div className="window">
           <div 
             className="title-bar" 

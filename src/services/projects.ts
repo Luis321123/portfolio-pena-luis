@@ -33,7 +33,7 @@ export const projects: Project[] = [
     id: uuid(),
     title: "Application solar panel quotation",
     subTitle: "Document management, for copec-flux, for protocol management, which consisted of login and cache password management, file and image uploading, user and administrator connection through external micro-services.",
-    link: "https://fluxsolar.cl/",
+    link: "https://copecflux.cl/",
     stack: [
       "python",
       "fastapi",

@@ -24,7 +24,7 @@ const HomePage = () => {
           <AnimatedWords
             line1="Hi, i'm"
             line2="Luis Peña"
-            line3="Software Developer"
+            line3="Software Developer" 
             classText="text-[#0f7b9c] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-xp tracking-widest my-2 sm:my-4"
           />
           
