@@ -2,7 +2,7 @@ import WindowsDialog from "@/components/Animates/WindowsDialog"
 
 import GitHubIcon from "@/assets/icons/githubpixel.svg";
 import LinkedInIcon from "@/assets/icons/linkedinPixel.svg";
-import BackIcon from "@/assets/icons/back.png";
+import BackIcon from "@/assets/icons/Back.png";
 import ForwardIcon from "@/assets/icons/forward.png";
 import FolderIcon from "@/assets/icons/documents.png";
 import webIcon from "@/assets/icons/web.png";

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { scroller } from "react-scroll";
-import BackIcon from "@/assets/icons/back.png";
+import BackIcon from "@/assets/icons/Back.png";
 import ForwardIcon from "@/assets/icons/forrward.png";
 import UpIcon from "@/assets/icons/Up.png";
 import GoIcon from "@/assets/icons/Go.png";
