@@ -7,7 +7,7 @@ import MusicIcon from "@/assets/icons/music.png";
 import QuitIcon from "@/assets/icons/printer.png";
 import ToolsIcon from "@/assets/icons/control.png";
 import WoWIcon from "@/assets/icons/WoW.svg";
-import MinesweeperIcon from "@/assets/icons/minesweeper.png";
+import MinesweeperIcon from "@/assets/icons/minessweeper.png";
 
 interface StartMenuProps {
   isOpen: boolean;
