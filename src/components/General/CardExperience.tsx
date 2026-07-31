@@ -32,6 +32,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
     
     const knownTechs = [
       'Python', 'FastAPI', 'Django', 'Flask', 'SQLAlchemy', 'PyMongo',
+      'ghl',
       'PHP', 'Laravel', 'Node.js', 'Express', 'TypeScript', 'NestJS',
       'React', 'Vue', 'AWS', 'GCP', 'Docker', 'PostgreSQL', 'MySQL',
       'MongoDB', 'Git', 'Testing', 'n8n', 'Firebase', 'Nginx', 'VPS',
@@ -74,7 +75,6 @@ const CardExperience = ({ index }: CardExperienceProps) => {
       }}
       className="w-full mb-4 font-mono"
     >
-      {/* Contenedor principal con borde */}
       <div className="w-full border border-[#d4d0c8] rounded overflow-hidden bg-[#ece9d8]">
         
         <button
@@ -90,7 +90,6 @@ const CardExperience = ({ index }: CardExperienceProps) => {
             </span>
           </div>
 
-          {/* FLECHA (Gira 180° al expandirse) */}
           <div className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-[#d4d0c8] transition-colors">
             <svg
               xmlns="http://www.w3.org/2000/svg"

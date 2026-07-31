@@ -15,7 +15,9 @@ const SelectTech = ({ stack }: { stack: typeStack }) => {
     firebase: "/tech/firebase.png",
     nuxt: "/tech/nuxt.png",
     postgresql: "/tech/postgresql.png",
-    rabbitMQ: "/tech/rabbitMQ.png",
+    mongodb: "/tech/mongodb.png",
+    ghl: "/tech/ghl.png",
+    rabbitMQ: "/tech/rabbit.png",
     RAG: "/tech/RAG.png",
     aws: "/tech/aws.png"
   };

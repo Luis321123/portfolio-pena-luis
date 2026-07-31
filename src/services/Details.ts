@@ -19,9 +19,9 @@ export const detail: Details[] = [
     id: uuid(),
     title: "Backend Developer - Leadgrowth",
     date: "2025 Mar - 2025 Sept",
-    description: "I was responsible for the development, planning, and integration of various services across different platforms—including a specific one called GoHighLevel—using tools such as EC2, S3 buckets, and Hostinguer for hosting. I also used tools such as Nginx and Docker for the VPS where the created APIs were stored, and for the coding portion, I used Python as the primary language with FastAPI as the main framework; for databases, Postgres and MySQL; and for the architecture, I primarily used monolithic and hexagonal patterns. In some workflows, I used n8n for automations, including the ChatGPT API and DeepSeek R8",
+    description: "I was responsible for the development, planning, and integration of various services across different platforms—including a specific one called GoHighLevel(ghl)using tools such as EC2, S3 buckets, and Hostinguer for hosting. I also used tools such as Nginx and Docker for the VPS where the created APIs were stored, and for the coding portion, I used Python as the primary language with FastAPI as the main framework; for databases, Postgres and MySQL; and for the architecture, I primarily used monolithic and hexagonal patterns. In some workflows, I used n8n for automations, including the ChatGPT API and DeepSeek R8",
     achievements: [
-      "Integrated GoHighLevel API for cross-platform service integration",
+      "Integrated GoHighLevel API for cross-platform service integration(ghl)",
       "Designed and implemented monolithic and hexagonal architecture patterns",
       "Deployed and managed VPS infrastructure with Nginx and Docker",
       "Automated workflows using n8n with ChatGPT API and DeepSeek R8",

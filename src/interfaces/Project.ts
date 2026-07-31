@@ -15,6 +15,7 @@ export type typeStack =
   | "firebase"
   | "laravel"
   | "rabbitMQ"
+  | "ghl"
   | "nuxt";
 
 export interface Project {

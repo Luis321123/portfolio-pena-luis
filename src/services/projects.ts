@@ -13,10 +13,11 @@ export const projects: Project[] = [
       "react",
       "typescript",
       "mongodb",
+      "rabbitMQ",
       "aws",
       "RAG",
     ],
-    preview: "https://i.imgur.com/8Ntjd2F.png",
+    preview: "/projects/product-catalog.png",
   },
   {
     id: uuid(),
@@ -25,9 +26,10 @@ export const projects: Project[] = [
     link: "https://premiumcarsfl.com/es/inicio-miami/",
     stack: [
       "laravel",
-      "postgresql"
+      "ghl",
+      "postgresql",
     ],
-    preview: "https://i.imgur.com/1qTwiC6.png",
+    preview: "/projects/car-dealer.png",
   },
   {
     id: uuid(),
@@ -39,7 +41,7 @@ export const projects: Project[] = [
       "fastapi",
       "postgresql"
     ],
-    preview: "https://i.imgur.com/K1e3uxp.jpeg",
+    preview: "/projects/solar-panel.jpg",
   },
   {
     id: uuid(),
@@ -51,6 +53,6 @@ export const projects: Project[] = [
       "fastapi",
       "postgresql"
     ],
-    preview: "https://i.imgur.com/d4HFxeX.png"
+    preview: "/projects/church-app.png"
   },
 ];

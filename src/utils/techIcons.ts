@@ -19,6 +19,7 @@ import DockerIcon from "@/assets/iconsStack/docker.svg";
 import PostgreIcon from "@/assets/iconsStack/postgresql.svg";
 import MySqlIcon from "@/assets/iconsStack/mysql.svg";
 import MongoIcon from "@/assets/iconsStack/mongodb.svg";
+import GohighlevelIcon from "@/assets/iconsStack/ghl.png";
 import GitIcon from "@/assets/iconsStack/git.svg";
 import TestingIcon from "@/assets/iconsStack/testing.svg";
 import N8nIcon from "@/assets/iconsStack/n8n.svg";
@@ -48,6 +49,7 @@ export const techIconMap: Record<string, string> = {
   'flask': FlaskIcon,
   'sqlalchemy': SQLAlchemyIcon,
   'pymongo': PyMongoIcon,
+  'ghl': GohighlevelIcon,
   
   'php': PhpIcon,
   'laravel': LaravelIcon,
