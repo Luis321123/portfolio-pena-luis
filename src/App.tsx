@@ -1,6 +1,8 @@
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { Header, StartMenu, Window } from "./components";
+import NotepadApp from "./components/NotepadApp";
+import MyDocumentsApp from "./components/MyDocumentsApp";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import { Taskbar } from "./components/Taskbar";
 import DesktopIcons from "./components/DesktopIcons";
@@ -10,6 +12,10 @@ const App = () => {
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [isWoWOpen, setIsWoWOpen] = useState(false);
   const [isMinesweeperOpen, setIsMinesweeperOpen] = useState(false);
+  const [isNotepadOpen, setIsNotepadOpen] = useState(false);
+  const [isNotepadMinimized, setIsNotepadMinimized] = useState(false);
+  const [isMyDocumentsOpen, setIsMyDocumentsOpen] = useState(false);
+  const [isMyDocumentsMinimized, setIsMyDocumentsMinimized] = useState(false);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
   const [isPortfolioMaximized, setIsPortfolioMaximized] = useState(true);
@@ -51,7 +57,11 @@ const App = () => {
         }}
       />
 
-      <DesktopIcons onOpenNotepad={handlePortfolioOpen} />
+      <DesktopIcons
+        onOpenPortfolio={handlePortfolioOpen}
+        onOpenNotepadApp={() => setIsNotepadOpen(true)}
+        onOpenMyDocuments={() => setIsMyDocumentsOpen(true)}
+      />
 
       <Window
         isOpen={isPortfolioOpen}
@@ -90,6 +100,8 @@ const App = () => {
         onOpenWoW={() => setIsWoWOpen(true)}
         onOpenPortfolio={handlePortfolioOpen}
         onOpenMinesweeper={() => setIsMinesweeperOpen(true)}
+        onOpenNotepadApp={() => setIsNotepadOpen(true)}
+        onOpenMyDocuments={() => setIsMyDocumentsOpen(true)}
       />
 
       <Window
@@ -120,12 +132,42 @@ const App = () => {
         />
       </Window>
 
+      <Window
+        isOpen={isNotepadOpen}
+        onClose={() => setIsNotepadOpen(false)}
+        title="Untitled - Notepad"
+        initialWidth={800}
+        initialHeight={600}
+        isMinimized={isNotepadMinimized}
+        onMinimize={() => setIsNotepadMinimized(true)}
+      >
+        <NotepadApp />
+      </Window>
+
+      <Window
+        isOpen={isMyDocumentsOpen}
+        onClose={() => setIsMyDocumentsOpen(false)}
+        title="Mis documentos"
+        initialWidth={750}
+        initialHeight={520}
+        isMinimized={isMyDocumentsMinimized}
+        onMinimize={() => setIsMyDocumentsMinimized(true)}
+      >
+        <MyDocumentsApp />
+      </Window>
+
       <Taskbar
         onStartMenuClick={handleStartMenuClick}
         isWoWOpen={isWoWOpen}
         onWowClick={() => setIsWoWOpen((prev) => !prev)}
         isMinesweeperOpen={isMinesweeperOpen}
         onMinesweeperClick={() => setIsMinesweeperOpen((prev) => !prev)}
+        isNotepadOpen={isNotepadOpen}
+        isNotepadMinimized={isNotepadMinimized}
+        onNotepadClick={() => setIsNotepadMinimized((prev) => !prev)}
+        isMyDocumentsOpen={isMyDocumentsOpen}
+        isMyDocumentsMinimized={isMyDocumentsMinimized}
+        onMyDocumentsClick={() => setIsMyDocumentsMinimized((prev) => !prev)}
         isPortfolioOpen={isPortfolioOpen}
         isPortfolioMinimized={isPortfolioMinimized}
         onPortfolioClick={handlePortfolioClick}

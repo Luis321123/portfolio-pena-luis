@@ -15,26 +15,27 @@ interface StartMenuProps {
   onOpenWoW?: () => void;
   onOpenPortfolio?: () => void;
   onOpenMinesweeper?: () => void;
+  onOpenNotepadApp?: () => void;
+  onOpenMyDocuments?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments }: StartMenuProps) => {
   if (!isOpen) return null;
 
   const leftItems = [
-    { icon: ExplorerIcon, label: "Internet" },
-    { icon: NotepadIcon, label: "Notepad" },
+    { icon: NotepadIcon, label: "Notepad", action: onOpenNotepadApp },
     { icon: MusicIcon, label: "Music Player" },
-    { icon: NotepadIcon, label: "My Portfolio", action: onOpenPortfolio },
+    { icon: ExplorerIcon, label: "My Portfolio", action: onOpenPortfolio },
     { icon: MinesweeperIcon, label: "Minesweeper", action: onOpenMinesweeper },
   ];
 
   const rightItems = [
     { icon: WoWIcon, label: "World of Warcraft", action: onOpenWoW },
-    { icon: DocumentsIcon, label: "My Documents" },
+    { icon: DocumentsIcon, label: "My Documents", action: onOpenMyDocuments },
     { icon: MyPcIcon, label: "My Computer" },
     { icon: ToolsIcon, label: "Control Panel" },
     { icon: QuitIcon, label: "Printers and Faxes" },

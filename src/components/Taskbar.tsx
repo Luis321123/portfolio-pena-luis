@@ -20,6 +20,12 @@ interface TaskbarProps {
   onWowClick?: () => void;
   isMinesweeperOpen?: boolean;
   onMinesweeperClick?: () => void;
+  isNotepadOpen?: boolean;
+  isNotepadMinimized?: boolean;
+  onNotepadClick?: () => void;
+  isMyDocumentsOpen?: boolean;
+  isMyDocumentsMinimized?: boolean;
+  onMyDocumentsClick?: () => void;
   isPortfolioOpen?: boolean;
   isPortfolioMinimized?: boolean;
   onPortfolioClick?: () => void;
@@ -42,6 +48,12 @@ export const Taskbar = ({
   onWowClick,
   isMinesweeperOpen,
   onMinesweeperClick,
+  isNotepadOpen,
+  isNotepadMinimized,
+  onNotepadClick,
+  isMyDocumentsOpen,
+  isMyDocumentsMinimized,
+  onMyDocumentsClick,
   isPortfolioOpen,
   isPortfolioMinimized,
   onPortfolioClick,
@@ -179,6 +191,74 @@ export const Taskbar = ({
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
               <span>Minesweeper</span>
+            </button>
+          )}
+
+          {isNotepadOpen && (
+            <button
+              onClick={onNotepadClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isNotepadMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isNotepadMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isNotepadMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img 
+                src={Notepad} 
+                alt="Notepad" 
+                style={{ width: 20, height: 20, flexShrink: 0 }} 
+              />
+              <span>Untitled - Notepad</span>
+            </button>
+          )}
+
+          {isMyDocumentsOpen && (
+            <button
+              onClick={onMyDocumentsClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isMyDocumentsMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isMyDocumentsMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isMyDocumentsMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img 
+                src={FolderIcon} 
+                alt="Mis documentos" 
+                style={{ width: 20, height: 20, flexShrink: 0 }} 
+              />
+              <span>Mis documentos</span>
             </button>
           )}
 

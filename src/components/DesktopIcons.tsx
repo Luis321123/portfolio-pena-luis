@@ -1,7 +1,11 @@
-import NotepadIcon from "@/assets/icons/explorer.png";
+import PortfolioIcon from "@/assets/icons/explorer.png";
 import ComputerIcon from "@/assets/icons/mypc.png";
+import NotepadAppIcon from "@/assets/icons/notepad.png";
+import DocumentsIcon from "@/assets/icons/documents.png";
 interface DesktopIconsProps {
-  onOpenNotepad: () => void;
+  onOpenPortfolio: () => void;
+  onOpenNotepadApp: () => void;
+  onOpenMyDocuments: () => void;
 }
 
 const iconButtonStyle: React.CSSProperties = {
@@ -25,7 +29,7 @@ const iconButtonStyle: React.CSSProperties = {
   transition: "background 0.15s",
 };
 
-const DesktopIcons = ({ onOpenNotepad }: DesktopIconsProps) => {
+const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments }: DesktopIconsProps) => {
   return (
     <div
       style={{
@@ -43,7 +47,7 @@ const DesktopIcons = ({ onOpenNotepad }: DesktopIconsProps) => {
       }}
     >
       <button
-        onDoubleClick={onOpenNotepad}
+        onDoubleClick={onOpenPortfolio}
         style={iconButtonStyle}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = "rgba(255,255,255,0.1)";
@@ -55,7 +59,7 @@ const DesktopIcons = ({ onOpenNotepad }: DesktopIconsProps) => {
         }}
       >
         <img
-          src={NotepadIcon}
+          src={PortfolioIcon}
           alt="My Portfolio"
           style={{ width: 32, height: 32, imageRendering: "pixelated" }}
           draggable={false}
@@ -80,6 +84,46 @@ const DesktopIcons = ({ onOpenNotepad }: DesktopIconsProps) => {
           draggable={false}
         />
         <span>Mi PC</span>
+      </button>
+      <button
+        onDoubleClick={onOpenMyDocuments}
+        style={iconButtonStyle}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "transparent";
+          e.currentTarget.style.borderColor = "transparent";
+        }}
+      >
+        <img
+          src={DocumentsIcon}
+          alt="Mis documentos"
+          style={{ width: 32, height: 32, imageRendering: "pixelated" }}
+          draggable={false}
+        />
+        <span>Mis documentos</span>
+      </button>
+      <button
+        onDoubleClick={onOpenNotepadApp}
+        style={iconButtonStyle}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "transparent";
+          e.currentTarget.style.borderColor = "transparent";
+        }}
+      >
+        <img
+          src={NotepadAppIcon}
+          alt="Notepad"
+          style={{ width: 32, height: 32, imageRendering: "pixelated" }}
+          draggable={false}
+        />
+        <span>Notepad</span>
       </button>
     </div>
   );
