@@ -7,7 +7,7 @@ import ForwardIcon from "@/assets/icons/forward.png";
 import FolderIcon from "@/assets/icons/documents.png";
 import webIcon from "@/assets/icons/web.png";
 import newIcon from "@/assets/icons/new.png";
-import Goicon from "@/assets/icons/go.png";
+import Goicon from "@/assets/icons/Go.png";
 import UpIcon from "@/assets/icons/up.png";
 import PdfIcon from "@/assets/icons/PDF.ico";
 import FigmaIcon from "@/assets/icons/figma.png";
