@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDragWindow } from '../hooks/useDragWindows';
 import { useResizeWindow } from '../hooks/useResizeWindows';
 
+const TASKBAR_HEIGHT = 40;
+
 type WindowsManagerProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -9,6 +11,7 @@ type WindowsManagerProps = {
   title?: string;
   initialWidth?: number;
   initialHeight?: number;
+  initialPosition?: { x: number; y: number };
   isMaximized: boolean; 
   onMaximizeChange: (value: boolean) => void; 
   scrollContainerId?: string;
@@ -21,6 +24,7 @@ const WindowsManager = ({
   title = 'Mi Portafolio',
   initialWidth = 500,
   initialHeight = 500,
+  initialPosition = { x: 0, y: 0 },
   isMaximized,
   scrollContainerId,
   onMaximizeChange,
@@ -28,7 +32,7 @@ const WindowsManager = ({
   const [previousSize, setPreviousSize] = useState({ width: initialWidth, height: initialHeight });
   const [previousPosition, setPreviousPosition] = useState({ x: 0, y: 0 });
 
-  const { position, setPosition, dragRef, handleMouseDown, isDragging } = useDragWindow({ x: 0, y: 0 });
+  const { position, setPosition, dragRef, handleMouseDown, isDragging } = useDragWindow(initialPosition);
   const { size, setSize, resizeRef, handleResizeStart } = useResizeWindow(
     { width: initialWidth, height: initialHeight },
     { width: 300, height: 200 }
@@ -46,7 +50,7 @@ const WindowsManager = ({
       
       setSize({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight - TASKBAR_HEIGHT
       });
       setPosition({
         x: 0,
@@ -62,7 +66,7 @@ const WindowsManager = ({
         const padding = 7;
         setSize({
           width: window.innerWidth - padding * 2,
-          height: window.innerHeight - padding * 2
+          height: window.innerHeight - TASKBAR_HEIGHT - padding * 2
         });
         setPosition({
           x: padding,
@@ -80,7 +84,7 @@ const WindowsManager = ({
     top: isMaximized ? 0 : position.y,
     left: isMaximized ? 0 : position.x,
     width: isMaximized ? '100vw' : size.width,
-    height: isMaximized ? '100vh' : size.height,
+    height: isMaximized ? `calc(100vh - ${TASKBAR_HEIGHT}px)` : size.height,
     zIndex: isMaximized ? 9999999 : 9999, 
     display: isOpen ? 'block' : 'none',
     cursor: isDragging ? 'grabbing' : 'default',
@@ -89,12 +93,11 @@ const WindowsManager = ({
   };
 
   const bodyStyles: React.CSSProperties = {
-  height: isMaximized ? 'calc(100% - 28px)' : 'auto',
+  height: 'calc(100% - 28px)',
   flex: 1,
   display: 'flex',      
   flexDirection: 'column',
-  overflow: 'hidden',   
-  maxHeight: isMaximized ? 'calc(100vh - 50px)' : 'auto',
+  overflow: 'auto',   
   padding: '0px',
 };
 

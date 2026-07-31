@@ -6,16 +6,20 @@ import MyDocumentsApp from "./components/MyDocumentsApp";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import { Taskbar } from "./components/Taskbar";
 import DesktopIcons from "./components/DesktopIcons";
+import MenuHamburguer from "./components/PrimitiveElements/MenuHamburguer";
+import Navbar from "./components/PrimitiveElements/Navbar";
 import XpWallpaper from "@/assets/xp-bliss.jpg";
 
 const App = () => {
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [isWoWOpen, setIsWoWOpen] = useState(false);
   const [isMinesweeperOpen, setIsMinesweeperOpen] = useState(false);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isNotepadMinimized, setIsNotepadMinimized] = useState(false);
   const [isMyDocumentsOpen, setIsMyDocumentsOpen] = useState(false);
   const [isMyDocumentsMinimized, setIsMyDocumentsMinimized] = useState(false);
+  const [viewerImage, setViewerImage] = useState<string | null>(null);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
   const [isPortfolioMaximized, setIsPortfolioMaximized] = useState(true);
@@ -66,7 +70,7 @@ const App = () => {
       <Window
         isOpen={isPortfolioOpen}
         onClose={handlePortfolioClose}
-        title="Notepad - My Portfolio"
+        title="explorer - My Portfolio"
         initialWidth={900}
         initialHeight={600}
         scrollable
@@ -78,7 +82,20 @@ const App = () => {
         <Toaster />
         <Header />
 
-        <div id="window-scroll-container" className="xp-scrollbar" style={{ margin: 0, padding: 0, flex: 1, overflow: "auto" }}>
+        <div id="window-scroll-container" className="xp-scrollbar" style={{ margin: 0, padding: 0, flex: 1, overflow: "auto", minHeight: 0 }}>
+          <div
+            style={{
+              position: "sticky",
+              top: 8,
+              zIndex: 999999,
+              display: "flex",
+              justifyContent: "flex-end",
+              padding: "4px 8px 0 0",
+              pointerEvents: "none",
+            }}
+          >
+            <MenuHamburguer isChecked={isChecked} setIsChecked={setIsChecked} />
+          </div>
           <section id="/" className="scroll-mt-20">
             <HomePage />
           </section>
@@ -92,6 +109,7 @@ const App = () => {
             <ContactPage />
           </section>
         </div>
+        {isChecked && <Navbar isOpen={isChecked} setIsOpen={setIsChecked} />}
       </Window>
 
       <StartMenu
@@ -153,7 +171,25 @@ const App = () => {
         isMinimized={isMyDocumentsMinimized}
         onMinimize={() => setIsMyDocumentsMinimized(true)}
       >
-        <MyDocumentsApp />
+        <MyDocumentsApp onOpenImageViewer={setViewerImage} />
+      </Window>
+
+      <Window
+        isOpen={!!viewerImage}
+        onClose={() => setViewerImage(null)}
+        title="Visor de imágenes"
+        initialWidth={700}
+        initialHeight={550}
+      >
+        {viewerImage && (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#000", padding: 8, boxSizing: "border-box" }}>
+            <img
+              src={viewerImage}
+              alt=""
+              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+            />
+          </div>
+        )}
       </Window>
 
       <Taskbar

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDragWindow } from "../hooks/useDragWindows";
 import { useResizeWindow } from "../hooks/useResizeWindows";
 
+const TASKBAR_HEIGHT = 40;
+
 interface WindowProps {
   isOpen: boolean;
   onClose: () => void;
@@ -47,7 +49,7 @@ const Window = ({
     } else {
       setPreviousSize(size);
       setPreviousPosition(position);
-      setSize({ width: window.innerWidth, height: window.innerHeight });
+      setSize({ width: window.innerWidth, height: window.innerHeight - TASKBAR_HEIGHT });
       setPosition({ x: 0, y: 0 });
       onMaximizeChange(true);
     }
@@ -59,7 +61,7 @@ const Window = ({
         const padding = 7;
         setSize({
           width: window.innerWidth - padding * 2,
-          height: window.innerHeight - padding * 2,
+          height: window.innerHeight - TASKBAR_HEIGHT - padding * 2,
         });
         setPosition({ x: padding, y: padding });
       }
@@ -84,11 +86,12 @@ const Window = ({
         top: isMaximized ? 0 : position.y,
         left: isMaximized ? 0 : position.x,
         width: isMaximized ? "100vw" : size.width,
-        height: isMaximized ? "100vh" : size.height,
+        height: isMaximized ? `calc(100vh - ${TASKBAR_HEIGHT}px)` : size.height,
         zIndex: 99999999,
         cursor: isDragging ? "grabbing" : "default",
         boxShadow: "2px 2px 10px rgba(0,0,0,0.5)",
         display: isMinimized ? "none" : "block",
+        overflow: "hidden",
       }}
     >
       <div

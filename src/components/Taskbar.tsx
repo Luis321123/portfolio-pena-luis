@@ -4,7 +4,7 @@ import CalendarXP from "../components/calendar";
 
 import WindowsLogo from "../../public/Windows XP.ico";
 import FolderIcon from "@/assets/icons/documents.png";
-import Notepad from "@/assets/icons/notepad.png";
+import Explorer from "@/assets/icons/explorer.ico";
 import InternetIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
 import VolumeIcon from "@/assets/icons/volume.png";
@@ -220,7 +220,6 @@ export const Taskbar = ({
               }}
             >
               <img 
-                src={Notepad} 
                 alt="Notepad" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
@@ -288,11 +287,11 @@ export const Taskbar = ({
               }}
             >
               <img 
-                src={Notepad} 
+                src={Explorer} 
                 alt="Portfolio" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>Notepad - My Portfolio</span>
+              <span>explorer - My Portfolio</span>
               {isPortfolioMinimized && (
                 <span style={{ 
                   fontSize: 10, 

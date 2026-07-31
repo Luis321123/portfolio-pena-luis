@@ -56,7 +56,7 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
   };
 
   return (
-    <div className="sticky top-2 items-center z-[999999] pr-12">
+    <div className="relative z-[9999999999] pointer-events-auto">
       
       <audio 
         ref={audioRef} 
@@ -65,19 +65,19 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
       />
 
       <button
-        onClick={handleToggleMenu}
-        className={`
-          w-10 h-10 flex items-center justify-center bg-[#c0c0c0] 
-          border-2 
-          ${isChecked 
-            ? 'border-[#404040] border-r-[#f0f0f0] border-b-[#f0f0f0] translate-y-[1px] translate-x-[1px]' 
-            : 'border-[#f0f0f0] border-r-[#404040] border-b-[#404040]'
-          }
-          active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] active:translate-y-[1px] active:translate-x-[1px]
-          transition-colors
-        `}
-        aria-label={isChecked ? "Cerrar menú" : "Abrir menú"}
-      >
+  onClick={handleToggleMenu}
+  className={`
+    w-10 h-10 flex items-center justify-center bg-transparent
+    border-2 
+    ${isChecked 
+      ? 'border-[#404040] border-r-[#f0f0f0] border-b-[#f0f0f0] translate-y-[1px] translate-x-[1px]' 
+      : 'border-[#f0f0f0] border-r-[#404040] border-b-[#404040]'
+    }
+    active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] active:translate-y-[1px] active:translate-x-[1px]
+    transition-colors
+  `}
+  aria-label={isChecked ? "Cerrar menú" : "Abrir menú"}
+>
         <svg viewBox="0 0 24 24" width="20" height="20" className="transition-all duration-200">
           {isChecked ? (
             <path d="M6 6L18 18M18 6L6 18" stroke="black" strokeWidth="2" strokeLinecap="round" />

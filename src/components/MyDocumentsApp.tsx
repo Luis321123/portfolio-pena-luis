@@ -17,16 +17,66 @@ import PhotoshopIcon from "@/assets/icons/photoshop.png";
 
 import { useState } from "react";
 
-const MyDocumentsApp = () => {
+const photoList = [
+  "0.jpeg", "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg",
+  "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg",
+  "12.jpeg", "13.jpeg", "14.jpeg", "15.jpeg", "16.jpeg", "17.jpeg",
+  "18.jpeg", "19.jpeg", "20.jpeg", "21.jpeg", "23.jpeg", "24.jpeg",
+  "25.jpeg", "26.jpeg", "27.jpeg", "28.jpeg", "29.jpeg", "30.jpeg",
+  "40.jpeg", "41.jpeg", "42.jpeg", "43.jpeg", "44.jpeg",
+];
+
+interface MyDocumentsAppProps {
+  onOpenImageViewer?: (src: string) => void;
+}
+
+type Folder = "root" | "viajes";
+
+const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentFolder, setCurrentFolder] = useState<Folder>("root");
+  const [folderHistory, setFolderHistory] = useState<Folder[]>([]);
 
   const handlePdfClick = () => {
     setIsDialogOpen(true);
   };
 
   const handleConfirm = () => {
-    window.open("/Luis-Peña.pdf", "_blank");
+    window.open("/Luis-Pena.pdf", "_blank");
     setIsDialogOpen(false);
+  };
+
+  const navigateTo = (folder: Folder) => {
+    setFolderHistory((prev) => [...prev, currentFolder]);
+    setCurrentFolder(folder);
+  };
+
+  const navigateUp = () => {
+    if (folderHistory.length > 0) {
+      const prev = folderHistory[folderHistory.length - 1];
+      setFolderHistory((prevHistory) => prevHistory.slice(0, -1));
+      setCurrentFolder(prev);
+    }
+  };
+
+  const canGoUp = folderHistory.length > 0;
+
+  const getAddress = () => {
+    switch (currentFolder) {
+      case "viajes":
+        return "C:\\Documents and Settings\\Mitch\\Mis documentos\\viajes";
+      default:
+        return "C:\\Documents and Settings\\Mitch\\Mis documentos";
+    }
+  };
+
+  const getItemCount = () => {
+    switch (currentFolder) {
+      case "viajes":
+        return `${photoList.length} objetos`;
+      default:
+        return "2 objetos";
+    }
   };
 
   return (
@@ -76,7 +126,22 @@ const MyDocumentsApp = () => {
 
           {/* Botón Up */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <button style={{ width: 22, height: 22, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #a7abb3", borderRadius: 0, background: "#fff", cursor: "pointer", opacity: 0.5, padding: 0 }} disabled>
+            <button 
+              onClick={canGoUp ? navigateUp : undefined}
+              style={{ 
+                width: 22, 
+                height: 22, 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                border: "1px solid #a7abb3", 
+                borderRadius: 0, 
+                background: canGoUp ? "#fff" : "#f0f0f0", 
+                cursor: canGoUp ? "pointer" : "default", 
+                opacity: canGoUp ? 1 : 0.5, 
+                padding: 0 
+              }}
+            >
               <img src={UpIcon} alt="up" style={{ width: 16, height: 16 }} />
             </button>
             <span style={{ fontSize: 9, color: "#555", marginTop: 1 }}>Up</span>
@@ -88,7 +153,7 @@ const MyDocumentsApp = () => {
           <span style={{ fontSize: 10, color: "#555" }}>Address</span>
           <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, border: "1px solid #3a6ea5", borderRadius: 0, background: "#fff", padding: "1px 4px" }}>
             <img src={FolderIcon} alt="folder" style={{ width: 16, height: 16, marginRight: 2 }} />
-            <span style={{ fontSize: 11, color: "#000", marginLeft: 4 }}>C:\Documents and Settings\Mitch\Mis documentos</span>
+            <span style={{ fontSize: 11, color: "#000", marginLeft: 4 }}>{getAddress()}</span>
             <span style={{ 
               fontSize: 10, 
               color: "#0055ff",
@@ -102,7 +167,7 @@ const MyDocumentsApp = () => {
         </div>
       </div>
 
-      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+      <div style={{ display: "flex", flex: 1, overflow: "hidden", minHeight: 0 }}>
         {/* Left panel */}
         <div style={{ width: 180, background: "linear-gradient(to bottom, #d4e4fc 0%, #b5cef4 100%)", borderRight: "1px solid #a7abb3", display: "flex", flexDirection: "column", gap: 0, flexShrink: 0 }}>
           {/* File and Folder Tasks */}
@@ -161,31 +226,54 @@ const MyDocumentsApp = () => {
                 <img src={IllustratorIcon} alt="Illustrator" style={{ width: 16, height: 16 }} />
                 <div>Illustrator</div>
               </div>
-              <div style={{ marginTop: 110 }}>30/07/2026</div>
+              <div style={{ marginTop: 100 }}>30/07/2026</div>
             </div>
           </div>
         </div>
 
         {/* Main content */}
         <div style={{ flex: 1, background: "#fff", padding: 8, display: "flex", flexDirection: "column", gap: 4, overflow: "auto" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignContent: "flex-start" }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, width: 72, cursor: "pointer", padding: 4 }} onClick={() => window.open("https://github.com/Luis321123", "_blank")}>
-              <img src={FolderIcon} alt="folder" style={{ width: 48, height: 48, imageRendering: "pixelated" }} draggable={false} />
-              <span style={{ fontSize: 11, color: "#000", textAlign: "center", wordBreak: "break-word", lineHeight: 1.2 }}>My photos</span>
-            </div>
+          {currentFolder === "root" && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignContent: "flex-start" }}>
+              {/* My photos folder */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, width: 72, cursor: "pointer", padding: 4 }} onClick={() => navigateTo("viajes")}>
+                <img src={FolderIcon} alt="folder" style={{ width: 48, height: 48, imageRendering: "pixelated" }} draggable={false} />
+                <span style={{ fontSize: 11, color: "#000", textAlign: "center", wordBreak: "break-word", lineHeight: 1.2 }}>A travel</span>
+              </div>
 
-            {/* My Resume PDF */}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, width: 72, cursor: "pointer", padding: 4 }} onClick={handlePdfClick}>
-              <img src={PdfIcon} alt="pdf" style={{ width: 48, height: 48 }} draggable={false} />
-              <span style={{ fontSize: 11, color: "#000", textAlign: "center", wordBreak: "break-word", lineHeight: 1.2 }}>My Resume</span>
+              {/* My Resume PDF */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, width: 72, cursor: "pointer", padding: 4 }} onClick={handlePdfClick}>
+                <img src={PdfIcon} alt="pdf" style={{ width: 48, height: 48 }} draggable={false} />
+                <span style={{ fontSize: 11, color: "#000", textAlign: "center", wordBreak: "break-word", lineHeight: 1.2 }}>My Resume</span>
+              </div>
             </div>
-          </div>
+          )}
+
+          {currentFolder === "viajes" && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignContent: "flex-start" }}>
+              {photoList.map((photo) => (
+                <div
+                  key={photo}
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, width: 100, cursor: "pointer", padding: 4 }}
+                  onDoubleClick={() => onOpenImageViewer?.(`/viajes/${photo}`)}
+                >
+                  <img
+                    src={`/viajes/${photo}`}
+                    alt={photo}
+                    style={{ width: 80, height: 80, objectFit: "cover", border: "1px solid #a7abb3" }}
+                    draggable={false}
+                  />
+                  <span style={{ fontSize: 10, color: "#000", textAlign: "center", wordBreak: "break-word", lineHeight: 1.2 }}>{photo}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       {/* Status bar */}
-      <div style={{ display: "flex", alignItems: "center", padding: "2px 8px", background: "#ece9d8", borderTop: "1px solid #a7abb3", fontSize: 11, color: "#333" }}>
-        2 objetos
+      <div style={{ display: "flex", alignItems: "center", padding: "4px 10px", background: "#ece9d8", borderTop: "1px solid #a7abb3", fontSize: 11, color: "#333" }}>
+        {getItemCount()}
       </div>
     </div>
   );

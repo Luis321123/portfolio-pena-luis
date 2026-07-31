@@ -38,8 +38,7 @@ const AboutPage = () => {
           className="text-gray-900 text-sm font-semibold hover:underline md:text-lg hover:scale-105 transition"
           onClick={() => setIsViewPdf(true)}
         >
-          View
-          <span className="text-sm font-semibold md:text-lg"> CV</span>
+          View CV
         </button>
       </aside>
       <section

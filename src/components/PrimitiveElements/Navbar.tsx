@@ -23,6 +23,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
       title="📁 Mi Portafolio"
       initialWidth={500}
       initialHeight={530}
+      initialPosition={{ x: 0, y: 60 }}
       isMaximized={false}
       onMaximizeChange={() => {}}
     >
