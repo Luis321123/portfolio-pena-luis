@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useClock } from "@/hooks/useClock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import CalendarXP from "../components/calendar";
 
 import WindowsLogo from "../../public/Windows XP.ico";
 import FolderIcon from "@/assets/icons/documents.png";
 import Explorer from "@/assets/icons/explorer.ico";
-import InternetIcon from "@/assets/icons/explorer.ico";
+import MyPcIcon from "@/assets/icons/mypc.png";
 import MusicIcon from "@/assets/icons/music.png";
+import PaintIcon from "@/assets/icons/paint.png";
 import VolumeIcon from "@/assets/icons/volume.png";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
@@ -34,13 +36,16 @@ interface TaskbarProps {
   isMyPcOpen?: boolean;
   isMyPcMinimized?: boolean;
   onMyPcClick?: () => void;
+  isAresOpen?: boolean;
+  isAresMinimized?: boolean;
   onAresClick?: () => void;
+  isPaintOpen?: boolean;
+  isPaintMinimized?: boolean;
+  onPaintClick?: () => void;
 }
 
 const TASKBAR_ICONS = [
-  { id: 2, name: "Documentos", icon: FolderIcon },
-  { id: 3, name: "Explorer", icon: InternetIcon },
-  { id: 4, name: "Ares", icon: MusicIcon },
+  { id: 2, name: "" },
 ];
 
 const NOTIFICATION_ICONS = [
@@ -66,11 +71,17 @@ export const Taskbar = ({
   isMyPcOpen,
   isMyPcMinimized,
   onMyPcClick,
+  isAresOpen,
+  isAresMinimized,
   onAresClick,
+  isPaintOpen,
+  isPaintMinimized,
+  onPaintClick,
 }: TaskbarProps) => {
   const [showClockTooltip, setShowClockTooltip] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const { time, date } = useClock();
+  const isMobile = useIsMobile(768);
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -105,14 +116,14 @@ export const Taskbar = ({
             alignItems: "center",
             gap: 6,
             height: 30,
-            padding: "0 12px 0 6px",
+            padding: isMobile ? "0 8px 0 4px" : "0 12px 0 6px",
             background: "linear-gradient(to bottom, #4fc44f 0%, #2d8b39 45%, #1f6e2b 100%)",
             border: "1px solid #1a5c22",
             borderRadius: "3px 6px 6px 3px",
             color: "white",
             fontWeight: "bold",
             fontStyle: "italic",
-            fontSize: 13,
+            fontSize: isMobile ? 12 : 13,
             cursor: "pointer",
             textShadow: "1px 1px 1px rgba(0,0,0,0.4)",
           }}
@@ -122,7 +133,7 @@ export const Taskbar = ({
             alt="Windows" 
             style={{ width: 18, height: 18, flexShrink: 0 }} 
           />
-          Start
+          {!isMobile && "Start"}
         </button>
 
         <div style={{ 
@@ -139,7 +150,8 @@ export const Taskbar = ({
           alignItems: "center", 
           gap: 4, 
           height: "100%", 
-          overflow: "hidden" 
+          overflowX: isMobile ? "auto" : "hidden",
+          overflowY: "hidden",
         }}>
 
           {isWoWOpen && (
@@ -147,8 +159,8 @@ export const Taskbar = ({
               onClick={onWowClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -178,8 +190,8 @@ export const Taskbar = ({
               onClick={onMinesweeperClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -209,8 +221,8 @@ export const Taskbar = ({
               onClick={onNotepadClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -242,8 +254,8 @@ export const Taskbar = ({
               onClick={onMyDocumentsClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -276,8 +288,8 @@ export const Taskbar = ({
               onClick={onMyPcClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -305,13 +317,81 @@ export const Taskbar = ({
             </button>
           )}
 
+          {isAresOpen && (
+            <button
+              onClick={onAresClick}
+              style={{
+                height: 28,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isAresMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isAresMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isAresMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img
+                src={MusicIcon}
+                alt="Ares"
+                style={{ width: 20, height: 20, flexShrink: 0 }}
+              />
+              <span>Ares Galaxy</span>
+            </button>
+          )}
+
+          {isPaintOpen && (
+            <button
+              onClick={onPaintClick}
+              style={{
+                height: 28,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isPaintMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isPaintMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isPaintMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img
+                src={PaintIcon}
+                alt="Paint"
+                style={{ width: 20, height: 20, flexShrink: 0 }}
+              />
+              <span>untitled - Paint</span>
+            </button>
+          )}
+
           {isPortfolioOpen && (
             <button
               onClick={onPortfolioClick}
               style={{
                 height: 28,
-                minWidth: 140,
-                maxWidth: 200,
+                minWidth: isMobile ? 100 : 140,
+                maxWidth: isMobile ? 150 : 200,
                 padding: "0 10px",
                 display: "flex",
                 alignItems: "center",
@@ -357,13 +437,15 @@ export const Taskbar = ({
               onClick={() => {
                 if (item.id === 4) {
                   onAresClick?.();
+                } else if (item.id === 5) {
+                  onPaintClick?.();
                 } else {
                   console.log(item.name);
                 }
               }}
               style={{
                 height: 28,
-                padding: "0 10px",
+                padding: isMobile ? "0 4px" : "0 10px",
                 display: "flex",
                 alignItems: "center",
                 gap: 4,
@@ -384,12 +466,7 @@ export const Taskbar = ({
                 e.currentTarget.style.borderColor = "transparent";
               }}
             >
-              <img 
-                src={item.icon} 
-                alt={item.name} 
-                style={{ width: 18, height: 18, flexShrink: 0 }} 
-              />
-              <span style={{ fontSize: 11 }}>{item.name}</span>
+              {!isMobile && <span style={{ fontSize: 11 }}>{item.name}</span>}
             </button>
           ))}
         </div>
@@ -452,7 +529,7 @@ export const Taskbar = ({
             style={{
               position: "relative",
               height: 28,
-              padding: "0 10px",
+              padding: isMobile ? "0 4px" : "0 10px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -467,7 +544,7 @@ export const Taskbar = ({
               lineHeight: 1,
             }}
           >
-            <span style={{ fontWeight: "bold", fontSize: 13 }}>{time}</span>
+            <span style={{ fontWeight: "bold", fontSize: isMobile ? 12 : 13 }}>{time}</span>
 
             {showClockTooltip && !showCalendar && (
               <div

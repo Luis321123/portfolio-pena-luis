@@ -31,13 +31,27 @@ const Window = ({
   isMaximized = false,
   onMaximizeChange,
 }: WindowProps) => {
-  const [previousSize, setPreviousSize] = useState({ width: initialWidth, height: initialHeight });
-  const [previousPosition, setPreviousPosition] = useState({ x: 100, y: 50 });
+  const getClampedInitial = () => {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const width = Math.min(initialWidth, vw - 12);
+    const height = Math.min(initialHeight, vh - TASKBAR_HEIGHT - 12);
+    return {
+      width,
+      height,
+      x: Math.max(6, Math.floor((vw - width) / 2)),
+      y: Math.max(6, Math.floor((vh - TASKBAR_HEIGHT - height) / 2)),
+    };
+  };
 
-  const { position, setPosition, dragRef, handleMouseDown, isDragging } = useDragWindow({ x: 100, y: 50 });
+  const clamped = getClampedInitial();
+  const [previousSize, setPreviousSize] = useState({ width: clamped.width, height: clamped.height });
+  const [previousPosition, setPreviousPosition] = useState({ x: clamped.x, y: clamped.y });
+
+  const { position, setPosition, dragRef, handleMouseDown, isDragging } = useDragWindow({ x: clamped.x, y: clamped.y });
   const { size, setSize, resizeRef, handleResizeStart } = useResizeWindow(
-    { width: initialWidth, height: initialHeight },
-    { width: 300, height: 200 }
+    { width: clamped.width, height: clamped.height },
+    { width: 280, height: 180 }
   );
 
   const handleMaximize = () => {

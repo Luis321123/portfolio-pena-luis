@@ -16,6 +16,7 @@ import PhotoshopIcon from "@/assets/icons/photoshop.png";
 
 
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const photoList = [
   "0.jpeg", "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg",
@@ -36,6 +37,7 @@ const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentFolder, setCurrentFolder] = useState<Folder>("root");
   const [folderHistory, setFolderHistory] = useState<Folder[]>([]);
+  const isMobile = useIsMobile(768);
 
   const handlePdfClick = () => {
     setIsDialogOpen(true);
@@ -151,9 +153,9 @@ const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
         {/* Segunda fila: Barra de direcciones */}
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
           <span style={{ fontSize: 10, color: "#555" }}>Address</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, border: "1px solid #3a6ea5", borderRadius: 0, background: "#fff", padding: "1px 4px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, minWidth: 0, border: "1px solid #3a6ea5", borderRadius: 0, background: "#fff", padding: "1px 4px" }}>
             <img src={FolderIcon} alt="folder" style={{ width: 16, height: 16, marginRight: 2 }} />
-            <span style={{ fontSize: 11, color: "#000", marginLeft: 4 }}>{getAddress()}</span>
+            <span style={{ fontSize: 11, color: "#000", marginLeft: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1, minWidth: 0 }}>{getAddress()}</span>
             <span style={{ 
               fontSize: 10, 
               color: "#0055ff",
@@ -169,7 +171,7 @@ const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden", minHeight: 0 }}>
         {/* Left panel */}
-        <div style={{ width: 180, background: "linear-gradient(to bottom, #d4e4fc 0%, #b5cef4 100%)", borderRight: "1px solid #a7abb3", display: "flex", flexDirection: "column", gap: 0, flexShrink: 0 }}>
+        <div style={{ width: isMobile ? 110 : 180, background: "linear-gradient(to bottom, #d4e4fc 0%, #b5cef4 100%)", borderRight: "1px solid #a7abb3", display: "flex", flexDirection: "column", gap: 0, flexShrink: 0 }}>
           {/* File and Folder Tasks */}
           <div style={{ padding: "10px 8px 6px 8px" }}>
             <div style={{ color: "#215dc6", fontWeight: "bold", fontSize: 11, marginBottom: 6, letterSpacing: -0.2 }}>

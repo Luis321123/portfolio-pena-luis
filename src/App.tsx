@@ -25,6 +25,8 @@ const App = () => {
   const [isMyPcMinimized, setIsMyPcMinimized] = useState(false);
   const [isAresOpen, setIsAresOpen] = useState(false);
   const [isAresMinimized, setIsAresMinimized] = useState(false);
+  const [isPaintOpen, setIsPaintOpen] = useState(false);
+  const [isPaintMinimized, setIsPaintMinimized] = useState(false);
   const [viewerImage, setViewerImage] = useState<string | null>(null);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
@@ -75,6 +77,10 @@ const App = () => {
         onOpenAres={() => {
           setIsAresOpen(true);
           setIsAresMinimized(false);
+        }}
+        onOpenPaint={() => {
+          setIsPaintOpen(true);
+          setIsPaintMinimized(false);
         }}
       />
 
@@ -136,6 +142,10 @@ const App = () => {
         onOpenAres={() => {
           setIsAresOpen(true);
           setIsAresMinimized(false);
+        }}
+        onOpenPaint={() => {
+          setIsPaintOpen(true);
+          setIsPaintMinimized(false);
         }}
       />
 
@@ -216,6 +226,23 @@ const App = () => {
       </Window>
 
       <Window
+        isOpen={isPaintOpen}
+        onClose={() => setIsPaintOpen(false)}
+        title="untitled - Paint"
+        initialWidth={900}
+        initialHeight={600}
+        isMinimized={isPaintMinimized}
+        onMinimize={() => setIsPaintMinimized(true)}
+      >
+        <iframe
+          src="https://jspaint.app"
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Paint"
+          allowFullScreen
+        />
+      </Window>
+
+      <Window
         isOpen={!!viewerImage}
         onClose={() => setViewerImage(null)}
         title="Visor de imágenes"
@@ -258,6 +285,18 @@ const App = () => {
             return;
           }
           setIsAresMinimized((prev) => !prev);
+        }}
+        isAresOpen={isAresOpen}
+        isAresMinimized={isAresMinimized}
+        isPaintOpen={isPaintOpen}
+        isPaintMinimized={isPaintMinimized}
+        onPaintClick={() => {
+          if (!isPaintOpen) {
+            setIsPaintOpen(true);
+            setIsPaintMinimized(false);
+            return;
+          }
+          setIsPaintMinimized((prev) => !prev);
         }}
       />
     </>

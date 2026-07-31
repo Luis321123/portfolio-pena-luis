@@ -312,7 +312,7 @@ const AresPlayer = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "28px 1fr 90px 110px",
+            gridTemplateColumns: "minmax(20px, 28px) minmax(0, 1fr) minmax(52px, 90px) minmax(76px, 110px)",
             gap: 4,
             padding: "4px 6px",
             background: "#0d1f47",
@@ -336,7 +336,7 @@ const AresPlayer = () => {
               onClick={() => playTrack(index)}
               style={{
                 display: "grid",
-                gridTemplateColumns: "28px 1fr 90px 110px",
+                gridTemplateColumns: "minmax(20px, 28px) minmax(0, 1fr) minmax(52px, 90px) minmax(76px, 110px)",
                 gap: 4,
                 padding: "4px 6px",
                 fontSize: 11,
@@ -529,12 +529,14 @@ const AresPlayer = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "0 8px",
           padding: "2px 10px",
           background: "#d4d0c8",
           borderTop: "1px solid #ffffff",
           color: "#1a1a1a",
           fontSize: 10,
-          height: 20,
+          flexWrap: "wrap",
+          minHeight: 20,
         }}
       >
         <span>Conectado a la red Ares Galaxy</span>

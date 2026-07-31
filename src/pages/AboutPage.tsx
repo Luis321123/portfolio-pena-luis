@@ -212,11 +212,11 @@ const AboutPage = () => {
               Luis Peña
             </h2>
             <h3 className="font-bold text-xl sm:text-2xl md:text-3xl tracking-widest my-4">
-              <b className="text-[#00008B]"> Python</b> and{" "}
-              <b className="text-[#7A86B8]">PHP</b> Developer
+              <b className="text-[#00008B]"> Software</b>{" "}
+              <b className="text-[#7A86B8]"></b> Developer
             </h3>
             <p className="text-sm sm:text-base md:text-lg font-medium text-third lg:text-1xl sm:border sm:border-transparent sm:border-b-gray-300 sm:pb-10">
-              Hi! 👋 I'm <span className="font-bold">Luis Mario Peña</span>, a backend developer 
+              Hi! 👋 I'm <span className="font-bold">Luis Mario Peña</span>, a Software developer 
               with over 2 years of experience building robust and 
               scalable solutions for industries such as travel, 
               solar energy, business management, CRM integrations, and AI-powered 

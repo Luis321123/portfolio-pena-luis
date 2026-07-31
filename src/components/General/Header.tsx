@@ -41,7 +41,20 @@ const Header = () => {
   const [backStack, setBackStack] = useState<string[]>([]);
   const [forwardStack, setForwardStack] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isNarrow, setIsNarrow] = useState(false);
   const lastSectionRef = useRef("/");
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect.width ?? 0;
+      setIsNarrow(width < 720);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const navigateTo = (id: string) => {
     if (id === currentSection) {
@@ -94,6 +107,7 @@ const Header = () => {
 
   return (
     <div
+      ref={headerRef}
       style={{
         width: "100%",
         flexShrink: 0,
@@ -130,11 +144,22 @@ const Header = () => {
       </div>
 
       {/* Toolbar row: groups of 3 icons, spread across the screen */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", gap: 4, padding: "1px 4px", borderBottom: "1px solid #dcdcdc" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 4,
+          padding: "1px 4px",
+          borderBottom: "1px solid #dcdcdc",
+          justifyContent: isNarrow ? "flex-start" : "space-evenly",
+          overflowX: isNarrow ? "auto" : "visible",
+          scrollbarWidth: "thin",
+        }}
+      >
         {toolbarGroups.map((group, groupIndex) => (
           <Fragment key={groupIndex}>
-            {groupIndex > 0 && <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />}
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            {groupIndex > 0 && <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px", flexShrink: 0 }} />}
+            <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
               {group.map((btn) => (
                 <button
                   key={btn.alt}
@@ -152,7 +177,7 @@ const Header = () => {
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <img src={btn.icon} alt={btn.alt} style={{ width: 16, height: 16 }} />
-                  {btn.label && <span style={{ fontSize: 10 }}>{btn.label}</span>}
+                  {btn.label && !isNarrow && <span style={{ fontSize: 10 }}>{btn.label}</span>}
                   {btn.dropdown && <span style={{ fontSize: 7 }}>▼</span>}
                 </button>
               ))}

@@ -6,6 +6,7 @@ import LinkedinIcon from "@/assets/icons/linkedinPixel.svg";
 import WSIcon from "@/assets/icons/whatsapp.svg";
 import PdfIcon from "@/assets/icons/PDF.ico";
 import BehanceIcon from "@/assets/icons/behance.png";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const PERSONAL_INFO = [
   {
@@ -53,12 +54,15 @@ const linkStyle: React.CSSProperties = {
 };
 
 const MyComputerApp = () => {
+  const isMobile = useIsMobile(768);
+
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", background: "#ece9d8", overflow: "auto" }}>
       <div
         style={{
-          width: "38%",
-          minWidth: 180,
+          width: isMobile ? "42%" : "38%",
+          minWidth: isMobile ? 120 : 180,
+          maxWidth: isMobile ? 160 : undefined,
           display: "flex",
           flexDirection: "column",
           background: "linear-gradient(to bottom, #d4e4fc 0%, #b5cef4 100%)",

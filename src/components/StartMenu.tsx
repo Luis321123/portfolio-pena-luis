@@ -4,10 +4,12 @@ import DocumentsIcon from "@/assets/icons/documents.png";
 import NotepadIcon from "@/assets/icons/notepad.png";
 import ExplorerIcon from "@/assets/icons/explorer.ico";
 import MusicIcon from "@/assets/icons/music.png";
+import PaintIcon from "@/assets/icons/paint.png";
 import QuitIcon from "@/assets/icons/printer.png";
 import ToolsIcon from "@/assets/icons/control.png";
 import WoWIcon from "@/assets/icons/WoW.svg";
 import MinesweeperIcon from "@/assets/icons/minessweeper.png";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface StartMenuProps {
   isOpen: boolean;
@@ -18,17 +20,21 @@ interface StartMenuProps {
   onOpenNotepadApp?: () => void;
   onOpenMyDocuments?: () => void;
   onOpenAres?: () => void;
+  onOpenPaint?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres, onOpenPaint }: StartMenuProps) => {
+  const isMobile = useIsMobile(768);
+
   if (!isOpen) return null;
 
   const leftItems = [
     { icon: NotepadIcon, label: "Notepad", action: onOpenNotepadApp },
+    { icon: PaintIcon, label: "Paint", action: onOpenPaint },
     { icon: MusicIcon, label: "Ares", action: onOpenAres },
     { icon: ExplorerIcon, label: "My Portfolio", action: onOpenPortfolio },
     { icon: MinesweeperIcon, label: "Minesweeper", action: onOpenMinesweeper },
@@ -49,8 +55,8 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
           position: "fixed",
           bottom: TASKBAR_HEIGHT,
           left: 0,
-          width: MENU_WIDTH,
-          height: MENU_HEIGHT,
+          width: isMobile ? "100%" : MENU_WIDTH,
+          height: isMobile ? `calc(100vh - ${TASKBAR_HEIGHT}px)` : MENU_HEIGHT,
           background: "#fff",
           border: "2px solid #0a3fa0",
           borderBottom: "none",
@@ -66,11 +72,13 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
           style={{
             display: "flex",
             height: "100%",
+            overflowY: isMobile ? "auto" : "visible",
           }}
         >
           <div
             style={{
-              width: 200,
+              width: isMobile ? "42%" : 200,
+              minWidth: isMobile ? 120 : 200,
               display: "flex",
               flexDirection: "column",
               background: "#fff",
