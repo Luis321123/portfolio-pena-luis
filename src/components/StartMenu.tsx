@@ -17,18 +17,19 @@ interface StartMenuProps {
   onOpenMinesweeper?: () => void;
   onOpenNotepadApp?: () => void;
   onOpenMyDocuments?: () => void;
+  onOpenAres?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres }: StartMenuProps) => {
   if (!isOpen) return null;
 
   const leftItems = [
     { icon: NotepadIcon, label: "Notepad", action: onOpenNotepadApp },
-    { icon: MusicIcon, label: "Music Player" },
+    { icon: MusicIcon, label: "Ares", action: onOpenAres },
     { icon: ExplorerIcon, label: "My Portfolio", action: onOpenPortfolio },
     { icon: MinesweeperIcon, label: "Minesweeper", action: onOpenMinesweeper },
   ];

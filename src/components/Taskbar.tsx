@@ -11,6 +11,7 @@ import VolumeIcon from "@/assets/icons/volume.png";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
 import MinesweeperIcon from "@/assets/icons/minessweeper.png";
+import ComputerIcon from "@/assets/icons/mypc.png";
 
 const TASKBAR_HEIGHT = 40;
 
@@ -30,12 +31,16 @@ interface TaskbarProps {
   isPortfolioOpen?: boolean;
   isPortfolioMinimized?: boolean;
   onPortfolioClick?: () => void;
+  isMyPcOpen?: boolean;
+  isMyPcMinimized?: boolean;
+  onMyPcClick?: () => void;
+  onAresClick?: () => void;
 }
 
 const TASKBAR_ICONS = [
-  { id: 2, name: "Documentos", icon: FolderIcon, action: () => console.log("Documentos") },
-  { id: 3, name: "Explorer", icon: InternetIcon, action: () => console.log("Internet Explorer") },
-  { id: 4, name: "Ares", icon: MusicIcon, action: () => console.log("Reproductor") },
+  { id: 2, name: "Documentos", icon: FolderIcon },
+  { id: 3, name: "Explorer", icon: InternetIcon },
+  { id: 4, name: "Ares", icon: MusicIcon },
 ];
 
 const NOTIFICATION_ICONS = [
@@ -58,6 +63,10 @@ export const Taskbar = ({
   isPortfolioOpen,
   isPortfolioMinimized,
   onPortfolioClick,
+  isMyPcOpen,
+  isMyPcMinimized,
+  onMyPcClick,
+  onAresClick,
 }: TaskbarProps) => {
   const [showClockTooltip, setShowClockTooltip] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -262,6 +271,40 @@ export const Taskbar = ({
             </button>
           )}
 
+          {isMyPcOpen && (
+            <button
+              onClick={onMyPcClick}
+              style={{
+                height: 28,
+                minWidth: 140,
+                maxWidth: 200,
+                padding: "0 10px",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: isMyPcMinimized
+                  ? "linear-gradient(to bottom, #3f7ee8 0%, #2c5fc7 100%)"
+                  : "linear-gradient(to bottom, #1c3f8f 0%, #14337a 100%)",
+                border: isMyPcMinimized ? "1px solid #14367f" : "1px solid #0a2454",
+                boxShadow: isMyPcMinimized ? "none" : "inset 1px 1px 2px rgba(0,0,0,0.5)",
+                borderRadius: 3,
+                color: "white",
+                fontSize: 12,
+                cursor: "pointer",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <img
+                src={ComputerIcon}
+                alt="My PC"
+                style={{ width: 20, height: 20, flexShrink: 0 }}
+              />
+              <span>My PC</span>
+            </button>
+          )}
+
           {isPortfolioOpen && (
             <button
               onClick={onPortfolioClick}
@@ -311,7 +354,13 @@ export const Taskbar = ({
           {TASKBAR_ICONS.map((item) => (
             <button
               key={item.id}
-              onClick={item.action}
+              onClick={() => {
+                if (item.id === 4) {
+                  onAresClick?.();
+                } else {
+                  console.log(item.name);
+                }
+              }}
               style={{
                 height: 28,
                 padding: "0 10px",

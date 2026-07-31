@@ -1,13 +1,16 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import PortfolioIcon from "@/assets/icons/explorer.png";
+import PortfolioIcon from "@/assets/icons/explorer.ico";
 import ComputerIcon from "@/assets/icons/mypc.png";
 import NotepadAppIcon from "@/assets/icons/notepad.png";
 import DocumentsIcon from "@/assets/icons/documents.png";
+import MusicIcon from "@/assets/icons/music.png";
 
 interface DesktopIconsProps {
   onOpenPortfolio: () => void;
   onOpenNotepadApp: () => void;
   onOpenMyDocuments: () => void;
+  onOpenMyPc: () => void;
+  onOpenAres: () => void;
 }
 
 interface IconDef {
@@ -54,7 +57,7 @@ const loadPositions = (): Record<string, { x: number; y: number }> => {
   return {};
 };
 
-const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments }: DesktopIconsProps) => {
+const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments, onOpenMyPc, onOpenAres }: DesktopIconsProps) => {
   const [positions, setPositions] = useState<Record<string, { x: number; y: number }>>(loadPositions);
   const [selected, setSelected] = useState<string | null>(null);
   const [draggingId, setDraggingId] = useState<string | null>(null);
@@ -65,9 +68,10 @@ const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments }: 
 
   const icons: IconDef[] = [
     { id: "portfolio", label: "My Portfolio", icon: PortfolioIcon, onDoubleClick: onOpenPortfolio },
-    { id: "mypc", label: "Mi PC", icon: ComputerIcon, onDoubleClick: () => {} },
+    { id: "mypc", label: "My PC", icon: ComputerIcon, onDoubleClick: onOpenMyPc },
     { id: "documents", label: "Mis documentos", icon: DocumentsIcon, onDoubleClick: onOpenMyDocuments },
     { id: "notepad", label: "Notepad", icon: NotepadAppIcon, onDoubleClick: onOpenNotepadApp },
+    { id: "ares", label: "Ares", icon: MusicIcon, onDoubleClick: onOpenAres },
   ];
 
   const defaultPositions: Record<string, { x: number; y: number }> = {
@@ -75,6 +79,7 @@ const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments }: 
     mypc: { x: 4, y: 92 },
     documents: { x: 4, y: 174 },
     notepad: { x: 4, y: 256 },
+    ares: { x: 4, y: 338 },
   };
 
   const handleMouseDown = (e: React.MouseEvent, id: string) => {

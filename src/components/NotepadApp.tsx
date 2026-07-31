@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const NotepadApp = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Thanks for visiting my portfolio!")
 
   return (
     <textarea

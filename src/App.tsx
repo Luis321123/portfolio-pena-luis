@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Header, StartMenu, Window } from "./components";
 import NotepadApp from "./components/NotepadApp";
 import MyDocumentsApp from "./components/MyDocumentsApp";
+import MyComputerApp from "./components/MyComputerApp";
+import AresPlayer from "./components/AresPlayer";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import { Taskbar } from "./components/Taskbar";
 import DesktopIcons from "./components/DesktopIcons";
@@ -19,6 +21,10 @@ const App = () => {
   const [isNotepadMinimized, setIsNotepadMinimized] = useState(false);
   const [isMyDocumentsOpen, setIsMyDocumentsOpen] = useState(false);
   const [isMyDocumentsMinimized, setIsMyDocumentsMinimized] = useState(false);
+  const [isMyPcOpen, setIsMyPcOpen] = useState(false);
+  const [isMyPcMinimized, setIsMyPcMinimized] = useState(false);
+  const [isAresOpen, setIsAresOpen] = useState(false);
+  const [isAresMinimized, setIsAresMinimized] = useState(false);
   const [viewerImage, setViewerImage] = useState<string | null>(null);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
@@ -65,6 +71,11 @@ const App = () => {
         onOpenPortfolio={handlePortfolioOpen}
         onOpenNotepadApp={() => setIsNotepadOpen(true)}
         onOpenMyDocuments={() => setIsMyDocumentsOpen(true)}
+        onOpenMyPc={() => setIsMyPcOpen(true)}
+        onOpenAres={() => {
+          setIsAresOpen(true);
+          setIsAresMinimized(false);
+        }}
       />
 
       <Window
@@ -90,7 +101,9 @@ const App = () => {
               zIndex: 999999,
               display: "flex",
               justifyContent: "flex-end",
-              padding: "4px 8px 0 0",
+              height: 0,
+              overflow: "visible",
+              paddingRight: 8,
               pointerEvents: "none",
             }}
           >
@@ -120,6 +133,10 @@ const App = () => {
         onOpenMinesweeper={() => setIsMinesweeperOpen(true)}
         onOpenNotepadApp={() => setIsNotepadOpen(true)}
         onOpenMyDocuments={() => setIsMyDocumentsOpen(true)}
+        onOpenAres={() => {
+          setIsAresOpen(true);
+          setIsAresMinimized(false);
+        }}
       />
 
       <Window
@@ -175,6 +192,30 @@ const App = () => {
       </Window>
 
       <Window
+        isOpen={isMyPcOpen}
+        onClose={() => setIsMyPcOpen(false)}
+        title="My PC"
+        initialWidth={760}
+        initialHeight={520}
+        isMinimized={isMyPcMinimized}
+        onMinimize={() => setIsMyPcMinimized(true)}
+      >
+        <MyComputerApp />
+      </Window>
+
+      <Window
+        isOpen={isAresOpen}
+        onClose={() => setIsAresOpen(false)}
+        title="Ares Galaxy - Reproductor"
+        initialWidth={640}
+        initialHeight={460}
+        isMinimized={isAresMinimized}
+        onMinimize={() => setIsAresMinimized(true)}
+      >
+        <AresPlayer />
+      </Window>
+
+      <Window
         isOpen={!!viewerImage}
         onClose={() => setViewerImage(null)}
         title="Visor de imágenes"
@@ -207,6 +248,17 @@ const App = () => {
         isPortfolioOpen={isPortfolioOpen}
         isPortfolioMinimized={isPortfolioMinimized}
         onPortfolioClick={handlePortfolioClick}
+        isMyPcOpen={isMyPcOpen}
+        isMyPcMinimized={isMyPcMinimized}
+        onMyPcClick={() => setIsMyPcMinimized((prev) => !prev)}
+        onAresClick={() => {
+          if (!isAresOpen) {
+            setIsAresOpen(true);
+            setIsAresMinimized(false);
+            return;
+          }
+          setIsAresMinimized((prev) => !prev);
+        }}
       />
     </>
   );

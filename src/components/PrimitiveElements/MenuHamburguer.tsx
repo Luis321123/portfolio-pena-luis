@@ -67,13 +67,9 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
       <button
   onClick={handleToggleMenu}
   className={`
-    w-10 h-10 flex items-center justify-center bg-transparent
-    border-2 
-    ${isChecked 
-      ? 'border-[#404040] border-r-[#f0f0f0] border-b-[#f0f0f0] translate-y-[1px] translate-x-[1px]' 
-      : 'border-[#f0f0f0] border-r-[#404040] border-b-[#404040]'
-    }
-    active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] active:translate-y-[1px] active:translate-x-[1px]
+    w-10 h-10 flex items-center justify-center bg-transparent border-0
+    ${isChecked ? 'translate-y-[1px] translate-x-[1px]' : ''}
+    active:translate-y-[1px] active:translate-x-[1px]
     transition-colors
   `}
   aria-label={isChecked ? "Cerrar menú" : "Abrir menú"}

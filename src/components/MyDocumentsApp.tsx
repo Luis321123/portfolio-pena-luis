@@ -64,9 +64,9 @@ const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
   const getAddress = () => {
     switch (currentFolder) {
       case "viajes":
-        return "C:\\Documents and Settings\\Mitch\\Mis documentos\\viajes";
+        return "C:\\Documents and Settings\\Luis\\Mis documentos\\viajes";
       default:
-        return "C:\\Documents and Settings\\Mitch\\Mis documentos";
+        return "C:\\Documents and Settings\\Luis\\Mis documentos";
     }
   };
 

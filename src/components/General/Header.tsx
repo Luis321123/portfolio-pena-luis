@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { scroller } from "react-scroll";
 import BackIcon from "@/assets/icons/Back.png";
 import ForwardIcon from "@/assets/icons/forward.png";
@@ -7,7 +7,9 @@ import GoIcon from "@/assets/icons/Go.png";
 import FolderIcon from "@/assets/icons/explorer.ico";
 import StopIcon from "@/assets/icons/eplorerIcon/IE Stop.png";
 import RefreshIcon from "@/assets/icons/eplorerIcon/IE Refresh.png";
+import HomeIcon from "@/assets/icons/home.png";
 import FavoritesIcon from "@/assets/icons/eplorerIcon/Favorites.png";
+import SearchIcon from "@/assets/icons/search.png";
 import HistoryIcon from "@/assets/icons/eplorerIcon/IE History.png";
 import EmailIcon from "@/assets/icons/eplorerIcon/Email.png";
 import PrinterIcon from "@/assets/icons/eplorerIcon/Printer.png";
@@ -69,6 +71,26 @@ const Header = () => {
     lastSectionRef.current = target;
   };
 
+  const toolbarButtons = [
+    { icon: BackIcon, alt: "back", label: "Back", onClick: goBack, disabled: backStack.length === 0, dropdown: true },
+    { icon: ForwardIcon, alt: "forward", onClick: goForward, disabled: forwardStack.length === 0, dropdown: true },
+    { icon: UpIcon, alt: "up", onClick: () => navigateTo("/") },
+    { icon: StopIcon, alt: "stop", onClick: () => navigateTo(currentSection) },
+    { icon: RefreshIcon, alt: "refresh", onClick: () => navigateTo(currentSection) },
+    { icon: HomeIcon, alt: "home", onClick: () => navigateTo("/") },
+    { icon: SearchIcon, alt: "search", label: "Search", onClick: () => navigateTo("contact") },
+    { icon: FavoritesIcon, alt: "favorites", label: "Favorites", onClick: () => navigateTo("contact") },
+    { icon: HistoryIcon, alt: "history", onClick: () => navigateTo("contact") },
+    { icon: EmailIcon, alt: "email", onClick: () => navigateTo("contact"), dropdown: true },
+    { icon: PrinterIcon, alt: "print", onClick: () => navigateTo("contact") },
+    { icon: MessengerIcon, alt: "messenger", onClick: () => navigateTo("contact") },
+    { icon: DiscussIcon, alt: "discuss", onClick: () => navigateTo("contact") },
+  ];
+
+  const toolbarGroups: typeof toolbarButtons[] = [];
+  for (let i = 0; i < toolbarButtons.length; i += 3) {
+    toolbarGroups.push(toolbarButtons.slice(i, i + 3));
+  }
 
   return (
     <div
@@ -107,129 +129,36 @@ const Header = () => {
         ))}
       </div>
 
-      {/* Toolbar row: Back / Forward / Up */}
-      <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "1px 4px", borderBottom: "1px solid #dcdcdc" }}>
-        <button
-          onClick={goBack}
-          disabled={backStack.length === 0}
-          style={{
-            ...xpButtonStyle,
-            opacity: backStack.length === 0 ? 0.4 : 1,
-            cursor: backStack.length === 0 ? "default" : "pointer",
-          }}
-          onMouseEnter={(e) => backStack.length > 0 && (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={BackIcon} alt="back" style={{ width: 16, height: 16 }} />
-          <span style={{ fontSize: 10 }}>Back</span>
-        </button>
-
-        <button
-          onClick={goForward}
-          disabled={forwardStack.length === 0}
-          style={{
-            ...xpButtonStyle,
-            opacity: forwardStack.length === 0 ? 0.4 : 1,
-            cursor: forwardStack.length === 0 ? "default" : "pointer",
-          }}
-          onMouseEnter={(e) => forwardStack.length > 0 && (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={ForwardIcon} alt="forward" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
-
-        <button
-          onClick={() => navigateTo("/")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={UpIcon} alt="up" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
-
-        <button
-          onClick={() => navigateTo(currentSection)}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={StopIcon} alt="stop" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <button
-          onClick={() => navigateTo(currentSection)}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={RefreshIcon} alt="refresh" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={FavoritesIcon} alt="favorites" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={HistoryIcon} alt="history" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={EmailIcon} alt="email" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={PrinterIcon} alt="print" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={MessengerIcon} alt="messenger" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <button
-          onClick={() => navigateTo("contact")}
-          style={xpButtonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#d5e5f7")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-        >
-          <img src={DiscussIcon} alt="discuss" style={{ width: 16, height: 16 }} />
-        </button>
-
-        <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />
+      {/* Toolbar row: groups of 3 icons, spread across the screen */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", gap: 4, padding: "1px 4px", borderBottom: "1px solid #dcdcdc" }}>
+        {toolbarGroups.map((group, groupIndex) => (
+          <Fragment key={groupIndex}>
+            {groupIndex > 0 && <div style={{ width: 1, height: 16, background: "#c0c0c0", margin: "0 4px" }} />}
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              {group.map((btn) => (
+                <button
+                  key={btn.alt}
+                  onClick={btn.onClick}
+                  disabled={btn.disabled}
+                  style={{
+                    ...xpButtonStyle,
+                    opacity: btn.disabled ? 0.4 : 1,
+                    cursor: btn.disabled ? "default" : "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (btn.disabled) return;
+                    e.currentTarget.style.background = "#d5e5f7";
+                  }}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <img src={btn.icon} alt={btn.alt} style={{ width: 16, height: 16 }} />
+                  {btn.label && <span style={{ fontSize: 10 }}>{btn.label}</span>}
+                  {btn.dropdown && <span style={{ fontSize: 7 }}>▼</span>}
+                </button>
+              ))}
+            </div>
+          </Fragment>
+        ))}
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "2px 6px", borderBottom: "1px solid #a7abb3" }}>
@@ -249,6 +178,7 @@ const Header = () => {
         >
           <img src={FolderIcon} alt="folder" style={{ width: 14, height: 14 }} />
           <span style={{ fontSize: 10, color: "#000", flex: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {currentSection === "/" ? "https://portfolio-pena-luis-puce.vercel.app/" : currentSection}
           </span>
           <span style={{ fontSize: 9, color: "#000", cursor: "pointer" }}>▼</span>
         </div>
