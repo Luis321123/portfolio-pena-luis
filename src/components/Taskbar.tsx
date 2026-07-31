@@ -14,6 +14,7 @@ import MinesweeperIcon from "@/assets/icons/minesweeper.png";
 
 const TASKBAR_HEIGHT = 40;
 
+
 interface TaskbarProps {
   onStartMenuClick?: () => void;
   isWoWOpen?: boolean;
