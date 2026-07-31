@@ -8,7 +8,7 @@ import FolderIcon from "@/assets/icons/documents.png";
 import webIcon from "@/assets/icons/web.png";
 import newIcon from "@/assets/icons/new.png";
 import Goicon from "@/assets/icons/Go.png";
-import UpIcon from "@/assets/icons/Up.png";
+import UpIcon from "@/assets/icons/up.png";
 import PdfIcon from "@/assets/icons/pdf.ico";
 import FigmaIcon from "@/assets/icons/figma.png";
 import IllustratorIcon from "@/assets/icons/illustrator.webp";
