@@ -10,7 +10,7 @@ import MusicIcon from "@/assets/icons/music.png";
 import VolumeIcon from "@/assets/icons/volume.png";
 import virtualboxicon from "@/assets/icons/virtualbox.svg";
 import WoWIcon from "@/assets/icons/WoW.svg";
-import MinesweeperIcon from "@/assets/icons/minesweeper.png";
+import MinesweeperIcon from "@/assets/icons/minessweeper.png";
 
 const TASKBAR_HEIGHT = 40;
 
