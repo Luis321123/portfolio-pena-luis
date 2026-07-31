@@ -2,7 +2,7 @@ import { detail } from "@/services/Details";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import TechBadge from "@/components/TechBadge";
-import TechIcon from "@/assets/icons/System.ico";
+import TechIcon from "@/assets/icons/sysstem.ico";
 import AchievementsIcon from "@/assets/icons/trophy.png";
 import DetailsIcon from "@/assets/icons/info.svg";
 
