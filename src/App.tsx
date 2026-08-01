@@ -301,6 +301,8 @@ const App = () => {
           setIsPaintMinimized((prev) => !prev);
         }}
       />
+
+      <div className="crt-overlay" aria-hidden="true" />
     </>
   );
 };

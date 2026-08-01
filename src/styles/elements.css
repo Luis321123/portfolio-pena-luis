@@ -5,6 +5,50 @@
   cursor: pointer;
 }
 
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  backdrop-filter: blur(0.4px) saturate(0.95) brightness(1.02);
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 3px
+    );
+  animation: crt-flicker 4s infinite;
+}
+
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  91% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0.985;
+  }
+  93% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.995;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
 .hamburguer-label span {
   background: #fff;
   border-radius: 10px;
