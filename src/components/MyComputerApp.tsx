@@ -22,8 +22,9 @@ const linkStyle: React.CSSProperties = {
 };
 
 const MyComputerApp = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isMobile = useIsMobile(768);
+  const cvUrl = i18n.language.startsWith("es") ? "/Luis_pena_spanish.pdf" : "/Luis_pena_english.pdf";
 
   const PERSONAL_INFO = [
     {
@@ -54,7 +55,7 @@ const MyComputerApp = () => {
       id: "cv",
       label: t("myComputer.myCv"),
       icon: PdfIcon,
-      href: "/Luis-Pena.pdf",
+      href: cvUrl,
     },
   ];
 
@@ -102,7 +103,7 @@ const MyComputerApp = () => {
           {[
             { label: t("myComputer.github"), icon: GitHubIcon, href: "https://github.com/Luis321123" },
             { label: t("myComputer.linkedin"), icon: LinkedinIcon, href: "https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/" },
-            { label: t("myComputer.downloadCv"), icon: PdfIcon, href: "/Luis-Pena.pdf" },
+            { label: t("myComputer.downloadCv"), icon: PdfIcon, href: cvUrl },
             { label: t("myComputer.behance"), icon: BehanceIcon, href: "https://www.behance.net/louispea" },
           ].map((item) => (
             <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" style={linkStyle}>

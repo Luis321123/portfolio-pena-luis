@@ -58,7 +58,7 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
   };
 
   return (
-    <div className="relative z-[9999999999] pointer-events-auto">
+    <div className="relative z-[99] pointer-events-auto">
       
       <audio 
         ref={audioRef} 

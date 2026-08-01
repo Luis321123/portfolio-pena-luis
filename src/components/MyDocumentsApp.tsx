@@ -35,7 +35,7 @@ interface MyDocumentsAppProps {
 type Folder = "root" | "viajes";
 
 const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentFolder, setCurrentFolder] = useState<Folder>("root");
   const [folderHistory, setFolderHistory] = useState<Folder[]>([]);
@@ -46,7 +46,8 @@ const MyDocumentsApp = ({ onOpenImageViewer }: MyDocumentsAppProps) => {
   };
 
   const handleConfirm = () => {
-    window.open("/Luis-Pena.pdf", "_blank");
+    const cvUrl = i18n.language.startsWith("es") ? "/Luis_pena_spanish.pdf" : "/Luis_pena_english.pdf";
+    window.open(cvUrl, "_blank");
     setIsDialogOpen(false);
   };
 
