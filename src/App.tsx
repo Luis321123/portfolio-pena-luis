@@ -1,5 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Header, StartMenu, Window } from "./components";
 import NotepadApp from "./components/NotepadApp";
 import MyDocumentsApp from "./components/MyDocumentsApp";
@@ -13,6 +14,7 @@ import Navbar from "./components/PrimitiveElements/Navbar";
 import XpWallpaper from "@/assets/xp-bliss.jpg";
 
 const App = () => {
+  const { t } = useTranslation();
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isWoWOpen, setIsWoWOpen] = useState(false);
@@ -87,7 +89,7 @@ const App = () => {
       <Window
         isOpen={isPortfolioOpen}
         onClose={handlePortfolioClose}
-        title="explorer - My Portfolio"
+        title={t("windowsTitles.portfolio")}
         initialWidth={900}
         initialHeight={600}
         scrollable
@@ -152,7 +154,7 @@ const App = () => {
       <Window
         isOpen={isWoWOpen}
         onClose={() => setIsWoWOpen(false)}
-        title="World of Warcraft"
+        title={t("windowsTitles.wow")}
         initialWidth={800}
         initialHeight={500}
       >
@@ -173,14 +175,14 @@ const App = () => {
         <iframe
           src="/minesweeper/index.html"
           style={{ width: "100%", height: "100%", border: "none" }}
-          title="Minesweeper"
+        title={t("windowsTitles.minesweeper")}
         />
       </Window>
 
       <Window
         isOpen={isNotepadOpen}
         onClose={() => setIsNotepadOpen(false)}
-        title="Untitled - Notepad"
+        title={t("windowsTitles.notepad")}
         initialWidth={800}
         initialHeight={600}
         isMinimized={isNotepadMinimized}
@@ -192,7 +194,7 @@ const App = () => {
       <Window
         isOpen={isMyDocumentsOpen}
         onClose={() => setIsMyDocumentsOpen(false)}
-        title="Mis documentos"
+        title={t("windowsTitles.myDocuments")}
         initialWidth={750}
         initialHeight={520}
         isMinimized={isMyDocumentsMinimized}
@@ -204,7 +206,7 @@ const App = () => {
       <Window
         isOpen={isMyPcOpen}
         onClose={() => setIsMyPcOpen(false)}
-        title="My PC"
+        title={t("windowsTitles.myPc")}
         initialWidth={760}
         initialHeight={520}
         isMinimized={isMyPcMinimized}
@@ -216,7 +218,7 @@ const App = () => {
       <Window
         isOpen={isAresOpen}
         onClose={() => setIsAresOpen(false)}
-        title="Ares Galaxy - Reproductor"
+        title={t("windowsTitles.ares")}
         initialWidth={640}
         initialHeight={460}
         isMinimized={isAresMinimized}
@@ -228,7 +230,7 @@ const App = () => {
       <Window
         isOpen={isPaintOpen}
         onClose={() => setIsPaintOpen(false)}
-        title="untitled - Paint"
+        title={t("windowsTitles.paint")}
         initialWidth={900}
         initialHeight={600}
         isMinimized={isPaintMinimized}
@@ -245,7 +247,7 @@ const App = () => {
       <Window
         isOpen={!!viewerImage}
         onClose={() => setViewerImage(null)}
-        title="Visor de imágenes"
+        title={t("windowsTitles.viewer")}
         initialWidth={700}
         initialHeight={550}
       >

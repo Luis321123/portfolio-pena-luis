@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useClock } from "@/hooks/useClock";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import CalendarXP from "../components/calendar";
@@ -48,11 +49,6 @@ const TASKBAR_ICONS = [
   { id: 2, name: "" },
 ];
 
-const NOTIFICATION_ICONS = [
-  { id: 1, icon: VolumeIcon, tooltip: "Volumen" },
-  { id: 2, icon: virtualboxicon, tooltip: "VirtualBox" },
-];
-
 export const Taskbar = ({ 
   onStartMenuClick,
   isWoWOpen,
@@ -78,10 +74,16 @@ export const Taskbar = ({
   isPaintMinimized,
   onPaintClick,
 }: TaskbarProps) => {
+  const { t } = useTranslation();
   const [showClockTooltip, setShowClockTooltip] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const { time, date } = useClock();
   const isMobile = useIsMobile(768);
+
+  const NOTIFICATION_ICONS = [
+    { id: 1, icon: VolumeIcon, tooltip: t("taskbar.volume") },
+    { id: 2, icon: virtualboxicon, tooltip: t("taskbar.virtualBox") },
+  ];
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -130,10 +132,10 @@ export const Taskbar = ({
         >
           <img 
             src={WindowsLogo} 
-            alt="Windows" 
+            alt={t("taskbar.windowsAlt")} 
             style={{ width: 18, height: 18, flexShrink: 0 }} 
           />
-          {!isMobile && "Start"}
+          {!isMobile && t("taskbar.start")}
         </button>
 
         <div style={{ 
@@ -181,7 +183,7 @@ export const Taskbar = ({
                 alt="WoW" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>World of Warcraft</span>
+              <span>{t("taskbar.worldOfWarcraft")}</span>
             </button>
           )}
 
@@ -212,7 +214,7 @@ export const Taskbar = ({
                 alt="Minesweeper" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>Minesweeper</span>
+              <span>{t("taskbar.minesweeper")}</span>
             </button>
           )}
 
@@ -245,7 +247,7 @@ export const Taskbar = ({
                 alt="Notepad" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>Untitled - Notepad</span>
+              <span>{t("taskbar.notepad")}</span>
             </button>
           )}
 
@@ -276,10 +278,10 @@ export const Taskbar = ({
             >
               <img 
                 src={FolderIcon} 
-                alt="Mis documentos" 
+                alt={t("taskbar.myDocuments")} 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>Mis documentos</span>
+              <span>{t("taskbar.myDocuments")}</span>
             </button>
           )}
 
@@ -313,7 +315,7 @@ export const Taskbar = ({
                 alt="My PC"
                 style={{ width: 20, height: 20, flexShrink: 0 }}
               />
-              <span>My PC</span>
+              <span>{t("taskbar.myPc")}</span>
             </button>
           )}
 
@@ -347,7 +349,7 @@ export const Taskbar = ({
                 alt="Ares"
                 style={{ width: 20, height: 20, flexShrink: 0 }}
               />
-              <span>Ares Galaxy</span>
+              <span>{t("taskbar.ares")}</span>
             </button>
           )}
 
@@ -381,7 +383,7 @@ export const Taskbar = ({
                 alt="Paint"
                 style={{ width: 20, height: 20, flexShrink: 0 }}
               />
-              <span>untitled - Paint</span>
+              <span>{t("taskbar.paint")}</span>
             </button>
           )}
 
@@ -415,7 +417,7 @@ export const Taskbar = ({
                 alt="Portfolio" 
                 style={{ width: 20, height: 20, flexShrink: 0 }} 
               />
-              <span>explorer - My Portfolio</span>
+              <span>{t("taskbar.portfolio")}</span>
               {isPortfolioMinimized && (
                 <span style={{ 
                   fontSize: 10, 
@@ -425,7 +427,7 @@ export const Taskbar = ({
                   padding: "0 6px",
                   borderRadius: 2
                 }}>
-                  minimizado
+                  {t("taskbar.minimized")}
                 </span>
               )}
             </button>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
 import { useDragWindow } from "../hooks/useDragWindows";
 import { useResizeWindow } from "../hooks/useResizeWindows";
 
@@ -31,6 +32,7 @@ const Window = ({
   isMaximized = false,
   onMaximizeChange,
 }: WindowProps) => {
+  const { t } = useTranslation();
   const getClampedInitial = () => {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
@@ -121,13 +123,13 @@ const Window = ({
         <div className="title-bar-text">{title}</div>
         <div className="title-bar-controls">
           <button aria-label="Minimize" onClick={onMinimize}>
-            <span className="sr-only">Minimizar</span>
+            <span className="sr-only">{t("window.minimize")}</span>
           </button>
           <button aria-label="Maximize" onClick={handleMaximize}>
-            <span className="sr-only">{isMaximized ? "Restaurar" : "Maximizar"}</span>
+            <span className="sr-only">{isMaximized ? t("window.restore") : t("window.maximize")}</span>
           </button>
           <button aria-label="Close" onClick={onClose}>
-            <span className="sr-only">Cerrar</span>
+            <span className="sr-only">{t("window.close")}</span>
           </button>
         </div>
       </div>

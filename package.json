@@ -11,10 +11,12 @@
   "dependencies": {
     "antd": "^5.17.4",
     "framer-motion": "^10.11.2",
+    "i18next": "^23.16.8",
     "medium-zoom": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-i18next": "^13.5.0",
     "react-scroll": "^1.8.9",
     "uuid": "^9.0.0",
     "xp.css": "^0.2.6"

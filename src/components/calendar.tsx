@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface CalendarXPProps {
   isOpen: boolean;
@@ -6,17 +7,15 @@ interface CalendarXPProps {
 }
 
 const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   if (!isOpen) return null;
 
-  const months = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-  ];
+  const months = t("calendar.months", { returnObjects: true }) as string[];
 
-  const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
+  const daysOfWeek = t("calendar.days", { returnObjects: true }) as string[];
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -222,7 +221,7 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
         }}
       >
         <span style={{ fontSize: "10px", color: "#1a1a1a" }}>
-          {selectedDate.toLocaleDateString("es-ES", {
+          {selectedDate.toLocaleDateString(t("calendar.locale"), {
             weekday: "short",
             day: "numeric",
             month: "short",
@@ -243,7 +242,7 @@ const CalendarXP = ({ isOpen, onClose }: CalendarXPProps) => {
             alignItems: "center",
           }}
         >
-          Cerrar
+          {t("calendar.close")}
         </button>
       </div>
     </div>

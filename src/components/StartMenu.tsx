@@ -10,6 +10,7 @@ import ToolsIcon from "@/assets/icons/control.png";
 import WoWIcon from "@/assets/icons/WoW.svg";
 import MinesweeperIcon from "@/assets/icons/minessweeper.png";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useTranslation } from "react-i18next";
 
 interface StartMenuProps {
   isOpen: boolean;
@@ -28,24 +29,25 @@ const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
 const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres, onOpenPaint }: StartMenuProps) => {
+  const { t } = useTranslation();
   const isMobile = useIsMobile(768);
 
   if (!isOpen) return null;
 
   const leftItems = [
-    { icon: NotepadIcon, label: "Notepad", action: onOpenNotepadApp },
-    { icon: PaintIcon, label: "Paint", action: onOpenPaint },
-    { icon: MusicIcon, label: "Ares", action: onOpenAres },
-    { icon: ExplorerIcon, label: "My Portfolio", action: onOpenPortfolio },
-    { icon: MinesweeperIcon, label: "Minesweeper", action: onOpenMinesweeper },
+    { icon: NotepadIcon, label: t("startMenu.notepad"), action: onOpenNotepadApp },
+    { icon: PaintIcon, label: t("startMenu.paint"), action: onOpenPaint },
+    { icon: MusicIcon, label: t("startMenu.ares"), action: onOpenAres },
+    { icon: ExplorerIcon, label: t("startMenu.myPortfolio"), action: onOpenPortfolio },
+    { icon: MinesweeperIcon, label: t("startMenu.minesweeper"), action: onOpenMinesweeper },
   ];
 
   const rightItems = [
-    { icon: WoWIcon, label: "World of Warcraft", action: onOpenWoW },
-    { icon: DocumentsIcon, label: "My Documents", action: onOpenMyDocuments },
-    { icon: MyPcIcon, label: "My Computer" },
-    { icon: ToolsIcon, label: "Control Panel" },
-    { icon: QuitIcon, label: "Printers and Faxes" },
+    { icon: WoWIcon, label: t("startMenu.worldOfWarcraft"), action: onOpenWoW },
+    { icon: DocumentsIcon, label: t("startMenu.myDocuments"), action: onOpenMyDocuments },
+    { icon: MyPcIcon, label: t("startMenu.myComputer") },
+    { icon: ToolsIcon, label: t("startMenu.controlPanel") },
+    { icon: QuitIcon, label: t("startMenu.printers") },
   ];
 
   return (
@@ -113,7 +115,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
             </div>
 
             <div style={{ fontSize: 12, color: "#333", padding: "2px 10px", fontWeight: "bold" }}>
-              Programs
+              {t("startMenu.programs")}
             </div>
 
             {leftItems.map((item, idx) => (
@@ -167,7 +169,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
             }}
           >
             <div style={{ fontSize: 12, color: "#333", padding: "2px 10px", fontWeight: "bold" }}>
-              Places
+              {t("startMenu.places")}
             </div>
 
             {rightItems.map((item, idx) => (
@@ -234,7 +236,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
             }}
           >
             <img src={QuitIcon} alt="" style={{ width: 16, height: 16 }} />
-            <span>Log Off</span>
+            <span>{t("startMenu.logOff")}</span>
           </button>
 
           <button
@@ -258,7 +260,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
               e.currentTarget.style.background = "rgba(255,255,255,0.1)";
             }}
           >
-            <span>Turn Off Computer</span>
+            <span>{t("startMenu.turnOff")}</span>
           </button>
         </div>
       </div>

@@ -1,4 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import LanguageSwitch from "@/components/PrimitiveElements/LanguageSwitch";
 import { scroller } from "react-scroll";
 import BackIcon from "@/assets/icons/Back.png";
 import ForwardIcon from "@/assets/icons/forward.png";
@@ -37,6 +39,7 @@ const xpButtonStyle: React.CSSProperties = {
 
 
 const Header = () => {
+  const { t } = useTranslation();
   const [currentSection, setCurrentSection] = useState("/");
   const [backStack, setBackStack] = useState<string[]>([]);
   const [forwardStack, setForwardStack] = useState<string[]>([]);
@@ -85,19 +88,19 @@ const Header = () => {
   };
 
   const toolbarButtons = [
-    { icon: BackIcon, alt: "back", label: "Back", onClick: goBack, disabled: backStack.length === 0, dropdown: true },
-    { icon: ForwardIcon, alt: "forward", onClick: goForward, disabled: forwardStack.length === 0, dropdown: true },
-    { icon: UpIcon, alt: "up", onClick: () => navigateTo("/") },
-    { icon: StopIcon, alt: "stop", onClick: () => navigateTo(currentSection) },
-    { icon: RefreshIcon, alt: "refresh", onClick: () => navigateTo(currentSection) },
-    { icon: HomeIcon, alt: "home", onClick: () => navigateTo("/") },
-    { icon: SearchIcon, alt: "search", label: "Search", onClick: () => navigateTo("contact") },
-    { icon: FavoritesIcon, alt: "favorites", label: "Favorites", onClick: () => navigateTo("contact") },
-    { icon: HistoryIcon, alt: "history", onClick: () => navigateTo("contact") },
-    { icon: EmailIcon, alt: "email", onClick: () => navigateTo("contact"), dropdown: true },
-    { icon: PrinterIcon, alt: "print", onClick: () => navigateTo("contact") },
-    { icon: MessengerIcon, alt: "messenger", onClick: () => navigateTo("contact") },
-    { icon: DiscussIcon, alt: "discuss", onClick: () => navigateTo("contact") },
+    { icon: BackIcon, alt: t("header.backAlt"), label: t("header.back"), onClick: goBack, disabled: backStack.length === 0, dropdown: true },
+    { icon: ForwardIcon, alt: t("header.forwardAlt"), onClick: goForward, disabled: forwardStack.length === 0, dropdown: true },
+    { icon: UpIcon, alt: t("header.upAlt"), onClick: () => navigateTo("/") },
+    { icon: StopIcon, alt: t("header.stopAlt"), onClick: () => navigateTo(currentSection) },
+    { icon: RefreshIcon, alt: t("header.refreshAlt"), onClick: () => navigateTo(currentSection) },
+    { icon: HomeIcon, alt: t("header.homeAlt"), onClick: () => navigateTo("/") },
+    { icon: SearchIcon, alt: t("header.searchAlt"), label: t("header.search"), onClick: () => navigateTo("contact") },
+    { icon: FavoritesIcon, alt: t("header.favoritesAlt"), label: t("header.favoritesLabel"), onClick: () => navigateTo("contact") },
+    { icon: HistoryIcon, alt: t("header.historyAlt"), onClick: () => navigateTo("contact") },
+    { icon: EmailIcon, alt: t("header.emailAlt"), onClick: () => navigateTo("contact"), dropdown: true },
+    { icon: PrinterIcon, alt: t("header.printAlt"), onClick: () => navigateTo("contact") },
+    { icon: MessengerIcon, alt: t("header.messengerAlt"), onClick: () => navigateTo("contact") },
+    { icon: DiscussIcon, alt: t("header.discussAlt"), onClick: () => navigateTo("contact") },
   ];
 
   const toolbarGroups: typeof toolbarButtons[] = [];
@@ -118,29 +121,32 @@ const Header = () => {
       }}
     >
       {/* Menu bar */}
-      <div style={{ display: "flex", gap: 2, padding: "1px 4px" }}>
-        {MENU_ITEMS.map((item) => (
-          <span
-            key={item}
-            style={{
-              fontSize: 10,
-              color: "#000",
-              cursor: "pointer",
-              padding: "1px 6px",
-              borderRadius: 2,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#316ac5";
-              e.currentTarget.style.color = "#fff";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "#000";
-            }}
-          >
-            {item}
-          </span>
-        ))}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2, padding: "1px 4px" }}>
+        <div style={{ display: "flex", gap: 2 }}>
+          {MENU_ITEMS.map((item) => (
+            <span
+              key={item}
+              style={{
+                fontSize: 10,
+                color: "#000",
+                cursor: "pointer",
+                padding: "1px 6px",
+                borderRadius: 2,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#316ac5";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "#000";
+              }}
+            >
+              {t(`header.${item.toLowerCase()}`)}
+            </span>
+          ))}
+        </div>
+        <LanguageSwitch />
       </div>
 
       {/* Toolbar row: groups of 3 icons, spread across the screen */}
@@ -187,7 +193,7 @@ const Header = () => {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "2px 6px", borderBottom: "1px solid #a7abb3" }}>
-        <span style={{ fontSize: 10, color: "#000" }}>Address</span>
+        <span style={{ fontSize: 10, color: "#000" }}>{t("header.address")}</span>
         <div
           style={{
             display: "flex",
@@ -201,7 +207,7 @@ const Header = () => {
             borderRadius: 1,
           }}
         >
-          <img src={FolderIcon} alt="folder" style={{ width: 14, height: 14 }} />
+          <img src={FolderIcon} alt={t("header.folderAlt")} style={{ width: 14, height: 14 }} />
           <span style={{ fontSize: 10, color: "#000", flex: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             {currentSection === "/" ? "https://portfolio-pena-luis-puce.vercel.app/" : currentSection}
           </span>
@@ -226,11 +232,11 @@ const Header = () => {
             color: "#000",
           }}
         >
-          <img src={GoIcon} alt="go" style={{ width: 12, height: 12 }} />
-          Go
+          <img src={GoIcon} alt={t("header.goAlt")} style={{ width: 12, height: 12 }} />
+          {t("header.go")}
         </button>
 
-        <span style={{ fontSize: 10, color: "#000", marginLeft: 4, cursor: "pointer" }}>Links »</span>
+        <span style={{ fontSize: 10, color: "#000", marginLeft: 4, cursor: "pointer" }}>{t("header.links")}</span>
       </div>
     </div>
   );

@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import ArrowScroll from "@/assets/icons/arrow-scroll.svg";
 import GifMask from '@/assets/fishoptimizedpro.gif';
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -22,9 +24,9 @@ const HomePage = () => {
       <section className="flex-1 min-h-[60vh] md:min-h-screen w-full flex flex-col justify-center bg-[#ececec] px-6 py-12 sm:px-12 md:px-16 lg:px-20 relative">
         <article className="max-w-4xl mx-auto md:mx-0 w-full">
           <AnimatedWords
-            line1="Hi, i'm"
-            line2="Luis Peña"
-            line3="Software Developer" 
+            line1={t("home.line1")}
+            line2={t("home.line2")}
+            line3={t("home.line3")}
             classText="text-[#0f7b9c] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-xp tracking-widest my-2 sm:my-4"
           />
           
@@ -35,8 +37,7 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            Discover my professional expertise and accomplishments by exploring
-            my portfolio.
+            {t("home.tagline")}
           </motion.p>
 
           <motion.div
@@ -54,7 +55,7 @@ const HomePage = () => {
               duration={500}
               className="inline-block px-8 py-3 bg-[#0f7b9c] text-white rounded-full font-medium hover:bg-[#0d6a86] transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
-              Explore More
+              {t("home.explore")}
             </Link>
           </motion.div>
         </article>
@@ -69,7 +70,7 @@ const HomePage = () => {
         >
           <motion.img
             src={ArrowScroll}
-            alt="Scroll down to about section"
+            alt={t("home.scrollAlt")}
             className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 opacity-70 hover:opacity-100 transition-opacity duration-300"
             animate={{ 
               y: [0, 10, 0],
@@ -92,7 +93,7 @@ const HomePage = () => {
         >
           <motion.img
             src={ArrowScroll}
-            alt="Scroll down"
+            alt={t("home.scrollDownAlt")}
             className="h-10 w-10 opacity-60"
             animate={{ 
               y: [0, 8, 0],
@@ -129,7 +130,7 @@ const HomePage = () => {
         <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
           <img
             src={GifMask}
-            alt="Animated overlay"
+            alt={t("home.overlayAlt")}
             className="w-full h-full object-cover object-center md:object-[80%_center] opacity-100"
             loading="eager"
             decoding="async"
@@ -144,7 +145,7 @@ const HomePage = () => {
           transition={{ duration: 0.5, delay: 0.8 }}
         >
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-xs font-medium text-gray-700">Available for work</span>
+          <span className="text-xs font-medium text-gray-700">{t("home.available")}</span>
         </motion.div>
       </section>
     </main>

@@ -1,5 +1,5 @@
 // pages/AboutPage.tsx
-import { experiences } from "@/services";
+import { useTranslation, Trans } from "react-i18next";
 import { CardExperience, CardConsole, ViewPdf } from "@/components";
 import LinkedinIconPixel from "@/assets/icons/linkedinPixel.svg";
 import PythonIcon from "@/assets/icons/python.svg";
@@ -14,6 +14,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const AboutPage = () => {
+  const { t } = useTranslation();
   const [isViewPdf, setIsViewPdf] = useState<boolean>(false);
 
   const experienceIndices = [0, 1, 2, 3, 4];
@@ -38,7 +39,7 @@ const AboutPage = () => {
           className="text-gray-900 text-sm font-semibold hover:underline md:text-lg hover:scale-105 transition"
           onClick={() => setIsViewPdf(true)}
         >
-          View CV
+          {t("about.viewCv")}
         </button>
       </aside>
       <section
@@ -54,7 +55,7 @@ const AboutPage = () => {
           >
             <article className="w-full">
               <h3 className="font-bold text-base pb-2 border border-transparent border-b-slate-300 inline-block md:text-xl mb-3">
-                Technologies:
+                {t("about.technologies")}
               </h3>
               <ul 
                 className="tree-view bg-[#c0c0c0] p-4 rounded border-2 border-[#fdfdfd] border-t-[#808080] border-l-[#808080] text-xs md:text-sm"
@@ -66,7 +67,7 @@ const AboutPage = () => {
                 }}
               >
                 <li className="font-bold text-sm md:text-base mb-2 flex items-center gap-2">
-                  🚀 Tech Stack
+                  {t("about.techStack")}
                 </li>
                 
                 <li className="mb-0.5">
@@ -134,8 +135,8 @@ const AboutPage = () => {
                 <li className="mb-0.5">
                   <details>
                     <summary className="cursor-pointer hover:bg-gray-100/20 px-1.5 rounded py-0.5 font-semibold text-sm md:text-base flex items-center gap-1.5">
-                      <img src={CloudIcon} alt="Cloud & DevOps" className="w-4 h-4 md:w-5 md:h-5" />
-                      Cloud
+                      <img src={CloudIcon} alt={t("about.cloudAndDevOps")} className="w-4 h-4 md:w-5 md:h-5" />
+                      {t("about.cloud")}
                     </summary>
                     <ul className="pl-4 border-l-2 border-third/30 ml-1.5 space-y-0.5">
                       <li className="hover:bg-gray-100/10 px-1.5 py-0.5 rounded text-xs md:text-sm font-medium">AWS</li>
@@ -149,8 +150,8 @@ const AboutPage = () => {
                 <li className="mb-0.5">
                   <details>
                     <summary className="cursor-pointer hover:bg-gray-100/20 px-1.5 rounded py-0.5 font-semibold text-sm md:text-base flex items-center gap-1.5">
-                      <img src={DatabaseIcon} alt="Databases" className="w-4 h-4 md:w-5 md:h-5" />
-                      Databases
+                      <img src={DatabaseIcon} alt={t("about.databases")} className="w-4 h-4 md:w-5 md:h-5" />
+                      {t("about.databases")}
                     </summary>
                     <ul className="pl-4 border-l-2 border-third/30 ml-1.5 space-y-0.5">
                       <li className="hover:bg-gray-100/10 px-1.5 py-0.5 rounded text-xs md:text-sm font-medium">PostgreSQL</li>
@@ -164,8 +165,8 @@ const AboutPage = () => {
                 <li className="mb-0.5">
                   <details>
                     <summary className="cursor-pointer hover:bg-gray-100/20 px-1.5 rounded py-0.5 font-semibold text-sm md:text-base flex items-center gap-1.5">
-                      <img src={ToolsIcon} alt="Tools" className="w-4 h-4 md:w-5 md:h-5" />
-                      Tools
+                      <img src={ToolsIcon} alt={t("about.tools")} className="w-4 h-4 md:w-5 md:h-5" />
+                      {t("about.tools")}
                     </summary>
                     <ul className="pl-4 border-l-2 border-third/30 ml-1.5 space-y-0.5">
                       <li className="hover:bg-gray-100/10 px-1.5 py-0.5 rounded text-xs md:text-sm font-medium">Git</li>
@@ -212,19 +213,32 @@ const AboutPage = () => {
               Luis Peña
             </h2>
             <h3 className="font-bold text-xl sm:text-2xl md:text-3xl tracking-widest my-4">
-              <b className="text-[#00008B]"> Software</b>{" "}
-              <b className="text-[#7A86B8]"></b> Developer
+              <b className="text-[#00008B]"> {t("about.role").split(" ")[0]}</b>{" "}
+              <b className="text-[#7A86B8]"></b> {t("about.role").split(" ").slice(1).join(" ")}
             </h3>
             <p className="text-sm sm:text-base md:text-lg font-medium text-third lg:text-1xl sm:border sm:border-transparent sm:border-b-gray-300 sm:pb-10">
-              Hi! 👋 I'm <span className="font-bold">Luis Mario Peña</span>, a Software developer 
-              with over 2 years of experience building robust and 
-              scalable solutions for industries such as travel, 
-              solar energy, business management, CRM integrations, and AI-powered 
-              product processing. I've worked in environments ranging from monolithic 
-              architectures (<span className="font-bold">Python</span>/<span className="font-bold">FastAPI</span>, <span className="font-bold">PHP</span>/<span className="font-bold">Laravel</span>) to microservices with <span className="font-bold">Docker</span>, 
-              including hexagonal architectures and cloud deployments (<span className="font-bold">AWS</span>, <span className="font-bold">VPS</span>). I'm proficient in
-              <span className="font-bold"> Python</span>/<span className="font-bold">FastAPI</span>,
-              <span className="font-bold"> Node.js</span>/<span className="font-bold">TypeScript</span>/<span className="font-bold">Express</span>, <span className="font-bold">PHP</span>/<span className="font-bold">Laravel</span>, <span className="font-bold">PostgreSQL</span>, and <span className="font-bold">SQLAlchemy</span>, and I have experience integrating social authentication (Apple/Google/Firebase), external APIs (YouTube, GoHighLevel), automations with n8n, and AI models (OpenAI, Gemini, DeepSeek R8) using strategies such as RAG and batch processing. I adapt quickly, am a lifelong learner, and actively collaborate on agile teams with continuous integration. I'm passionate about clean design, maintainable code, and tackling new technological challenges.
+              <Trans
+                i18nKey="about.intro"
+                components={{
+                  1: <span className="font-bold" />,
+                  2: <span className="font-bold" />,
+                  3: <span className="font-bold" />,
+                  4: <span className="font-bold" />,
+                  5: <span className="font-bold" />,
+                  6: <span className="font-bold" />,
+                  7: <span className="font-bold" />,
+                  8: <span className="font-bold" />,
+                  9: <span className="font-bold" />,
+                  10: <span className="font-bold" />,
+                  11: <span className="font-bold" />,
+                  12: <span className="font-bold" />,
+                  13: <span className="font-bold" />,
+                  14: <span className="font-bold" />,
+                  15: <span className="font-bold" />,
+                  16: <span className="font-bold" />,
+                  17: <span className="font-bold" />,
+                }}
+              />
             </p>
           </motion.div>
 
@@ -236,7 +250,7 @@ const AboutPage = () => {
               className="text-xl font-bold py-1 text-center lg:text-2x1  -mt-9"
             >
               
-                        Experience
+                        {t("about.experience")}
               <br/>
              <br/>
             </motion.h2>

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { v4 as uuid } from "uuid";
 import deployIcon from "@/assets/icons/deploy.svg";
 import { Project } from "@/interfaces";
@@ -11,6 +12,7 @@ type PropsTypes = {
 };
 
 const CardProject = ({ project, index }: PropsTypes) => {
+  const { t } = useTranslation();
   const [imageLoading, setImageLoading] = useState(true);
 
   const imageLoaded = () => {
@@ -45,7 +47,7 @@ const CardProject = ({ project, index }: PropsTypes) => {
             target="_blank"
             className="flex justify-center items-center gap-4"
           >
-            <p>Deploy</p>
+            <p>{t("projects.deploy")}</p>
             <img
               src={deployIcon}
               alt="arrow right top icon "

@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { useTranslation } from "react-i18next";
 import ImageProfile from '@/assets/Yo.jpeg';
 import { Link } from "react-scroll";
 import WindowManager from "../WindowsManager"; 
@@ -12,6 +13,7 @@ type PropsType = {
 };
 
 const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
+  const { t } = useTranslation();
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -20,7 +22,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
     <WindowManager
       isOpen={isOpen}
       onClose={handleClose}
-      title="📁 Mi Portafolio"
+      title={t("navbar.title")}
       initialWidth={500}
       initialHeight={530}
       initialPosition={{ x: 0, y: 60 }}
@@ -32,7 +34,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
         <div className="flex justify-center pt-5">
           <img 
               src={ImageProfile}
-              alt="Luis Foto"   
+              alt={t("navbar.profileAlt")}   
               className="w-1/4 max-w-[120px] aspect-square rounded-full object-cover border-4 border-[#316ac5] shadow-md mx-auto"
             />
         </div>
@@ -47,7 +49,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               duration={300} 
               containerId="window-scroll-container"
             >
-              🏠 Home
+              🏠 {t("navbar.home")}
             </Link>
           </li>
           <li className="hover:bg-[#316ac5] hover:text-white px-2 py-2 rounded transition-colors cursor-pointer">
@@ -59,7 +61,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               duration={300} 
               containerId="window-scroll-container"
             >
-              ℹ️ About
+              ℹ️ {t("navbar.about")}
             </Link>
           </li>
           <li className="hover:bg-[#316ac5] hover:text-white px-2 py-2 rounded transition-colors cursor-pointer">
@@ -71,7 +73,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               duration={300} 
               containerId="window-scroll-container"
             >
-              📂 Projects
+              📂 {t("navbar.projects")}
             </Link>
           </li>
         </ul>
@@ -80,7 +82,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
 
         <div className="w-full">
           <h4 className="text-sm font-semibold tracking-widest uppercase text-center mb-3 text-[#316ac5] font-xp">
-            👤 Hello me
+            👤 {t("navbar.hello")}
           </h4>
 
           <div className="flex flex-row justify-center gap-0 w-full pl-1 pr-20">
@@ -90,7 +92,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
               <div className="flex items-center shrink-0">
                 <img 
                   src={GifAnimation} 
-                  alt="Animación" 
+                  alt={t("navbar.animationAlt")} 
                   className="w-32 h-auto object-contain"
                 />
               </div>
@@ -124,7 +126,7 @@ const Navbar = ({ isOpen, setIsOpen }: PropsType) => {
             onClick={handleClose}
             className="px-4 py-1 bg-[#c0c0c0] border-2 border-[#f0f0f0] border-r-[#404040] border-b-[#404040] hover:bg-[#d5d5d5] active:border-[#404040] active:border-r-[#f0f0f0] active:border-b-[#f0f0f0] text-sm font-medium font-xp"
           >
-            done
+            {t("navbar.done")}
           </button>
         </div>
       </div>

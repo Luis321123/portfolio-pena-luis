@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const ImageLanding = () => {
+  const { t } = useTranslation();
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -13,7 +15,7 @@ const ImageLanding = () => {
   return (
     <motion.img
       src="windowsPc.png"
-      alt="laptop with disc xp"
+      alt={t("home.landingAlt")}
       className="w-[700px] max-w-full h-auto object-contain mx-auto"
       initial={{ height: "100px", opacity: 0 }}
       animate={{

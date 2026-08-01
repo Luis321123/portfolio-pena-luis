@@ -1,58 +1,22 @@
-import { Project } from "@/interfaces";
-import { v4 as uuid } from "uuid";
+import i18n from "@/i18n";
+import { Project, typeStack } from "@/interfaces";
 
-export const projects: Project[] = [
-  {
-    id: uuid(),
-    title: "Product Catalog Enrichment Software",
-    subTitle: "Enrich product data with intent-driven attributes, automated metadata generation, and image tagging through computer vision, improving discoverability, internal navigation, and external SEO for personalized, context-aware shopping experiences.",
-    link: "https://www.discoverist.ai/",
-    stack: [
-      "python",
-      "fastapi",
-      "react",
-      "typescript",
-      "mongodb",
-      "rabbitMQ",
-      "aws",
-      "RAG",
-    ],
-    preview: "/projects/product-catalog.png",
-  },
-  {
-    id: uuid(),
-    title: "Car dealer page",
-    subTitle: "Create the page for attracting potential clients, including its forms, images, and multimedia content.",
-    link: "https://premiumcarsfl.com/es/inicio-miami/",
-    stack: [
-      "laravel",
-      "ghl",
-      "postgresql",
-    ],
-    preview: "/projects/car-dealer.png",
-  },
-  {
-    id: uuid(),
-    title: "Application solar panel quotation",
-    subTitle: "Document management, for copec-flux, for protocol management, which consisted of login and cache password management, file and image uploading, user and administrator connection through external micro-services.",
-    link: "https://copecflux.cl/",
-    stack: [
-      "python",
-      "fastapi",
-      "postgresql"
-    ],
-    preview: "/projects/solar-panel.jpg",
-  },
-  {
-    id: uuid(),
-    title: "APP for churches",
-    subTitle: "Development of an application for church management called SinaiApp, where they had roles, administrators, authentication, user verification, email notification system, login with Google and apple, which were structured with Python, Fastapi, sqlalchemy and Docker with aws connection for file management.",
-    link: "https://play.google.com/store/apps/details?id=com.asiserver.iglesiasinai",
-    stack: [
-      "python",
-      "fastapi",
-      "postgresql"
-    ],
-    preview: "/projects/church-app.png"
-  },
-];
+interface ProjectData {
+  title: string;
+  subTitle: string;
+  link: string;
+  stack: typeStack[];
+  preview: string;
+}
+
+export const getProjects = (): Project[] => {
+  const data = i18n.t("projectsData", { returnObjects: true }) as ProjectData[];
+  return (data || []).map((item, index) => ({
+    id: `project-${index}`,
+    title: item.title,
+    subTitle: item.subTitle,
+    link: item.link,
+    stack: item.stack,
+    preview: item.preview,
+  }));
+};

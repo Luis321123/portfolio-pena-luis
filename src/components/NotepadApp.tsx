@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const NotepadApp = () => {
-  const [text, setText] = useState("Thanks for visiting my portfolio!")
+  const { t } = useTranslation();
+  const [text, setText] = useState(t("notepad.greeting"))
 
   return (
     <textarea

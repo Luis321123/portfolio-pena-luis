@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import soundFile from "../../assets/sounds/exclamation.mp3";
 
 interface WindowsDialogProps {
@@ -15,10 +16,13 @@ const WindowsDialog = ({
   isOpen, 
   onClose, 
   onConfirm, 
-  title = "Warning", 
-  message = "Are you sure you want to expand?",
+  title, 
+  message,
   icon = 'warning'
 }: WindowsDialogProps) => {
+  const { t } = useTranslation();
+  const dialogTitle = title ?? t("dialog.warning");
+  const dialogMessage = message ?? t("dialog.confirmExpand");
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -83,7 +87,7 @@ const WindowsDialog = ({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="title-bar">
-                <div className="title-bar-text">{title}</div>
+                <div className="title-bar-text">{dialogTitle}</div>
                 <div className="title-bar-controls">
                   <button aria-label="Minimize" onClick={onClose}></button>
                   <button aria-label="Maximize" onClick={onClose}></button>
@@ -97,7 +101,7 @@ const WindowsDialog = ({
                   {getIcon()}
                   {/* Mensaje */}
                   <p className="text-sm text-[#1a1a1a] font-medium font-[Segoe UI] leading-relaxed pt-0.5">
-                    {message}
+                    {dialogMessage}
                   </p>
                 </div>
                 
@@ -109,13 +113,13 @@ const WindowsDialog = ({
                     }}
                     className="px-4 py-1 bg-[#c0c0c0] border-2 border-[#fdfdfd] border-r-[#404040] border-b-[#404040] hover:bg-[#d5d5d5] active:border-[#404040] active:border-r-[#fdfdfd] active:border-b-[#fdfdfd] text-sm font-medium font-[Segoe UI] min-w-[75px]"
                   >
-                    Yes
+                    {t("dialog.yes")}
                   </button>
                   <button
                     onClick={onClose}
                     className="px-4 py-1 bg-[#c0c0c0] border-2 border-[#fdfdfd] border-r-[#404040] border-b-[#404040] hover:bg-[#d5d5d5] active:border-[#404040] active:border-r-[#fdfdfd] active:border-b-[#fdfdfd] text-sm font-medium font-[Segoe UI] min-w-[75px]"
                   >
-                    No
+                    {t("dialog.no")}
                   </button>
                 </div>
               </div>

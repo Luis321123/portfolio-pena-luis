@@ -7,39 +7,7 @@ import WSIcon from "@/assets/icons/whatsapp.svg";
 import PdfIcon from "@/assets/icons/PDF.ico";
 import BehanceIcon from "@/assets/icons/behance.png";
 import { useIsMobile } from "@/hooks/useIsMobile";
-
-const PERSONAL_INFO = [
-  {
-    id: "email",
-    label: "luis123321@gmail.com",
-    icon: EmailIcon,
-    href: "mailto:luis123321@gmail.com",
-  },
-  {
-    id: "github",
-    label: "@Luis321123",
-    icon: GitHubIcon,
-    href: "https://github.com/Luis321123",
-  },
-  {
-    id: "linkedin",
-    label: "Luis Peña",
-    icon: LinkedinIcon,
-    href: "https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/",
-  },
-  {
-    id: "whatsapp",
-    label: "+58 4127483611",
-    icon: WSIcon,
-    href: "tel:+584127483611",
-  },
-  {
-    id: "cv",
-    label: "Mi CV",
-    icon: PdfIcon,
-    href: "/Luis-Pena.pdf",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const linkStyle: React.CSSProperties = {
   display: "flex",
@@ -54,7 +22,41 @@ const linkStyle: React.CSSProperties = {
 };
 
 const MyComputerApp = () => {
+  const { t } = useTranslation();
   const isMobile = useIsMobile(768);
+
+  const PERSONAL_INFO = [
+    {
+      id: "email",
+      label: "luis123321@gmail.com",
+      icon: EmailIcon,
+      href: "mailto:luis123321@gmail.com",
+    },
+    {
+      id: "github",
+      label: "@Luis321123",
+      icon: GitHubIcon,
+      href: "https://github.com/Luis321123",
+    },
+    {
+      id: "linkedin",
+      label: "Luis Peña",
+      icon: LinkedinIcon,
+      href: "https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/",
+    },
+    {
+      id: "whatsapp",
+      label: "+58 4127483611",
+      icon: WSIcon,
+      href: "tel:+584127483611",
+    },
+    {
+      id: "cv",
+      label: t("myComputer.myCv"),
+      icon: PdfIcon,
+      href: "/Luis-Pena.pdf",
+    },
+  ];
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", background: "#ece9d8", overflow: "auto" }}>
@@ -75,13 +77,13 @@ const MyComputerApp = () => {
             Luis Peña
           </div>
           <div style={{ fontSize: 10, fontFamily: "Tahoma, sans-serif", color: "#333" }}>
-            Software developer(and designer)
+            {t("myComputer.role")}
           </div>
         </div>
 
         <div style={{ margin: "6px 8px" }}>
           <div style={{ fontSize: 11, fontWeight: "bold", fontFamily: "Tahoma, sans-serif", color: "#003399", padding: "2px 4px" }}>
-            Contact
+            {t("myComputer.contact")}
           </div>
           {PERSONAL_INFO.map((item) => (
             <a key={item.id} href={item.href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
@@ -95,13 +97,13 @@ const MyComputerApp = () => {
 
         <div style={{ margin: "6px 8px" }}>
           <div style={{ fontSize: 11, fontWeight: "bold", fontFamily: "Tahoma, sans-serif", color: "#003399", padding: "2px 4px" }}>
-            Quick links
+            {t("myComputer.quickLinks")}
           </div>
           {[
-            { label: "GitHub", icon: GitHubIcon, href: "https://github.com/Luis321123" },
-            { label: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/" },
-            { label: "Descargar CV", icon: PdfIcon, href: "/Luis-Pena.pdf" },
-            { label: "Behance", icon: BehanceIcon, href: "https://www.behance.net/louispea" },
+            { label: t("myComputer.github"), icon: GitHubIcon, href: "https://github.com/Luis321123" },
+            { label: t("myComputer.linkedin"), icon: LinkedinIcon, href: "https://www.linkedin.com/in/luis-pe%C3%B1a-b76a51151/" },
+            { label: t("myComputer.downloadCv"), icon: PdfIcon, href: "/Luis-Pena.pdf" },
+            { label: t("myComputer.behance"), icon: BehanceIcon, href: "https://www.behance.net/louispea" },
           ].map((item) => (
             <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
               <img src={item.icon} alt={item.label} style={{ width: 16, height: 16, flexShrink: 0 }} />
@@ -113,10 +115,10 @@ const MyComputerApp = () => {
         <div style={{ height: 1, background: "#a7abb3", margin: "0 8px" }} />
 
         <div style={{ margin: "6px 8px", fontSize: 10, fontFamily: "Tahoma, sans-serif", color: "#333", lineHeight: 1.5 }}>
-          <div style={{ fontWeight: "bold", color: "#003399" }}>System</div>
-          <div>C:\Documents and Settings\Luis</div>
-          <div>processor: AMD Software Dev x2</div>
-          <div>RAM: coffe with no limits</div>
+          <div style={{ fontWeight: "bold", color: "#003399" }}>{t("myComputer.system")}</div>
+          <div>{t("myComputer.path")}</div>
+          <div>{t("myComputer.processor")}</div>
+          <div>{t("myComputer.ram")}</div>
         </div>
       </div>
 
@@ -139,7 +141,7 @@ const MyComputerApp = () => {
         </div>
         <div style={{ textAlign: "center", fontFamily: "Tahoma, sans-serif" }}>
           <div style={{ fontSize: 16, fontWeight: "bold", color: "#003399" }}>Luis Mario Peña</div>
-          <div style={{ fontSize: 11, color: "#333" }}>welcome to my pc</div>
+          <div style={{ fontSize: 11, color: "#333" }}>{t("myComputer.welcome")}</div>
         </div>
       </div>
     </div>

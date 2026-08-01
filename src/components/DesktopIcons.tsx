@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import PortfolioIcon from "@/assets/icons/explorer.ico";
 import ComputerIcon from "@/assets/icons/mypc.png";
@@ -63,6 +64,7 @@ const loadPositions = (): Record<string, { x: number; y: number }> => {
 };
 
 const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments, onOpenMyPc, onOpenAres, onOpenPaint }: DesktopIconsProps) => {
+  const { t } = useTranslation();
   const isMobile = useIsMobile(768);
   const iconW = isMobile ? 62 : ICON_WIDTH;
   const iconH = isMobile ? 70 : ICON_HEIGHT;
@@ -76,12 +78,12 @@ const DesktopIcons = ({ onOpenPortfolio, onOpenNotepadApp, onOpenMyDocuments, on
   positionsRef.current = positions;
 
   const icons: IconDef[] = [
-    { id: "portfolio", label: "My Portfolio", icon: PortfolioIcon, onDoubleClick: onOpenPortfolio },
-    { id: "mypc", label: "My PC", icon: ComputerIcon, onDoubleClick: onOpenMyPc },
-    { id: "documents", label: "Mis documentos", icon: DocumentsIcon, onDoubleClick: onOpenMyDocuments },
-    { id: "notepad", label: "Notepad", icon: NotepadAppIcon, onDoubleClick: onOpenNotepadApp },
-    { id: "ares", label: "Ares", icon: MusicIcon, onDoubleClick: onOpenAres },
-    { id: "paint", label: "Paint", icon: PaintIcon, onDoubleClick: onOpenPaint },
+    { id: "portfolio", label: t("desktop.myPortfolio"), icon: PortfolioIcon, onDoubleClick: onOpenPortfolio },
+    { id: "mypc", label: t("desktop.myPc"), icon: ComputerIcon, onDoubleClick: onOpenMyPc },
+    { id: "documents", label: t("desktop.myDocuments"), icon: DocumentsIcon, onDoubleClick: onOpenMyDocuments },
+    { id: "notepad", label: t("desktop.notepad"), icon: NotepadAppIcon, onDoubleClick: onOpenNotepadApp },
+    { id: "ares", label: t("desktop.ares"), icon: MusicIcon, onDoubleClick: onOpenAres },
+    { id: "paint", label: t("desktop.paint"), icon: PaintIcon, onDoubleClick: onOpenPaint },
   ];
 
   const defaultPositions: Record<string, { x: number; y: number }> = {

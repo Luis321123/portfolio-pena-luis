@@ -1,6 +1,7 @@
-import { experiences } from "@/services/experiences"; 
+import { getExperiences } from "@/services/experiences"; 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getRandomPath } from "@/constants/path";
 import WindowsDialog from "@/components/Animates/WindowsDialog";
 
@@ -9,6 +10,8 @@ interface CardConsoleProps {
 }
 
 const CardConsole = ({ index }: CardConsoleProps) => {
+  const { t } = useTranslation();
+  const experiences = getExperiences();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [displayLines, setDisplayLines] = useState<string[]>([]);
@@ -32,15 +35,15 @@ const CardConsole = ({ index }: CardConsoleProps) => {
   if (!experience) {
     return (
       <div className="w-full mb-4 p-4 bg-[#c0c0c0] border border-[#d4d0c8] text-center text-gray-500">
-        No experience available
+        {t("cardConsole.none")}
       </div>
     );
   }
 
   const buildLines = () => {
     const lines = [
-      `Microsoft(R) Windows DOS`,
-      `<C> Copyright Microsoft Corp 1990-2001.`,
+      t("cardConsole.dos"),
+      t("cardConsole.copyright"),
       ``,
       `${path}> ${experience.title}`,
       ``,
@@ -95,6 +98,27 @@ const CardConsole = ({ index }: CardConsoleProps) => {
 
   const consoleHeight = isExpanded ? 'h-[400px]' : 'h-[200px]';
 
+  const renderLine = (line: string) => {
+    const titlePrefix = `${path}> `;
+    if (line.startsWith(titlePrefix) && line.length > titlePrefix.length) {
+      const prompt = line.slice(0, titlePrefix.length);
+      const place = line.slice(titlePrefix.length);
+      return (
+        <>
+          {prompt}
+          <span className="text-[#00ffff] font-bold">{place}</span>
+        </>
+      );
+    }
+    if (line.startsWith('│ ')) {
+      const dateLine = `│ ${experience.date}`;
+      if (line === dateLine) {
+        return <span className="text-[#ffff00]">{line}</span>;
+      }
+    }
+    return <>{line}</>;
+  };
+
   const handleExpandClick = () => {
     if (isExpanded) {
       setIsExpanded(false);
@@ -124,7 +148,7 @@ const CardConsole = ({ index }: CardConsoleProps) => {
         {!isComplete && (
           <div className="flex items-center gap-2 mb-1 px-2 py-1 bg-[#ece9d8] justify-center border border-[#d4d0c8] rounded-sm">
             <progress className="w-[100px]"></progress>
-            <span style={{ fontSize: '11px', color: '#333' }}>Loading...</span>
+            <span style={{ fontSize: '11px', color: '#333' }}>{t("cardConsole.loading")}</span>
           </div>
         )}
 
@@ -161,7 +185,7 @@ const CardConsole = ({ index }: CardConsoleProps) => {
                   className="px-4 py-1 bg-[#c0c0c0] border border-[#fdfdfd] border-t-[#808080] border-l-[#808080] text-sm text-black hover:bg-[#d5d5d5] active:border-[#404040] rounded-sm font-medium"
                   style={{ fontSize: '12px' }}
                 >
-                  {isExpanded ? '▲ Collapse' : '▼ Expand'}
+                  {isExpanded ? t("cardConsole.collapse") : t("cardConsole.expand")}
                 </button>
               )}
             </div>
@@ -175,7 +199,7 @@ const CardConsole = ({ index }: CardConsoleProps) => {
                 <pre className="text-xs sm:text-sm md:text-base leading-relaxed whitespace-pre-wrap font-mono">
                   {displayLines.map((line, lineIndex) => (
                     <div key={lineIndex}>
-                      {line}
+                      {renderLine(line)}
                       {lineIndex === displayLines.length - 1 && !isComplete && shouldType && (
                         <span className="inline-block w-2 h-4 bg-[#00ff00] animate-pulse" />
                       )}
@@ -199,8 +223,6 @@ const CardConsole = ({ index }: CardConsoleProps) => {
         isOpen={showDialog}
         onClose={() => setShowDialog(false)}
         onConfirm={handleConfirmExpand}
-        title="Warning"
-        message="Are you sure you want to expand?"
         icon="warning"
       />
     </>

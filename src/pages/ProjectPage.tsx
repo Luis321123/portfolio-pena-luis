@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { CardProject } from "@/components";
-import { projects } from "@/services";
+import { getProjects } from "@/services";
 
 const ProjectsPage = () => {
+  const { t } = useTranslation();
+  const projects = getProjects();
+
   return (
     <>
       <section
@@ -10,7 +14,7 @@ const ProjectsPage = () => {
         className="min-h-screen w-full bg-[#f4f1de] text-gray-900 p-4 md:py-18 md:px-24 overflow-hidden"
       >
         <h2 className="-mb-48 font-bold text-6xl md:-mb-36 text-center text-secundary ">
-          Recent Projects
+          {t("projects.title")}
         </h2>
         <motion.ul
           className="flex flex-wrap h-fit w-full mt-48 gap-4 md:gap-12"

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDragWindow } from '../hooks/useDragWindows';
 import { useResizeWindow } from '../hooks/useResizeWindows';
 
@@ -29,6 +30,7 @@ const WindowsManager = ({
   scrollContainerId,
   onMaximizeChange,
 }: WindowsManagerProps) => {
+  const { t } = useTranslation();
   const [previousSize, setPreviousSize] = useState({ width: initialWidth, height: initialHeight });
   const [previousPosition, setPreviousPosition] = useState({ x: 0, y: 0 });
 
@@ -133,13 +135,13 @@ const WindowsManager = ({
   <div className="title-bar-text">{title}</div>
   <div className="title-bar-controls">
     <button aria-label="Minimize" onClick={onClose}>
-      <span className="sr-only">Minimizar</span>
+      <span className="sr-only">{t("window.minimize")}</span>
     </button>
     <button aria-label="Maximize" onClick={handleMaximize}>
-      <span className="sr-only">{isMaximized ? 'Restaurar' : 'Maximizar'}</span>
+      <span className="sr-only">{isMaximized ? t("window.restore") : t("window.maximize")}</span>
     </button>
     <button aria-label="Close" onClick={onClose}>
-      <span className="sr-only">Cerrar</span>
+      <span className="sr-only">{t("window.close")}</span>
     </button>
   </div>
 </div>

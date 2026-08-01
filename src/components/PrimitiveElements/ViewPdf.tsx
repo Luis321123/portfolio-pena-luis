@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 type PropsType = {
   isViewPdf: boolean;
   setIsViewPdf: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
+  const { t } = useTranslation();
   return (
     <>
       <iframe
@@ -14,7 +17,7 @@ const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
         className="flex items-center justify-center rounded-3xl p-4 bg-red-500 w-18 h-12 fixed right-4 bottom-14 font-bold text-xl z-[99]"
         onClick={() => setIsViewPdf(false)}
       >
-        Exit PDF
+        {t("viewPdf.exit")}
       </button>
     </>
   );

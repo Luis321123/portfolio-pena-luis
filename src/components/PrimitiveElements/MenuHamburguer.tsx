@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSoundSrc } from "@/constants/sounds";
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
+  const { t } = useTranslation();
   const [showNotification, setShowNotification] = useState(false);
   
   const timersRef = useRef<NodeJS.Timeout[]>([]);
@@ -72,7 +74,7 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
     active:translate-y-[1px] active:translate-x-[1px]
     transition-colors
   `}
-  aria-label={isChecked ? "Cerrar menú" : "Abrir menú"}
+  aria-label={isChecked ? t("menu.close") : t("menu.open")}
 >
         <svg viewBox="0 0 24 24" width="20" height="20" className="transition-all duration-200">
           {isChecked ? (
@@ -108,7 +110,7 @@ const MenuHamburguer = ({ isChecked, setIsChecked }: Props) => {
               }}
               className="relative bg-[#ffffe1] border-2 border-[#f0f0f0] border-r-[#404040] border-b-[#404040] px-3 py-1.5 rounded shadow-md whitespace-nowrap flex items-center gap-2"
             >
-              <span className="text-xs text-[#316ac5] font-bold">📢 Click here!</span>
+              <span className="text-xs text-[#316ac5] font-bold">{t("menu.clickHere")}</span>
 
               <div 
                 className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-0 h-0 

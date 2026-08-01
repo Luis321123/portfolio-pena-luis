@@ -1,6 +1,7 @@
-import { detail } from "@/services/Details"; 
+import { getDetails } from "@/services/Details"; 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import TechBadge from "@/components/TechBadge";
 import TechIcon from "@/assets/icons/sysstem.ico";
 import AchievementsIcon from "@/assets/icons/trophy.png";
@@ -11,6 +12,8 @@ interface CardExperienceProps {
 }
 
 const CardExperience = ({ index }: CardExperienceProps) => {
+  const { t } = useTranslation();
+  const detail = getDetails();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   
@@ -58,7 +61,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
   if (!currentExperience) {
     return (
       <div className="w-full mb-4 p-4 bg-[#ece9d8] border border-[#d4d0c8] rounded text-center text-gray-500">
-        No experience available
+        {t("cardExperience.none")}
       </div>
     );
   }
@@ -111,7 +114,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
             isExpanded ? 'max-h-[800px] opacity-100 border-t border-[#d4d0c8]' : 'max-h-0 opacity-0'
           }`}
         >
-          <menu role="tablist" aria-label="Experience Tabs" className="flex border-b border-[#d4d0c8] bg-[#ece9d8]">
+          <menu role="tablist" aria-label={t("cardExperience.tabsLabel")} className="flex border-b border-[#d4d0c8] bg-[#ece9d8]">
             <button 
               role="tab" 
               aria-selected={activeTab === 'tech'}
@@ -123,8 +126,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
                   : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
               }`}
             >
-              <img src={TechIcon} alt="Tech" className="w-4 h-4" />
-              Tech
+              <img src={TechIcon} alt={t("cardExperience.techAlt")} className="w-4 h-4" />
+              {t("cardExperience.tech")}
             </button>
             <button 
               role="tab" 
@@ -137,8 +140,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
                   : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
               }`}
             >
-              <img src={AchievementsIcon} alt="Achievements" className="w-4 h-4" />
-              Achiev.
+              <img src={AchievementsIcon} alt={t("cardExperience.achievementsAlt")} className="w-4 h-4" />
+              {t("cardExperience.achievements")}
             </button>
             <button 
               role="tab" 
@@ -151,8 +154,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
                   : 'bg-transparent hover:bg-[#e5f3ff] rounded-t'
               }`}
             >
-              <img src={DetailsIcon} alt="Details" className="w-4 h-4" />
-              Details
+              <img src={DetailsIcon} alt={t("cardExperience.detailsAlt")} className="w-4 h-4" />
+              {t("cardExperience.details")}
             </button>
           </menu>
 
@@ -164,8 +167,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
           >
             <div className="space-y-3">
               <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
-                <img src={TechIcon} alt="Tech" className="w-4 h-4" />
-                Tech Stack - {currentExperience.title}
+                <img src={TechIcon} alt={t("cardExperience.techAlt")} className="w-4 h-4" />
+                {t("cardExperience.techStack", { title: currentExperience.title })}
               </div>
               <div className="flex flex-wrap gap-2">
                 {techStack.length > 0 ? (
@@ -173,7 +176,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
                     <TechBadge key={tech} tech={tech} />
                   ))
                 ) : (
-                  <div className="text-sm text-gray-500">No tech stack listed</div>
+                  <div className="text-sm text-gray-500">{t("cardExperience.noTech")}</div>
                 )}
               </div>
             </div>
@@ -187,8 +190,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
           >
             <div className="space-y-2">
               <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
-                <img src={AchievementsIcon} alt="Achievements" className="w-4 h-4" />
-                Achievements - {currentExperience.title}
+                <img src={AchievementsIcon} alt={t("cardExperience.achievementsAlt")} className="w-4 h-4" />
+                {t("cardExperience.achievementsTitle", { title: currentExperience.title })}
               </div>
               {achievements.length > 0 ? (
                 <ul className="space-y-2">
@@ -200,7 +203,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
                   ))}
                 </ul>
               ) : (
-                <div className="text-sm text-gray-500">No achievements listed</div>
+                <div className="text-sm text-gray-500">{t("cardExperience.noAchievements")}</div>
               )}
             </div>
           </article>
@@ -213,8 +216,8 @@ const CardExperience = ({ index }: CardExperienceProps) => {
           >
             <div className="space-y-2 text-xs leading-relaxed text-[#1a1a1a]">
               <div className="font-medium text-[#316ac5] text-[11px] uppercase tracking-wide mb-1 flex items-center gap-2">
-                <img src={DetailsIcon} alt="Details" className="w-4 h-4" />
-                Description - {currentExperience.title}
+                <img src={DetailsIcon} alt={t("cardExperience.detailsAlt")} className="w-4 h-4" />
+                {t("cardExperience.description", { title: currentExperience.title })}
               </div>
               <p className="text-xs leading-relaxed whitespace-pre-wrap">
                 {currentExperience.description}

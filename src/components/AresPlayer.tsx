@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import MusicIcon from "@/assets/icons/music.png";
 
 interface Track {
@@ -31,6 +32,7 @@ const formatTime = (seconds: number) => {
 };
 
 const AresPlayer = () => {
+  const { t } = useTranslation();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -172,8 +174,8 @@ const AresPlayer = () => {
   };
 
   const getStatus = (track: Track) => {
-    if (track.id !== currentTrack.id) return "Completado";
-    return isPlaying ? "Reproduciendo" : "Pausado";
+    if (track.id !== currentTrack.id) return t("ares.completed");
+    return isPlaying ? t("ares.playing") : t("ares.paused");
   };
 
   const menuButtonStyle: React.CSSProperties = {
@@ -234,7 +236,7 @@ const AresPlayer = () => {
           Ares
         </span>
         <span style={{ fontSize: 11, color: "#8fb0e8" }}>
-          Ares Galaxy — your favorite music
+          {t("ares.tagline")}
         </span>
         <span
           style={{
@@ -255,7 +257,7 @@ const AresPlayer = () => {
               display: "inline-block",
             }}
           />
-          On-line
+          {t("ares.online")}
         </span>
       </div>
 
@@ -269,9 +271,9 @@ const AresPlayer = () => {
           borderBottom: "1px solid #0a2454",
         }}
       >
-        {["File", "Search", "Transfer", "Library", "Help"].map((label) => (
+        {["file", "search", "transfer", "library", "help"].map((label) => (
           <button key={label} style={menuButtonStyle}>
-            {label}
+            {t(`ares.${label}`)}
           </button>
         ))}
       </div>
@@ -293,7 +295,7 @@ const AresPlayer = () => {
           }}
         >
           <input
-            placeholder="Buscar canciones en la red Ares..."
+            placeholder={t("ares.searchPlaceholder")}
             style={{
               flex: 1,
               height: 22,
@@ -306,7 +308,7 @@ const AresPlayer = () => {
               color: "#111",
             }}
           />
-          <button style={menuButtonStyle}>Buscar</button>
+          <button style={menuButtonStyle}>{t("ares.searchBtn")}</button>
         </div>
 
         <div
@@ -323,9 +325,9 @@ const AresPlayer = () => {
           }}
         >
           <span>#</span>
-          <span>Archivo</span>
-          <span>Tamaño</span>
-          <span>Estado</span>
+          <span>{t("ares.fileColumn")}</span>
+          <span>{t("ares.sizeColumn")}</span>
+          <span>{t("ares.statusColumn")}</span>
         </div>
 
         {TRACKS.map((track, index) => {
@@ -391,7 +393,7 @@ const AresPlayer = () => {
               whiteSpace: "nowrap",
             }}
           >
-            {isPlaying ? "Reproduciendo:" : "Detenido:"} {currentTrack.title}
+            {isPlaying ? t("ares.nowPlaying") : t("ares.stopped")} {currentTrack.title}
           </span>
         </div>
         <canvas
@@ -426,7 +428,7 @@ const AresPlayer = () => {
               setCurrentTime(Number(e.target.value));
             }}
             style={{ flex: 1, height: 4, cursor: "pointer" }}
-            title="Posición"
+            title={t("ares.position")}
           />
           <span style={{ fontSize: 10, color: "#cfe0ff" }}>{formatTime(duration)}</span>
         </div>
@@ -443,7 +445,7 @@ const AresPlayer = () => {
         >
           <button
             onClick={handlePrev}
-            title="Anterior"
+            title={t("ares.previous")}
             style={{
               width: 26,
               height: 24,
@@ -456,7 +458,7 @@ const AresPlayer = () => {
           </button>
           <button
             onClick={togglePlay}
-            title={isPlaying ? "Pausar" : "Reproducir"}
+            title={isPlaying ? t("ares.pause") : t("ares.play")}
             style={{
               width: 32,
               height: 24,
@@ -470,7 +472,7 @@ const AresPlayer = () => {
           </button>
           <button
             onClick={stopPlay}
-            title="Detener"
+            title={t("ares.stop")}
             style={{
               width: 26,
               height: 24,
@@ -483,7 +485,7 @@ const AresPlayer = () => {
           </button>
           <button
             onClick={handleNext}
-            title="Siguiente"
+            title={t("ares.next")}
             style={{
               width: 26,
               height: 24,
@@ -504,7 +506,7 @@ const AresPlayer = () => {
               gap: 6,
             }}
           >
-            <span style={{ fontSize: 10, color: "#cfe0ff" }}>Vol</span>
+            <span style={{ fontSize: 10, color: "#cfe0ff" }}>{t("ares.volume")}</span>
             <input
               type="range"
               min={0}
@@ -518,7 +520,7 @@ const AresPlayer = () => {
                 setVolume(Number(e.target.value));
               }}
               style={{ width: 70, height: 4, cursor: "pointer" }}
-              title="Volumen"
+              title={t("ares.volumeTitle")}
             />
           </div>
         </div>
@@ -539,8 +541,8 @@ const AresPlayer = () => {
           minHeight: 20,
         }}
       >
-        <span>Conectado a la red Ares Galaxy</span>
-        <span>{TRACKS.length} archivos en tu biblioteca</span>
+        <span>{t("ares.connected")}</span>
+        <span>{t("ares.filesInLibrary", { count: TRACKS.length })}</span>
       </div>
     </div>
   );
