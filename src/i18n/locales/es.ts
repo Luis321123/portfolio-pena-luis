@@ -107,6 +107,11 @@ const es = {
     logOff: "Cerrar Sesión",
     turnOff: "Apagar Equipo",
   },
+  shutdown: {
+    windows: "Windows",
+    shuttingDown: "Esperando a que se apague...",
+    clickToTurnOn: "Haz clic o presiona una tecla para encender el equipo",
+  },
   taskbar: {
     start: "Inicio",
     worldOfWarcraft: "World of Warcraft",

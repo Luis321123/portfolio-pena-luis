@@ -107,6 +107,11 @@ const en = {
     logOff: "Log Off",
     turnOff: "Turn Off Computer",
   },
+  shutdown: {
+    windows: "Windows",
+    shuttingDown: "Windows is shutting down...",
+    clickToTurnOn: "Click or press any key to turn on the computer",
+  },
   taskbar: {
     start: "Start",
     worldOfWarcraft: "World of Warcraft",

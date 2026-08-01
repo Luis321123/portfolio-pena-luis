@@ -6,6 +6,7 @@ import NotepadApp from "./components/NotepadApp";
 import MyDocumentsApp from "./components/MyDocumentsApp";
 import MyComputerApp from "./components/MyComputerApp";
 import AresPlayer from "./components/AresPlayer";
+import ShutdownScreen from "./components/ShutdownScreen";
 import { HomePage, AboutPage, ProjectPage, ContactPage } from "./pages";
 import { Taskbar } from "./components/Taskbar";
 import DesktopIcons from "./components/DesktopIcons";
@@ -33,6 +34,7 @@ const App = () => {
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(true);
   const [isPortfolioMinimized, setIsPortfolioMinimized] = useState(false);
   const [isPortfolioMaximized, setIsPortfolioMaximized] = useState(true);
+  const [isShuttingDown, setIsShuttingDown] = useState(false);
 
   const handleStartMenuClick = () => setIsStartMenuOpen((prev) => !prev);
 
@@ -148,6 +150,10 @@ const App = () => {
         onOpenPaint={() => {
           setIsPaintOpen(true);
           setIsPaintMinimized(false);
+        }}
+        onTurnOff={() => {
+          setIsStartMenuOpen(false);
+          setIsShuttingDown(true);
         }}
       />
 
@@ -303,6 +309,8 @@ const App = () => {
       />
 
       <div className="crt-overlay" aria-hidden="true" />
+
+      {isShuttingDown && <ShutdownScreen />}
     </>
   );
 };

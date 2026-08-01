@@ -22,13 +22,14 @@ interface StartMenuProps {
   onOpenMyDocuments?: () => void;
   onOpenAres?: () => void;
   onOpenPaint?: () => void;
+  onTurnOff?: () => void;
 }
 
 const MENU_WIDTH = 340;
 const MENU_HEIGHT = 440;
 const TASKBAR_HEIGHT = 40;
 
-const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres, onOpenPaint }: StartMenuProps) => {
+const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMinesweeper, onOpenNotepadApp, onOpenMyDocuments, onOpenAres, onOpenPaint, onTurnOff }: StartMenuProps) => {
   const { t } = useTranslation();
   const isMobile = useIsMobile(768);
 
@@ -240,7 +241,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
           </button>
 
           <button
-            onClick={onClose}
+            onClick={() => onTurnOff?.()}
             style={{
               display: "flex",
               alignItems: "center",

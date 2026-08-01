@@ -111,3 +111,85 @@
   margin-top: auto !important;
   margin-bottom: auto !important;
 }
+
+/* shutdown screen */
+.shutdown-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999999999;
+  display: flex;
+  flex-direction: column;
+  background: #5a7edc;
+  font-family: Tahoma, "Segoe UI", sans-serif;
+  user-select: none;
+}
+
+.shutdown-header {
+  height: 64px;
+  background: #0d309f;
+  flex-shrink: 0;
+}
+
+.shutdown-footer {
+  height: 64px;
+  background: #0d309f;
+  flex-shrink: 0;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(to right, #f69434, #384983) 1;
+}
+
+.shutdown-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: linear-gradient(to bottom, #91b1ef 0%, #5a7edc 100%);
+}
+
+.shutdown-logo {
+  width: 320px;
+  height: auto;
+}
+
+.shutdown-dialog-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.shutdown-off {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.shutdown-power-btn {
+  padding: 10px 18px;
+  border: 1px solid #2b2b2b;
+  border-radius: 4px;
+  background: #000;
+  color: #555;
+  font-family: Tahoma, "Segoe UI", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  animation: shutdown-fade-in 1.2s ease;
+}
+
+.shutdown-power-btn:hover {
+  color: #888;
+  border-color: #444;
+}
+
+@keyframes shutdown-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
