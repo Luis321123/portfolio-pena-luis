@@ -300,7 +300,7 @@ const es = {
 │ CI/CD: GitHub Actions para despliegue automatizado`,
     },
     {
-      title: "Desarrollador Backend - Leadgrowth",
+      title: "Desarrollador Backend - integrador- Leadgrowthco     ",
       date: "2025 Mar - 2025 Sept",
       description: `Desarrollo e integración de servicios
 │ 
@@ -368,7 +368,7 @@ const es = {
       ],
     },
     {
-      title: "Desarrollador Backend - Leadgrowth        ",
+      title: "Desarrollador de software - integrador - Leadgrowthco        ",
       date: "2025 Mar - 2025 Sept",
       description:
         "Fui responsable del desarrollo, planificación e integración de diversos servicios en distintas plataformas, incluyendo una llamada GoHighLevel (ghl), usando herramientas como EC2, buckets de S3 y Hostinguer para el hosting. También usé herramientas como Nginx y Docker para el VPS donde se alojaban las APIs creadas; para la parte de código, usé Python como lenguaje principal con FastAPI como framework principal; para las bases de datos, Postgres y MySQL; y para la arquitectura, utilicé principalmente patrones monolíticos y hexagonales. En algunos flujos, usé n8n para automatizaciones, incluyendo la API de ChatGPT y DeepSeek R8.",

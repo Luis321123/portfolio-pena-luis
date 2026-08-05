@@ -136,8 +136,8 @@ const CardConsole = ({ index }: CardConsoleProps) => {
     <>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ 
           duration: 0.6, 
           delay: index * 0.25,
@@ -145,12 +145,14 @@ const CardConsole = ({ index }: CardConsoleProps) => {
         }}
         className="w-full mb-4 font-mono"
       >
-        {!isComplete && (
-          <div className="flex items-center gap-2 mb-1 px-2 py-1 bg-[#ece9d8] justify-center border border-[#d4d0c8] rounded-sm">
-            <progress className="w-[100px]"></progress>
-            <span style={{ fontSize: '11px', color: '#333' }}>{t("cardConsole.loading")}</span>
-          </div>
-        )}
+        <div
+          className="flex items-center gap-2 mb-1 px-2 py-1 bg-[#ece9d8] justify-center border border-[#d4d0c8] rounded-sm transition-opacity duration-500"
+          style={{ opacity: isComplete ? 0 : 1, pointerEvents: 'none' }}
+          aria-hidden={isComplete}
+        >
+          <progress className="w-[100px]"></progress>
+          <span style={{ fontSize: '11px', color: '#333' }}>{t("cardConsole.loading")}</span>
+        </div>
 
         <div className="window">
           <div 

@@ -300,7 +300,7 @@ const en = {
 │ CI/CD: GitHub Actions for automated deployment`,
     },
     {
-      title: "sofware Developer - integrator - Leadgrowth        ",
+      title: "sofware Developer - integrator - Leadgrowthco        ",
       date: "2025 Mar - 2025 Sept",
       description: `Development and integration of services
 │ 
@@ -368,7 +368,7 @@ const en = {
       ],
     },
     {
-      title: "Software Developer - Integrator - Leadgrowth        ",
+      title: "Software Developer - Integrator - Leadgrowthco        ",
       date: "2025 Mar - 2025 Sept",
       description:
         "I was responsible for the development, planning, and integration of various services across different platforms—including a specific one called GoHighLevel(ghl)using tools such as EC2, S3 buckets, and Hostinguer for hosting. I also used tools such as Nginx and Docker for the VPS where the created APIs were stored, and for the coding portion, I used Python as the primary language with FastAPI as the main framework; for databases, Postgres and MySQL; and for the architecture, I primarily used monolithic and hexagonal patterns. In some workflows, I used n8n for automations, including the ChatGPT API and DeepSeek R8",

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { createPortal } from "react-dom";
 
 type PropsType = {
   isViewPdf: boolean;
@@ -8,7 +9,7 @@ type PropsType = {
 const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
   const { t, i18n } = useTranslation();
   const cvSrc = i18n.language.startsWith("es") ? "/Luis_pena_spanish.pdf" : "/Luis_pena_english.pdf";
-  return (
+  return createPortal(
     <>
       <iframe
         src={cvSrc}
@@ -20,7 +21,8 @@ const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
       >
         {t("viewPdf.exit")}
       </button>
-    </>
+    </>,
+    document.body
   );
 };
 

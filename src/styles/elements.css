@@ -10,7 +10,6 @@
   inset: 0;
   z-index: 2147483647;
   pointer-events: none;
-  backdrop-filter: blur(0.4px) saturate(0.95) brightness(1.02);
   background:
     radial-gradient(
       ellipse at center,
