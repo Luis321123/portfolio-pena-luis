@@ -429,10 +429,25 @@ const en = {
     {
       title: "Car dealer page",
       subTitle:
-        "Create the page for attracting potential clients, including its forms, images, and multimedia content.",
+        "Creation of the page for the premium-cars dealership based on WordPress, combining Elementor, JavaScript, HTML, and CSS, including their forms, images, and multimedia content, all with the objective of generating leads and increasing the visibility of the dealership.",
       link: "https://premiumcarsfl.com/es/inicio-miami/",
       stack: ["laravel", "ghl", "postgresql"],
       preview: "/projects/car-dealer.png",
+    },
+    {
+      title: "Insurance company page",
+      subTitle:
+        "Creation of the page for the insurance company DalcavaCorp based on WordPress, adding plugins, JavaScript, HTML, and CSS, including their forms, images, and multimedia content created in GoHighLevel, also adding workflows to automate form submission, lead capture with Google Ads implementation, as well as the installation and configuration of the tag.",
+      link: "https://dalcavacorp.com/life-insurance-miami/",
+        stack: ["laravel", "ghl", "javascript"],
+      preview: "/projects/dalcava2.png",
+    },
+    {
+      title: "Trigger for GoHighLevel workflow",
+      subTitle:
+        "This is a lightweight trigger for GoHighLevel, serving to capture messages or events from users and send them instantly to a webhook. It acts as a bridge between platforms without native integration, allowing automation of tasks such as turning on lights, creating tickets, updating databases, or sending notifications to other systems in real-time.",
+      stack: ["python", "ghl", "fastapi", "postgresql"],
+      preview: "/projects/GHL.png",
     },
     {
       title: "Application solar panel quotation",

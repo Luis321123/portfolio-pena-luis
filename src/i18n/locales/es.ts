@@ -80,7 +80,7 @@ const es = {
     home: "Inicio",
     about: "Sobre mí",
     projects: "Proyectos",
-    hello: "Hola, soy yo",
+    hello: "Hola, escribeme",
     done: "listo",
     animationAlt: "Animación",
     profileAlt: "Foto de Luis",
@@ -429,10 +429,25 @@ const es = {
     {
       title: "Página de concesionario de autos",
       subTitle:
-        "Creación de la página para atraer clientes potenciales, incluyendo sus formularios, imágenes y contenido multimedia.",
+        "Creación de la página para el consecionario Premium cars Miami con base en wordpress, combinando elementor, javascript, html, y css, incluyendo sus formularios, imágenes y contenido multimedia, todo con el objetivo de generar leads y aumentar la visibilidad del concesionario.",
       link: "https://premiumcarsfl.com/es/inicio-miami/",
-      stack: ["laravel", "ghl", "postgresql"],
+        stack: ["laravel", "ghl", "javascript"],
       preview: "/projects/car-dealer.png",
+    },
+    {
+      title: "Página para aseguradora",
+      subTitle:
+        "Creación de la página para la aseguradora DalcavaCorp con base en wordpress, añadiendo plugins , javascript, html, y css, incluyendo sus formularios, imágenes y contenido multimedia creado en GoHighLevel, tambien añadiendo workflows para automatizar el envio de formularios, la captación de Leads con la implementación de Google Ads, así tambien como la instalación de la etiqueta y configuración de la misma",
+      link: "https://dalcavacorp.com/life-insurance-miami/",
+        stack: ["laravel", "ghl", "javascript"],
+      preview: "/projects/dalcava2.png",
+    },
+    {
+      title: "Trigger para workflow de GoHighLevel",
+      subTitle:
+        "Es un trigger ligero para GoHighLevel, sirviendo para la captura de mensajes o eventos de usuarios y los envía al instante a un webhook. Actúa como puente entre plataformas sin integración nativa, permitiendo automatizar tareas como encender luces, crear tickets, actualizar bases de datos o enviar notificaciones a otros sistemas en tiempo real",
+      stack: ["python", "ghl", "fastapi", "postgresql"],
+      preview: "/projects/GHL.png",
     },
     {
       title: "Aplicación de cotización de paneles solares",
