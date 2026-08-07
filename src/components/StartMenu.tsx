@@ -236,7 +236,6 @@ const StartMenu = ({ isOpen, onClose, onOpenWoW, onOpenPortfolio, onOpenMineswee
               e.currentTarget.style.background = "rgba(255,255,255,0.1)";
             }}
           >
-            <img src={QuitIcon} alt="" style={{ width: 16, height: 16 }} />
             <span>{t("startMenu.logOff")}</span>
           </button>
 
