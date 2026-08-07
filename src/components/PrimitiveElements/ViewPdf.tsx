@@ -13,7 +13,7 @@ const ViewPdf = ({ isViewPdf, setIsViewPdf }: PropsType) => {
     <>
       <iframe
         src={cvSrc}
-        className=" w-full h-full fixed left-0 bottom-0 z-[999999]"
+        className=" w-full h-full fixed left-0 bottom-0 z-[99999999]"
       />
       <button
         className="flex items-center justify-center rounded-3xl p-4 bg-red-500 w-18 h-12 fixed right-4 bottom-14 font-bold text-xl z-[9999999999999]"
