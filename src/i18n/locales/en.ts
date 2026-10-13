@@ -284,6 +284,28 @@ const en = {
   },
   experiences: [
     {
+      title: "Software Developer        ",
+      date: "Sep 2026 - Present",
+      description: `Internal CRM/Operations platform for talent agency (2000 employees)
+│ 
+│ • TypeScript monorepo, gRPC services, PostgreSQL, versioned migrations, protobuf
+│ • Strangler fig migration from legacy .NET/MSSQL CRM with zero downtime
+│ • Next.js + React + TypeScript frontend, tRPC BFF
+│ • Backend with Kysely, transactions, outbox pattern
+│ • AI document pipeline (tool use, prompt caching, Zod/OCR)
+│ • Feature flags, PII vault with Azure Key Vault
+│ • Algolia search with incremental ETL
+│ • Azure AKS, Helm, CI/CD with SBOM, scanning & signed images`,
+    },
+    {
+      title: "Integration Developer        ",
+      date: "Aug 2026",
+      description: `Integrations and automation
+│ 
+│ • Connecting platforms with third-party APIs
+│ • Business workflows with GoHighLevel and Python`,
+    },
+    {
       title: "Software Developer       ",
       date: "2025 Sept - 2026 May",
       description: `Cross-functional team developing AI-powered platform
@@ -354,6 +376,29 @@ const en = {
     },
   ],
   details: [
+    {
+      title: "Software Developer        ",
+      date: "Sep 2026 - Present",
+      description:
+        "Part of a 35-person cross-functional team (backend, frontend, data, infra) that built and migrated an internal CRM and operations platform for a talent agency used by 2,000 employees, with layered architecture and continuous deployment via GitHub Actions, Turborepo, Docker, Helm on Kubernetes. Designed a TypeScript monorepo with independent gRPC services, each with PostgreSQL schema, versioned migrations, and protobuf contracts; applied strangler fig to extract functionality from a legacy .NET/MSSQL CRM without downtime. Built Next.js/React/TypeScript web app (shared design system, tRPC BFF, contact/search/offers/ops tools) and backend services with Kysely on PostgreSQL (transactions, outbox pattern, contact identity graph with field-level provenance and conflict resolution). With data team, implemented AI document pipeline with validation at each stage (tool-use classification, prompt caching, Zod-derived JSON extraction, PDF OCR), feature flags with percentage rollouts and fail-closed evaluation, PII vault with envelope encryption and key rotation in Azure Key Vault, Algolia search with incremental ETL. Deployed on Azure (AKS, ACR, PostgreSQL with Entra ID, Blob, Key Vault with Managed Identity), shared Helm chart for standardization; CI/CD with SBOM, vulnerability scanning, image signing.",
+      achievements: [
+        "TypeScript monorepo with independent gRPC services",
+        "Strangler fig migration from legacy .NET/MSSQL CRM with zero downtime",
+        "AI document pipeline with validation, feature flags, PII vault on Azure Key Vault",
+        "Azure AKS deployment with Helm, CI/CD with SBOM & signed images",
+      ],
+    },
+    {
+      title: "Integration Developer        ",
+      date: "Aug 2026",
+      description:
+        "Development and automation of integrations for clients and agencies, connecting platforms with third-party APIs and defining business workflows using GoHighLevel and Python.",
+      achievements: [
+        "Third-party API integrations",
+        "Workflow automation with GoHighLevel",
+        "Python services for connecting systems",
+      ],
+    },
     {
       title: "Software Developer - Contractor        ",
       date: "2025 Sept - 2026 May",

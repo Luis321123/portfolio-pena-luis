@@ -284,6 +284,28 @@ const es = {
   },
   experiences: [
     {
+      title: "Software Developer        ",
+      date: "sept. de 2026 - actualidad",
+      description: `Plataforma interna CRM/Operaciones para agencia de talento (2000 empleados)
+│ 
+│ • Monorepo TypeScript, servicios gRPC, PostgreSQL, migraciones versionadas, protobuf
+│ • Strangler fig desde CRM legacy .NET/MSSQL sin downtime
+│ • Frontend Next.js + React + TypeScript, tRPC BFF
+│ • Backend con Kysely, transacciones, patrón outbox
+│ • Pipeline documental con IA (tool use, prompt caching, Zod/OCR)
+│ • Feature flags, PII vault con Azure Key Vault
+│ • Búsqueda con Algolia + ETL incremental
+│ • Azure AKS, Helm, CI/CD con SBOM, escaneo y firma de imágenes`,
+    },
+    {
+      title: "Desarrollador de integración        ",
+      date: "ago. de 2026",
+      description: `Integraciones y automatización
+│ 
+│ • Conexión de plataformas con APIs de terceros
+│ • Flujos de negocio con GoHighLevel y Python`,
+    },
+    {
       title: "Desarrollador de Software        ",
       date: "2025 Sept - 2026 May",
       description: `Equipo multifuncional desarrollando plataforma impulsada por IA
@@ -354,6 +376,29 @@ const es = {
     },
   ],
   details: [
+    {
+      title: "Software Developer        ",
+      date: "sept. de 2026 - actualidad",
+      description:
+        "Formé parte de un equipo de 35 personas (backend, frontend, datos e infraestructura) que construyó y migró una plataforma interna de CRM y operaciones para una agencia de talento, usada por 2,000 empleados, con arquitectura por capas y despliegue continuo con GitHub Actions, Turborepo, Docker y Helm sobre Kubernetes. Participé en la arquitectura de un monorepo TypeScript con servicios gRPC independientes, cada uno con su esquema PostgreSQL, migraciones versionadas y contratos protobuf, aplicando strangler fig para extraer la funcionalidad de un CRM legacy .NET/MSSQL sin detener la operación. En frontend construí la capa web en Next.js con React y TypeScript (sistema de diseño compartido, BFF con tRPC y herramientas de contactos, búsqueda, ofertas y control operativo) y en backend servicios con Kysely sobre PostgreSQL, transacciones, patrón outbox y un grafo de identidad de contactos con procedencia por campo y resolución de conflictos. Con el equipo de datos implementé un pipeline documental con IA que valida cada etapa antes de persistir el resultado (clasificación con tool use y prompt caching, extracción con esquemas JSON derivados de Zod y OCR de PDFs, con estado para auditoría y reintentos), además de feature flags con rollouts percentage y evaluación fail-closed, un vault de PII con cifrado envolvente y rotación de claves en Azure Key Vault, y búsqueda con Algolia con ETL incremental. En infraestructura participé en el despliegue en Azure (AKS, Container Registry, PostgreSQL con Entra ID, Blob Storage y Key Vault con Managed Identity) y en un chart de Helm compartido que estandariza despliegue y escalado; configuré CI/CD con SBOM, escaneo de vulnerabilidades y firma de imágenes.",
+      achievements: [
+        "Arquitectura de monorepo TypeScript con servicios gRPC",
+        "Migración strangler fig desde CRM legacy .NET/MSSQL sin downtime",
+        "Pipeline documental con IA, feature flags, vault PII en Azure Key Vault",
+        "Despliegue en Azure AKS con Helm, CI/CD con SBOM y firma de imágenes",
+      ],
+    },
+    {
+      title: "Desarrollador de integración        ",
+      date: "ago. de 2026",
+      description:
+        "Desarrollo de integraciones y automatización de procesos para clientes y agencias, conectando sus plataformas con APIs de terceros y definiendo flujos de negocio mediante GoHighLevel y Python.",
+      achievements: [
+        "Integración con APIs de terceros",
+        "Automatización de flujos con GoHighLevel",
+        "Desarrollo con Python para conectar servicios",
+      ],
+    },
     {
       title: "Desarrollador de Software - Contratista        ",
       date: "2025 Sept - 2026 May",
