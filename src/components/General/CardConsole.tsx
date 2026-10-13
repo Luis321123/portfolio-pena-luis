@@ -76,13 +76,13 @@ const CardConsole = ({ index }: CardConsoleProps) => {
             return updatedLines;
           });
           setCurrentCharIndex(prev => prev + 1);
-        }, 10);
+        }, 2);
         return () => clearTimeout(timeout);
       } else {
         const timeout = setTimeout(() => {
           setCurrentLineIndex(prev => prev + 1);
           setCurrentCharIndex(0);
-        }, 50);
+        }, 10);
         return () => clearTimeout(timeout);
       }
     } else {

@@ -192,18 +192,11 @@ const AboutPage = () => {
                     <br/>                
 
             </motion.h2>
-            <div className="flex flex-col gap-60 w-full">
-              {experienceIndices.map((index) => (
-                <CardExperience 
-                  key={index} 
-                  index={index}
-                />
-              ))}
-            </div>
+
           </div>
         </div>
 
-        <div className="w-full lg:w-[70%] xl:w-[75%] pl-0 sm:pl-0 md:pl-4 lg:pl-6 xl:pl-10 flex flex-col gap-8">
+        <div className="w-full lg:w-[65%] xl:w-[70%] pl-0 sm:pl-0 md:pl-4 lg:pl-6 xl:pl-10 flex flex-col gap-8">
           <motion.div
             initial={{ opacity: 0, y: "-50%" }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -256,10 +249,10 @@ const AboutPage = () => {
             </motion.h2>
             <div className="flex flex-col gap-14 w-full">
               {experienceIndices.map((index) => (
-                <CardConsole 
-                  key={index} 
-                  index={index}
-                />
+                <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                  <CardExperience index={index} />
+                  <CardConsole index={index} />
+                </div>
               ))}
             </div>
           </div>

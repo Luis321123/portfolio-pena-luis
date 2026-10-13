@@ -76,7 +76,7 @@ const CardExperience = ({ index }: CardExperienceProps) => {
         delay: index * 0.25,
         ease: "easeOut" 
       }}
-      className="w-full mb-4 font-mono"
+      className="w-full max-w-lg mx-auto mb-4 font-mono scale-[0.98]"
     >
       <div className="w-full border border-[#d4d0c8] rounded overflow-hidden bg-[#ece9d8]">
         
