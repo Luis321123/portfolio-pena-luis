@@ -7,6 +7,28 @@ const ExperienceAccordion = () => {
   const experiences = [
     {
       id: uuidv4(),
+      title: 'Software Developer - WME Agency',
+      date: 'Sept 2026 - Present',
+      description: 'Part of a 35-person cross-functional team building and migrating an internal CRM/operations platform for a talent agency serving 2000 employees. Designed and developed TypeScript monorepo with gRPC microservices, PostgreSQL schemas with versioned migrations, protobuf contracts, applied strangler fig to migrate from legacy .NET/MSSQL CRM with zero downtime. Built Next.js/React/TypeScript frontend with tRPC BFF, backend services using Kysely with transactions and outbox pattern. Implemented AI document pipeline with validation, feature flags, PII vault in Azure Key Vault, Algolia search with incremental ETL. Deployed on Azure AKS with Helm, CI/CD with SBOM, vulnerability scanning and image signing.',
+      achievements: [
+        "Built TypeScript monorepo with independent gRPC services and versioned PostgreSQL migrations",
+        "Executed strangler fig migration from legacy .NET/MSSQL CRM with zero downtime",
+        "Implemented AI document processing pipeline with validation, feature flags and PII vault",
+        "Deployed to Azure AKS with Helm and secured CI/CD pipeline (SBOM, signing, scanning)"
+      ]
+    },
+    {
+      id: uuidv4(),
+      title: 'Integration Developer - Creativoenlinea.com',
+      date: 'Aug 2026',
+      description: 'Developed integrations and automation workflows connecting client platforms with third-party APIs using GoHighLevel and Python.',
+      achievements: [
+        "Connected third-party APIs and automated business workflows",
+        "Implemented integrations using GoHighLevel and Python"
+      ]
+    },
+    {
+      id: uuidv4(),
       title: 'Backend Developer - Recipe Web Platform',
       date: '2023 FEB - 2024 FEB',
       description: 'Spearheaded the backend development of a recipe web platform using a robust dual-framework architecture with **Laravel** and **Django REST Framework**, powered by a **PostgreSQL** database. Engineered video mirroring functionality by integrating the YouTube API, and built a real-time comment system to foster user engagement. Architected a scalable and reliable infrastructure by containerizing the application with **Docker** and implementing **Celery** for efficient asynchronous task processing. Deployed the entire system on **Amazon Web Services (AWS)** to ensure high availability and performance. Maintained clean, maintainable code by applying software design patterns throughout the development lifecycle, utilizing **Git** for version control and **JIRA** for agile project tracking and sprint management.',
